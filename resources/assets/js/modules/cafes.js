@@ -14,6 +14,11 @@ export const cafes = {
 
         cafe: {},
         cafeLoadStatus: 0,
+
+        user:{
+            avatar : 'https://sfault-avatar.b0.upaiyun.com/147/223/147223148-573297d0913c5_huge256',
+        },
+        userLoadStatus: 0,
     },
 
     actions:{
@@ -41,7 +46,21 @@ export const cafes = {
                     commit( 'setCafe', {} );
                     commit( 'setCafeLoadStatus', 3 );
                 });
-        }
+        },
+        loadUser( { commit }){
+            commit( 'setUserLoadStatus', 1 );
+
+            CafeAPI.getUser()
+                .then( function( response ){
+                    commit( 'setUser', user);
+                    commit( 'setUserLoadStatus', 2 );
+                })
+                .catch( function(){
+                    commit( 'setUser', {} );
+                    commit( 'setUserLoadStatus', 3 );
+                });
+        },
+
     },
     mutations: {
         setCafesLoadStatus( state, status ){
@@ -58,6 +77,14 @@ export const cafes = {
     
         setCafe( state, cafe ){
           state.cafe = cafe;
+        },
+
+        setUserLoadStatus( state, status ){
+          state.userLoadStatus = status;
+        },
+      
+        setUser( state, user ){
+          state.user = user;
         }
     },
     getters: {

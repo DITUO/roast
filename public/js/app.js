@@ -22723,7 +22723,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);
-module.exports = __webpack_require__(80);
+module.exports = __webpack_require__(79);
 
 
 /***/ }),
@@ -58048,7 +58048,6 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_cafes_js__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_user_js__ = __webpack_require__(79);
 /*
  |-------------------------------------------------------------------------------
  | VUEX store.js
@@ -58077,14 +58076,12 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
  */
 
 
-
 /**
  * Export the data store.
  */
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   modules: {
-    cafes: __WEBPACK_IMPORTED_MODULE_2__modules_cafes_js__["a" /* cafes */],
-    user: __WEBPACK_IMPORTED_MODULE_3__modules_user_js__["a" /* user */]
+    cafes: __WEBPACK_IMPORTED_MODULE_2__modules_cafes_js__["a" /* cafes */]
   }
 }));
 
@@ -60241,7 +60238,12 @@ var cafes = {
         cafesLoadStatus: 0,
 
         cafe: {},
-        cafeLoadStatus: 0
+        cafeLoadStatus: 0,
+
+        user: {
+            avatar: 'https://sfault-avatar.b0.upaiyun.com/147/223/147223148-573297d0913c5_huge256'
+        },
+        userLoadStatus: 0
     },
 
     actions: {
@@ -60269,6 +60271,19 @@ var cafes = {
                 commit('setCafe', {});
                 commit('setCafeLoadStatus', 3);
             });
+        },
+        loadUser: function loadUser(_ref3) {
+            var commit = _ref3.commit;
+
+            commit('setUserLoadStatus', 1);
+
+            __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].getUser().then(function (response) {
+                commit('setUser', user);
+                commit('setUserLoadStatus', 2);
+            }).catch(function () {
+                commit('setUser', {});
+                commit('setUserLoadStatus', 3);
+            });
         }
     },
     mutations: {
@@ -60283,6 +60298,12 @@ var cafes = {
         },
         setCafe: function setCafe(state, cafe) {
             state.cafe = cafe;
+        },
+        setUserLoadStatus: function setUserLoadStatus(state, status) {
+            state.userLoadStatus = status;
+        },
+        setUser: function setUser(state, user) {
+            state.user = user;
         }
     },
     getters: {
@@ -60328,6 +60349,13 @@ var cafes = {
     },
 
     /**
+     * get user
+     */
+    getUser: function getUser() {
+        return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/cafes/user');
+    },
+
+    /**
      * POST /api/v1/cafes
      */
     postAddNewCafe: function postAddNewCafe(name, address, city, state, zip) {
@@ -60367,27 +60395,6 @@ var ROAST_CONFIG = {
 
 /***/ }),
 /* 79 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return user; });
-/*
-|-------------------------------------------------------------------------------
-| VUEX modules/cafes.js
-|-------------------------------------------------------------------------------
-| The Vuex data store for the cafes
-*/
-
-var user = {
-    state: {
-        user: {
-            avatar: 'https://sfault-avatar.b0.upaiyun.com/147/223/147223148-573297d0913c5_huge256'
-        }
-    }
-};
-
-/***/ }),
-/* 80 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
