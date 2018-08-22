@@ -60380,7 +60380,7 @@ var api_url = '';
 
 switch ("development") {
     case 'development':
-        api_url = 'http://roast.test/api/v1';
+        api_url = 'http://120.79.20.43:8080/api/v1';
         break;
     case 'production':
         api_url = 'http://120.79.20.43:8080/api/v1';
