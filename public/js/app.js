@@ -60240,9 +60240,7 @@ var cafes = {
         cafe: {},
         cafeLoadStatus: 0,
 
-        user: {
-            avatar: 'https://sfault-avatar.b0.upaiyun.com/147/223/147223148-573297d0913c5_huge256'
-        },
+        user: [],
         userLoadStatus: 0
     },
 
@@ -60278,7 +60276,7 @@ var cafes = {
             commit('setUserLoadStatus', 1);
 
             __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].getUser().then(function (response) {
-                commit('setUser', user);
+                commit('setUser', response.data);
                 commit('setUserLoadStatus', 2);
             }).catch(function () {
                 commit('setUser', {});
@@ -60352,7 +60350,7 @@ var cafes = {
      * get user
      */
     getUser: function getUser() {
-        return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/cafes/user');
+        return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/users');
     },
 
     /**
