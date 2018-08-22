@@ -22723,7 +22723,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);
-module.exports = __webpack_require__(79);
+module.exports = __webpack_require__(80);
 
 
 /***/ }),
@@ -58048,6 +58048,7 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_cafes_js__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_user_js__ = __webpack_require__(79);
 /*
  |-------------------------------------------------------------------------------
  | VUEX store.js
@@ -58076,12 +58077,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
  */
 
 
+
 /**
  * Export the data store.
  */
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   modules: {
-    cafes: __WEBPACK_IMPORTED_MODULE_2__modules_cafes_js__["a" /* cafes */]
+    cafes: __WEBPACK_IMPORTED_MODULE_2__modules_cafes_js__["a" /* cafes */],
+    user: __WEBPACK_IMPORTED_MODULE_3__modules_user_js__["a" /* user */]
   }
 }));
 
@@ -60250,7 +60253,6 @@ var cafes = {
                 commit('setCafes', response.data);
                 commit('setCafesLoadStatus');
             }).catch(function () {
-                alert(123);
                 commit('setCafes', []);
                 commit('setCafesLoadStatus', 3);
             });
@@ -60365,6 +60367,27 @@ var ROAST_CONFIG = {
 
 /***/ }),
 /* 79 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return user; });
+/*
+|-------------------------------------------------------------------------------
+| VUEX modules/cafes.js
+|-------------------------------------------------------------------------------
+| The Vuex data store for the cafes
+*/
+
+var user = {
+    state: {
+        user: {
+            avatar: 'https://sfault-avatar.b0.upaiyun.com/147/223/147223148-573297d0913c5_huge256'
+        }
+    }
+};
+
+/***/ }),
+/* 80 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
