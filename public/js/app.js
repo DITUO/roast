@@ -60248,8 +60248,9 @@ var cafes = {
             commit('setCafesLoadStatus', 1);
             __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].getCafes().then(function (response) {
                 commit('setCafes', response.data);
-                commit('setCafesLoadStatus', 2);
+                commit('setCafesLoadStatus');
             }).catch(function () {
+                alert(123);
                 commit('setCafes', []);
                 commit('setCafesLoadStatus', 3);
             });
@@ -60351,10 +60352,10 @@ var api_url = '';
 
 switch ("development") {
     case 'development':
-        api_url = 'https://roast.test/api/v1';
+        api_url = 'http://roast.test/api/v1';
         break;
     case 'production':
-        api_url = 'https://roast.demo.laravelacademy.org/api/v1';
+        api_url = 'http://120.79.20.43:8080/api/v1';
         break;
 }
 
