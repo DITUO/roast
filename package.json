@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "axios": "^0.18",
-        "cross-env": "^5.1",
+        "cross-env": "^5.2.0",
         "es6-promise": "^4.2.4",
         "foundation-sites": "^6.5.0-rc.2",
         "jquery": "^3.2",

@@ -13,7 +13,7 @@ export const cafes = {
         cafesLoadStatus: 0,
 
         cafe: {},
-        cafeLoadStatus: 0
+        cafeLoadStatus: 0,
     },
 
     actions:{
@@ -22,7 +22,7 @@ export const cafes = {
             CafeAPI.getCafes()
                 .then( function(response){
                     commit('setCafes',response.data);
-                    commit('setCafesLoadStatus',2);
+                    commit('setCafesLoadStatus',);
                 })
                 .catch( function(){
                     commit('setCafes',[]);
