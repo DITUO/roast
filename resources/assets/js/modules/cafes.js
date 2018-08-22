@@ -15,9 +15,7 @@ export const cafes = {
         cafe: {},
         cafeLoadStatus: 0,
 
-        user:{
-            avatar : 'https://sfault-avatar.b0.upaiyun.com/147/223/147223148-573297d0913c5_huge256',
-        },
+        user: [],
         userLoadStatus: 0,
     },
 
@@ -52,7 +50,7 @@ export const cafes = {
 
             CafeAPI.getUser()
                 .then( function( response ){
-                    commit( 'setUser', user);
+                    commit( 'setUser', response.data);
                     commit( 'setUserLoadStatus', 2 );
                 })
                 .catch( function(){

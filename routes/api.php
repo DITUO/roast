@@ -22,4 +22,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
     Route::post('/cafes', 'API\CafesController@postNewCafe');//添加
 
     Route::get('/cafes/{id}', 'API\CafesController@getCafe');//详情
+
+    Route::get('/users', 'API\CafesController@getUser');//用户
 });
