@@ -19,13 +19,6 @@ export default {
     },
 
     /**
-     * get user
-     */
-    getUser: function(){
-        return axios.get( ROAST_CONFIG.API_URL + '/users' );
-    },
-
-    /**
      * POST /api/v1/cafes
      */
     postAddNewCafe: function( name, address, city, state, zip ){
