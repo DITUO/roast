@@ -13,10 +13,7 @@ export const cafes = {
         cafesLoadStatus: 0,
 
         cafe: {},
-        cafeLoadStatus: 0,
-
-        user: [],
-        userLoadStatus: 0,
+        cafeLoadStatus: 0
     },
 
     actions:{
@@ -44,20 +41,7 @@ export const cafes = {
                     commit( 'setCafe', {} );
                     commit( 'setCafeLoadStatus', 3 );
                 });
-        },
-        loadUser( { commit }){
-            commit( 'setUserLoadStatus', 1 );
-
-            CafeAPI.getUser()
-                .then( function( response ){
-                    commit( 'setUser', response.data);
-                    commit( 'setUserLoadStatus', 2 );
-                })
-                .catch( function(){
-                    commit( 'setUser', {} );
-                    commit( 'setUserLoadStatus', 3 );
-                });
-        },
+        }
 
     },
     mutations: {
@@ -75,14 +59,6 @@ export const cafes = {
     
         setCafe( state, cafe ){
           state.cafe = cafe;
-        },
-
-        setUserLoadStatus( state, status ){
-          state.userLoadStatus = status;
-        },
-      
-        setUser( state, user ){
-          state.user = user;
         }
     },
     getters: {

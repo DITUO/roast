@@ -60265,10 +60265,7 @@ var cafes = {
         cafesLoadStatus: 0,
 
         cafe: {},
-        cafeLoadStatus: 0,
-
-        user: [],
-        userLoadStatus: 0
+        cafeLoadStatus: 0
     },
 
     actions: {
@@ -60296,19 +60293,6 @@ var cafes = {
                 commit('setCafe', {});
                 commit('setCafeLoadStatus', 3);
             });
-        },
-        loadUser: function loadUser(_ref3) {
-            var commit = _ref3.commit;
-
-            commit('setUserLoadStatus', 1);
-
-            __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].getUser().then(function (response) {
-                commit('setUser', response.data);
-                commit('setUserLoadStatus', 2);
-            }).catch(function () {
-                commit('setUser', {});
-                commit('setUserLoadStatus', 3);
-            });
         }
     },
     mutations: {
@@ -60323,12 +60307,6 @@ var cafes = {
         },
         setCafe: function setCafe(state, cafe) {
             state.cafe = cafe;
-        },
-        setUserLoadStatus: function setUserLoadStatus(state, status) {
-            state.userLoadStatus = status;
-        },
-        setUser: function setUser(state, user) {
-            state.user = user;
         }
     },
     getters: {
