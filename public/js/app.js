@@ -60470,7 +60470,7 @@ var userTests = {
             });
         }
     },
-    motatons: {
+    mutations: {
         setUserTestLoadStatus: function setUserTestLoadStatus(state, status) {
             state.userTestLoadStatus = status;
         },

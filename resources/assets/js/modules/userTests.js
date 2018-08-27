@@ -20,7 +20,7 @@ export const userTests = {
                 } )
         }
     },
-    motatons: {
+    mutations: {
         setUserTestLoadStatus(state,status){
             state.userTestLoadStatus = status;
         },
