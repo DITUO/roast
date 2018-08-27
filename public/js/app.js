@@ -57443,7 +57443,9 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c("p", [_vm._v(_vm._s(_vm.userTest.text))])
+      _c("p", [_vm._v(_vm._s(_vm.userTest.text))]),
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(_vm.userLoadStatus))])
     ],
     1
   )
