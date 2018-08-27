@@ -77,6 +77,7 @@
         <div class="right">
             <img class="avatar" :src="user.avatar" v-show="userLoadStatus == 2"/>
         </div>
+        <p>{{ userTest.text }}</p>
 
     </nav>
 </template>
@@ -93,6 +94,10 @@
             // 从 Vuex 中获取用户信息
             user(){
                 return this.$store.getters.getUser;
+            },
+
+            userTest(){
+                return this.$store.getters.getUserTest;
             }
         }
     }
