@@ -30,9 +30,7 @@ export const users = {
     },
     getters: {
         getUserLoadStatus(state){
-            return function(){
-                return state.userLoadStatus;
-            }
+            return state.userLoadStatus;
         },
         getUser(state){
             return state.user;
