@@ -60416,9 +60416,7 @@ var users = {
     },
     getters: {
         getUserLoadStatus: function getUserLoadStatus(state) {
-            return function () {
-                return state.userLoadStatus;
-            };
+            return state.userLoadStatus;
         },
         getUser: function getUser(state) {
             return state.user;
