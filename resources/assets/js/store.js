@@ -27,6 +27,7 @@ Vue.use( Vuex )
  */
 import { cafes } from './modules/cafes.js'
 import { users } from './modules/users.js'
+import { userTests } from './modules/userTests.js'
 
 /**
  * Export the data store.
@@ -34,6 +35,7 @@ import { users } from './modules/users.js'
 export default new Vuex.Store({
     modules: {
         cafes,
-        users
+        users,
+        userTests
     }
 });

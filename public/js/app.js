@@ -70,7 +70,7 @@
 "use strict";
 
 
-var bind = __webpack_require__(10);
+var bind = __webpack_require__(11);
 var isBuffer = __webpack_require__(22);
 
 /*global toString:true*/
@@ -823,6 +823,12 @@ module.exports = g;
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(21);
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
@@ -843,10 +849,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(11);
+    adapter = __webpack_require__(12);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(11);
+    adapter = __webpack_require__(12);
   }
   return adapter;
 }
@@ -921,10 +927,10 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1114,7 +1120,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12080,7 +12086,31 @@ module.exports = Vue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(39).setImmediate))
 
 /***/ }),
-/* 8 */
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ROAST_CONFIG; });
+/**
+ * Defines the API route we are using.
+ */
+var api_url = '';
+
+switch ("development") {
+    case 'development':
+        api_url = 'http://120.79.20.43:8080/api/v1';
+        break;
+    case 'production':
+        api_url = 'http://120.79.20.43:8080/api/v1';
+        break;
+}
+
+var ROAST_CONFIG = {
+    API_URL: api_url
+};
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -22451,13 +22481,7 @@ return jQuery;
 
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(21);
-
-/***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22475,7 +22499,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22486,7 +22510,7 @@ var settle = __webpack_require__(25);
 var buildURL = __webpack_require__(27);
 var parseHeaders = __webpack_require__(28);
 var isURLSameOrigin = __webpack_require__(29);
-var createError = __webpack_require__(12);
+var createError = __webpack_require__(13);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(30);
 
 module.exports = function xhrAdapter(config) {
@@ -22662,7 +22686,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22687,7 +22711,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22699,7 +22723,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22725,35 +22749,11 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 15 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ROAST_CONFIG; });
-/**
- * Defines the API route we are using.
- */
-var api_url = '';
-
-switch ("development") {
-    case 'development':
-        api_url = 'http://120.79.20.43:8080/api/v1';
-        break;
-    case 'production':
-        api_url = 'http://120.79.20.43:8080/api/v1';
-        break;
-}
-
-var ROAST_CONFIG = {
-    API_URL: api_url
-};
-
-/***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(17);
-module.exports = __webpack_require__(81);
+module.exports = __webpack_require__(83);
 
 
 /***/ }),
@@ -22762,17 +22762,17 @@ module.exports = __webpack_require__(81);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routes_js__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_js__ = __webpack_require__(74);
 window._ = __webpack_require__(18);
 try {
-    window.$ = window.jQuery = __webpack_require__(8);
+    window.$ = window.jQuery = __webpack_require__(10);
     __webpack_require__(20);
 } catch (e) {}
 
-window.axios = __webpack_require__(9);
+window.axios = __webpack_require__(5);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -39952,7 +39952,7 @@ module.exports = function(module) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__(8));
+		module.exports = factory(__webpack_require__(10));
 	else if(typeof define === 'function' && define.amd)
 		define(["jquery"], factory);
 	else {
@@ -53221,9 +53221,9 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_jquery__;
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(10);
+var bind = __webpack_require__(11);
 var Axios = __webpack_require__(23);
-var defaults = __webpack_require__(5);
+var defaults = __webpack_require__(6);
 
 /**
  * Create an instance of Axios
@@ -53256,9 +53256,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(14);
+axios.Cancel = __webpack_require__(15);
 axios.CancelToken = __webpack_require__(37);
-axios.isCancel = __webpack_require__(13);
+axios.isCancel = __webpack_require__(14);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -53306,7 +53306,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(5);
+var defaults = __webpack_require__(6);
 var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(32);
 var dispatchRequest = __webpack_require__(33);
@@ -53411,7 +53411,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(12);
+var createError = __webpack_require__(13);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -53844,8 +53844,8 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(34);
-var isCancel = __webpack_require__(13);
-var defaults = __webpack_require__(5);
+var isCancel = __webpack_require__(14);
+var defaults = __webpack_require__(6);
 var isAbsoluteURL = __webpack_require__(35);
 var combineURLs = __webpack_require__(36);
 
@@ -54004,7 +54004,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(14);
+var Cancel = __webpack_require__(15);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -54356,14 +54356,14 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(7)))
 
 /***/ }),
 /* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(42);
 /*
@@ -57195,6 +57195,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         this.$store.dispatch('loadCafes');
         this.$store.dispatch('loadUser');
+        this.$store.dispatch('loadUserTest');
     }
 });
 
@@ -57378,6 +57379,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     // 定义组件的计算属性
@@ -57391,6 +57393,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // 从 Vuex 中获取用户信息
         user: function user() {
             return this.$store.getters.getUser;
+        },
+        userTest: function userTest() {
+            return this.$store.getters.getUserTest;
         }
     }
 });
@@ -57436,7 +57441,9 @@ var render = function() {
           staticClass: "avatar",
           attrs: { src: _vm.user.avatar }
         })
-      ])
+      ]),
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(_vm.userTest.text))])
     ],
     1
   )
@@ -58068,11 +58075,12 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_cafes_js__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_users_js__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_userTests_js__ = __webpack_require__(81);
 /*
  |-------------------------------------------------------------------------------
  | VUEX store.js
@@ -58102,13 +58110,15 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 
 
+
 /**
  * Export the data store.
  */
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   modules: {
     cafes: __WEBPACK_IMPORTED_MODULE_2__modules_cafes_js__["a" /* cafes */],
-    users: __WEBPACK_IMPORTED_MODULE_3__modules_users_js__["a" /* users */]
+    users: __WEBPACK_IMPORTED_MODULE_3__modules_users_js__["a" /* users */],
+    userTests: __WEBPACK_IMPORTED_MODULE_4__modules_userTests_js__["a" /* userTests */]
   }
 }));
 
@@ -59296,7 +59306,7 @@ return Promise$1;
 
 //# sourceMappingURL=es6-promise.map
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7), __webpack_require__(4)))
 
 /***/ }),
 /* 76 */
@@ -60330,7 +60340,7 @@ var cafes = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(9);
 /**
  * Imports the Roast API URL from the config.
  */
@@ -60419,8 +60429,8 @@ var users = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 
 
@@ -60433,6 +60443,72 @@ var users = {
 
 /***/ }),
 /* 81 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return userTests; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_userTest_js__ = __webpack_require__(82);
+
+
+var userTests = {
+    state: {
+        userTest: {},
+        userTestLoadStatus: 0
+    },
+    actions: {
+        loadUserTest: function loadUserTest(_ref) {
+            var commit = _ref.commit;
+
+            commit('setUserTestLoadStatus', 1);
+
+            __WEBPACK_IMPORTED_MODULE_0__api_userTest_js__["a" /* default */].getUserTest().then(function (response) {
+                commit('setUserTest', response.data);
+                commit('setUserTestLoadStatus', 2);
+            }).catch(function (response) {
+                commit('setUserTest', response.data);
+                commit('setUserLoadStatus', 3);
+            });
+        }
+    },
+    motatons: {
+        setUserTestLoadStatus: function setUserTestLoadStatus(state, status) {
+            state.userTestLoadStatus = status;
+        },
+        setUserTest: function setUserTest(state, userTest) {
+            state.userTest = userTest;
+        }
+    },
+    getters: {
+        getUserTestLoadStatus: function getUserTestLoadStatus(state) {
+            return function () {
+                return state.userTestLoadStatus;
+            };
+        },
+        getUserTest: function getUserTest(state) {
+            return state.userTest;
+        }
+    }
+};
+
+/***/ }),
+/* 82 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    getUserTest: function getUserTest() {
+        return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/userTest');
+    }
+});
+
+/***/ }),
+/* 83 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
