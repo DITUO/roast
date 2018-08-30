@@ -22,7 +22,7 @@ export const cafes = {
             CafeAPI.getCafes()
                 .then( function(response){
                     commit('setCafes',response.data);
-                    commit('setCafesLoadStatus',);
+                    commit('setCafesLoadStatus',2);
                 })
                 .catch( function(){
                     commit('setCafes',[]);
@@ -30,16 +30,16 @@ export const cafes = {
                 })
         },
         loadCafe( { commit },data ){
-            commit( 'setCafeLoadStatus', 1 );
+            commit( 'setCafeLoadStatus',1 );
 
             CafeAPI.getCafe( data.id )
                 .then( function( response ){
                     commit( 'setCafe', response.data );
-                    commit( 'setCafeLoadStatus', 2 );
+                    commit( 'setCafeLoadStatus',2);
                 })
                 .catch( function(){
                     commit( 'setCafe', {} );
-                    commit( 'setCafeLoadStatus', 3 );
+                    commit( 'setCafeLoadStatus',3);
                 });
         }
 
