@@ -60287,7 +60287,7 @@ var cafes = {
             commit('setCafesLoadStatus', 1);
             __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].getCafes().then(function (response) {
                 commit('setCafes', response.data);
-                commit('setCafesLoadStatus');
+                commit('setCafesLoadStatus', 2);
             }).catch(function () {
                 commit('setCafes', []);
                 commit('setCafesLoadStatus', 3);
