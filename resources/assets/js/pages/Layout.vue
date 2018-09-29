@@ -19,7 +19,7 @@
         created(){
             this.$store.dispatch( 'loadCafes' );
             this.$store.dispatch( 'loadUser' );
-            this.$store.dispatch( 'loadUserTest' );
+            //this.$store.dispatch( 'loadUserTest' );
         }
     }
 </script>
