@@ -34,6 +34,8 @@ class CafesController extends Controller
         $cafe->city = Request::get('city');
         $cafe->state = Request::get('state');
         $cafe->zip = Request::get('zip');
+        $cafe->latitude = Request::filled('latitude') ? Request::get('latitude') : 0.00;
+        $cafe->longitude = Request::filled('longitude') ? Request::get('longitude') : 0.00;
 
         $cafe->save();
 
