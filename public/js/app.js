@@ -57195,7 +57195,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         this.$store.dispatch('loadCafes');
         this.$store.dispatch('loadUser');
-        this.$store.dispatch('loadUserTest');
+        //this.$store.dispatch( 'loadUserTest' );
     }
 });
 
@@ -60520,7 +60520,7 @@ var cafes = {
                 dispatch = _ref3.dispatch;
 
             commit('setCafeAddStatus', 1);
-            __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].postAddNewCafe(data.name, data.address, data.city, data.state, date.zip).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].postAddNewCafe(data.name, data.address, data.city, data.state, data.zip).then(function (response) {
                 commit('setCafeAddStatus', 2);
                 dispatch('loadCafes');
             }).catch(function () {
