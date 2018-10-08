@@ -29,7 +29,6 @@ class GaodeMaps{
         $geocodeResponse = $client->get($url)->getBody();
         $geocodeData = json_decode($geocodeResponse);
 
-        dd($geocodeResponse);
 
         // 初始化地理编码位置
         $coordinates['lat'] = null;
