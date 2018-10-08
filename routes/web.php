@@ -18,9 +18,13 @@ Route::get( '/auth/{social}', 'Web\AuthenticationController@getSocialRedirect' )
 
 Route::get( '/auth/{social}/callback', 'Web\AuthenticationController@getSocialCallback' )
       ->middleware('guest');
+
 Route::get('/test',function(){
 	header('Access-Control-Allow-Origin:*');
 	header('Access-Control-Allow-Method:POST,GET');
 	$data = 1;
 	return response()->json($data,200);
+});
+Route::get('geocode', function () {
+      return \App\Utilities\GaodeMaps::geocodeAddress('天城路1号', '杭州', '浙江');
 });
