@@ -11,4 +11,10 @@ class BrewMethod extends Model
     protected $table = 'brew_methods';//表名
 
     protected $guarded = [];//黑名单
+
+    // 定义与 Cafe 模型间的多对多关联
+    public function cafes()
+    {
+        return $this->belongsToMany(Cafe::class, 'cafes_brew_methods', 'brew_method_id', 'cafe_id');
+    }
 }
