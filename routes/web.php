@@ -26,5 +26,5 @@ Route::get('/test',function(){
 	return response()->json($data,200);
 });
 Route::get('geocode', function () {
-      return \App\Utilities\GaodeMaps::geocodeAddress('浙江', '杭州', '天城路1号');
-      });
+      return \App\Utilities\GaodeMaps::geocodeAddress('天城路1号', '杭州', '浙江');
+});
