@@ -77,8 +77,8 @@
         <div class="right">
             <img class="avatar" :src="user.avatar" v-show="userLoadStatus == 2"/>
         </div>
-        <p>{{ userTest.text }}</p>
-        <p>{{ userLoadStatus }}</p>
+        <!-- <p>{{ userTest.text }}</p>
+        <p>{{ userLoadStatus }}</p> -->
     </nav>
 </template>
 
