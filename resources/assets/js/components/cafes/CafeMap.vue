@@ -62,6 +62,7 @@ export default {
 
             // 自定义点标记图标
             var image = ROAST_CONFIG.APP_URL + '/storage/img/coffee-marker.png';
+            console.log(image);
             var icon = new AMap.Icon({
                 image: image,  // 图像 URL
                 imageSize: new AMap.Size(19, 33)  // 设置图标尺寸
