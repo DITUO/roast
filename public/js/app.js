@@ -57972,7 +57972,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             // 自定义点标记图标
             var image = __WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].APP_URL + '/storage/img/coffee-marker.png';
-            console.log(image);
             var icon = new AMap.Icon({
                 image: image, // 图像 URL
                 imageSize: new AMap.Size(19, 33) // 设置图标尺寸
@@ -57984,7 +57983,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // 通过高德地图 API 为每个咖啡店创建点标记并设置经纬度
                 var marker = new AMap.Marker({
                     position: AMap.LngLat(parseFloat(this.cafes[i].latitude), parseFloat(this.cafes[i].longitude)),
-                    title: this.cafes[i].name,
+                    title: image, //this.cafes[i].name,
                     icon: icon,
                     map: this.map
                 });
