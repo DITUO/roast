@@ -1,6 +1,8 @@
 <?php
 namespace App\Utilities;
 
+use GuzzleHttp\Client;
+
 class GaodeMaps{
 
     /**
