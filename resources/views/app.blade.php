@@ -9,6 +9,7 @@
     <script type="text/javascript">
         window.laravel = <?php echo json_encode(['csrfToken' => csrf_token()]);?>
     </script>
+    <script src="https://webapi.amap.com/maps?v=1.4.8&key=591d65ede2c4b1ce0d80c8c1b18326fd"></script>
 </head>
 <body>
     <div id="app">
