@@ -834,8 +834,8 @@ var gaode_maps_js_api_key = '591d65ede2c4b1ce0d80c8c1b18326fd';
 
 switch ("development") {
     case 'development':
-        api_url = 'http://roast.test/api/v1';
-        app_url = 'http://roast.test';
+        api_url = 'http://120.79.20.43:8080/api/v1';
+        app_url = 'http://120.79.20.43:8080';
         break;
     case 'production':
         api_url = 'http://120.79.20.43:8080/api/v1';
