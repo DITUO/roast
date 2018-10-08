@@ -57971,7 +57971,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.markers = [];
 
             // 自定义点标记图标
-            var image = __WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].APP_URL + '/storage/img/coffee-marker.png';
+            var image = __WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].APP_URL + '/storage/app/public/coffee-marker.png';
             var icon = new AMap.Icon({
                 image: image, // 图像 URL
                 imageSize: new AMap.Size(19, 33) // 设置图标尺寸
