@@ -58094,7 +58094,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-6b245ab6"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -58137,13 +58137,13 @@ var content = __webpack_require__(71);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("15cc38a7", content, false, {});
+var update = __webpack_require__(2)("5c16cb53", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6b245ab6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCafe.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6b245ab6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCafe.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6b245ab6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCafe.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6b245ab6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCafe.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -58161,7 +58161,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -58172,7 +58172,6 @@ exports.push([module.i, "\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -58272,7 +58271,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     is_valid: true,
                     text: ''
                 },
-                location: [],
+                locations: [],
                 oneLocation: {
                     is_valid: true,
                     text: ''
@@ -58299,82 +58298,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         validateNewCafe: function validateNewCafe() {
             var validNewCafeForm = true;
-            //name字段
+            // 确保 name 字段不为空
             if (this.name.trim() === '') {
                 validNewCafeForm = false;
                 this.validations.name.is_valid = false;
                 this.validations.name.text = '请输入咖啡店的名字';
             } else {
-                this.validations.is_valid = true;
-                this.validations.text = '';
+                this.validations.name.is_valid = true;
+                this.validations.name.text = '';
             }
-
             // 确保网址是有效的 URL
             if (this.website.trim !== '' && !this.website.match(/^((https?):\/\/)?([w|W]{3}\.)+[a-zA-Z0-9\-\.]{3,}\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/)) {
                 validNewCafeForm = false;
                 this.validations.website.is_valid = false;
-                this.validations.website.text = '请输入有效的网址 URL';
+                this.validations.website.text = '请输入有效的咖啡店网址';
             } else {
                 this.validations.website.is_valid = true;
                 this.validations.website.text = '';
             }
-
             for (var index in this.locations) {
                 if (this.locations.hasOwnProperty(index)) {
                     // 确保地址字段不为空
                     if (this.locations[index].address.trim() === '') {
                         validNewCafeForm = false;
                         this.validations.locations[index].address.is_valid = false;
-                        this.validations.locations[index].address.text = 'Please enter an address for the new cafe!';
+                        this.validations.locations[index].address.text = '地址字段不能为空';
                     } else {
                         this.validations.locations[index].address.is_valid = true;
                         this.validations.locations[index].address.text = '';
                     }
                 }
-
                 // 确保城市字段不为空
                 if (this.locations[index].city.trim() === '') {
                     validNewCafeForm = false;
                     this.validations.locations[index].city.is_valid = false;
-                    this.validations.locations[index].city.text = 'Please enter a city for the new cafe!';
+                    this.validations.locations[index].city.text = '城市字段不能为空';
                 } else {
                     this.validations.locations[index].city.is_valid = true;
                     this.validations.locations[index].city.text = '';
                 }
-
                 // 确保省份字段不为空
                 if (this.locations[index].state.trim() === '') {
                     validNewCafeForm = false;
                     this.validations.locations[index].state.is_valid = false;
-                    this.validations.locations[index].state.text = 'Please enter a state for the new cafe!';
+                    this.validations.locations[index].state.text = '省份字段不能为空';
                 } else {
                     this.validations.locations[index].state.is_valid = true;
                     this.validations.locations[index].state.text = '';
                 }
-
                 // 确保邮编字段不为空
                 if (this.locations[index].zip.trim() === '' || !this.locations[index].zip.match(/(^\d{6}$)/)) {
                     validNewCafeForm = false;
                     this.validations.locations[index].zip.is_valid = false;
-                    this.validations.locations[index].zip.text = 'Please enter a valid zip code for the new cafe!';
+                    this.validations.locations[index].zip.text = '请输入有效的邮政编码';
                 } else {
                     this.validations.locations[index].zip.is_valid = true;
                     this.validations.locations[index].zip.text = '';
                 }
             }
-
             return validNewCafeForm;
         },
         addLocation: function addLocation() {
-            this.location.push({
-                name: '',
-                address: '',
-                city: '',
-                state: '',
-                zip: '',
-                methodsAvailable: []
-            });
-            this.validations.location.push({
+            this.locations.push({ name: '', address: '', city: '', state: '', zip: '', methodsAvailable: [] });
+            this.validations.locations.push({
                 address: {
                     is_valid: true,
                     text: ''
@@ -58418,7 +58404,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     text: ''
                 }
             };
-
             this.addLocation();
         }
     },
@@ -58437,13 +58422,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {
         'addCafeStatus': function addCafeStatus() {
             if (this.addCafeStatus === 2) {
-                // 添加成功
                 this.clearForm();
                 $("#cafe-added-successfully").show().delay(5000).fadeOut();
             }
-
             if (this.addCafeStatus === 3) {
-                // 添加失败
                 $("#cafe-added-unsuccessfully").show().delay(5000).fadeOut();
             }
         }
@@ -58467,7 +58449,7 @@ var render = function() {
           _c("div", { staticClass: "grid-x grid-padding-x" }, [
             _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
               _c("label", [
-                _vm._v("名称\r\n                        "),
+                _vm._v("名称\n                        "),
                 _c("input", {
                   directives: [
                     {
@@ -58509,7 +58491,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
               _c("label", [
-                _vm._v("网址\r\n                        "),
+                _vm._v("网址\n                        "),
                 _c("input", {
                   directives: [
                     {
@@ -58551,7 +58533,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
               _c("label", [
-                _vm._v("简介\r\n                        "),
+                _vm._v("简介\n                        "),
                 _c("input", {
                   directives: [
                     {
@@ -58582,7 +58564,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "large-6 medium-6 small-12 cell" }, [
                 _c("label", [
-                  _vm._v("位置名称\r\n                        "),
+                  _vm._v("位置名称\n                        "),
                   _c("input", {
                     directives: [
                       {
@@ -58612,7 +58594,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "large-6 medium-6 small-12 cell" }, [
                 _c("label", [
-                  _vm._v("详细地址\r\n                        "),
+                  _vm._v("详细地址\n                        "),
                   _c("input", {
                     directives: [
                       {
@@ -58659,7 +58641,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "large-6 medium-6 small-12 cell" }, [
                 _c("label", [
-                  _vm._v("城市\r\n                        "),
+                  _vm._v("城市\n                        "),
                   _c("input", {
                     directives: [
                       {
@@ -58705,7 +58687,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "large-6 medium-6 small-12 cell" }, [
                 _c("label", [
-                  _vm._v("省份\r\n                        "),
+                  _vm._v("省份\n                        "),
                   _c("input", {
                     directives: [
                       {
@@ -58751,7 +58733,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "large-6 medium-6 small-12 cell" }, [
                 _c("label", [
-                  _vm._v("邮编\r\n                        "),
+                  _vm._v("邮编\n                        "),
                   _c("input", {
                     directives: [
                       {
