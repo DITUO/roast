@@ -33,4 +33,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
     Route::post('/cafes', 'API\CafesController@postNewCafe');//添加
 
     Route::get('/cafes/{id}', 'API\CafesController@getCafe');//详情
+
+    Route::get('/brew-methods', 'API\BrewMethodsController@getBrewMethods');//获取所有的咖啡冲泡方法
 });

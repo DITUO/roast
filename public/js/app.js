@@ -22759,7 +22759,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(17);
-module.exports = __webpack_require__(88);
+module.exports = __webpack_require__(90);
 
 
 /***/ }),
@@ -57202,6 +57202,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.$store.dispatch('loadCafes');
         this.$store.dispatch('loadUser');
         //this.$store.dispatch( 'loadUserTest' );
+        this.$store.dispatch('loadBrewMethods');
     }
 });
 
@@ -58709,6 +58710,7 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_cafes_js__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_users_js__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_userTests_js__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_brewMethods__ = __webpack_require__(88);
 /*
  |-------------------------------------------------------------------------------
  | VUEX store.js
@@ -58739,6 +58741,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 
 
+
 /**
  * Export the data store.
  */
@@ -58746,7 +58749,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
   modules: {
     cafes: __WEBPACK_IMPORTED_MODULE_2__modules_cafes_js__["a" /* cafes */],
     users: __WEBPACK_IMPORTED_MODULE_3__modules_users_js__["a" /* users */],
-    userTests: __WEBPACK_IMPORTED_MODULE_4__modules_userTests_js__["a" /* userTests */]
+    userTests: __WEBPACK_IMPORTED_MODULE_4__modules_userTests_js__["a" /* userTests */],
+    brewMethods: __WEBPACK_IMPORTED_MODULE_5__modules_brewMethods__["a" /* brewMethods */]
   }
 }));
 
@@ -61156,6 +61160,68 @@ var userTests = {
 
 /***/ }),
 /* 88 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return brewMethods; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_brewMethod_js__ = __webpack_require__(89);
+
+
+var brewMethods = {
+    state: {
+        brewMethods: [],
+        brewMethodsLoadStatus: 0
+    },
+
+    actions: {
+        loadBrewMethods: function loadBrewMethods(_ref) {
+            var commit = _ref.commit;
+
+            commit('setBrewMethodsLoadStatus', 1);
+
+            __WEBPACK_IMPORTED_MODULE_0__api_brewMethod_js__["a" /* default */].getBrewMethods().then(function (response) {
+                commit('setBrewMethods', response.data);
+                commit('setBrewMethodsLoadStatus', 2);
+            }).catch(function () {
+                commit('setBrewMethods', []);
+                commit('setBrewMethodsLoadStatus', 3);
+            });
+        }
+    },
+    mutations: {
+        setBrewMethodsLoadStatus: function setBrewMethodsLoadStatus(state, status) {
+            state.brewMethodsLoadStatus = status;
+        },
+        setBrewMethods: function setBrewMethods(state, brewMethods) {
+            state.brewMethods = brewMethods;
+        }
+    },
+    getters: {
+        getBrewMethods: function getBrewMethods(state) {
+            return state.brewMethods;
+        },
+        getBrewMethodsLoadStatus: function getBrewMethodsLoadStatus(state) {
+            return state.brewMethodsLoadStatus;
+        }
+    }
+};
+
+/***/ }),
+/* 89 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(5);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    getBrewMethods: function getBrewMethods() {
+        return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/brew-methods');
+    }
+});
+
+/***/ }),
+/* 90 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
