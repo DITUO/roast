@@ -33,11 +33,11 @@
               v-if="liked && cafeLoadStatus === 2 && cafeLikeActionStatus !== 1 && cafeUnlikeActionStatus !== 1">
             取消喜欢
         </span>
-        <loader v-show="cafeLikeActionStatus === 1 || cafeUnlikeActionStatus === 1"
+        <span v-show="cafeLikeActionStatus === 1 || cafeUnlikeActionStatus === 1"
                 :width="30"
                 :height="30"
                 :display="'inline-block'">
-        </loader>
+        </span>
     </span>
 </template>
 <script>

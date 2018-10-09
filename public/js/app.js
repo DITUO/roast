@@ -59730,63 +59730,57 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "span",
-    { staticClass: "toggle-like" },
-    [
-      !_vm.liked &&
-      _vm.cafeLoadStatus === 2 &&
-      _vm.cafeLikeActionStatus !== 1 &&
-      _vm.cafeUnlikeActionStatus !== 1
-        ? _c(
-            "span",
-            {
-              staticClass: "like",
-              on: {
-                click: function($event) {
-                  _vm.likeCafe(_vm.cafe.id)
-                }
-              }
-            },
-            [_vm._v("\n        喜欢\n    ")]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.liked &&
-      _vm.cafeLoadStatus === 2 &&
-      _vm.cafeLikeActionStatus !== 1 &&
-      _vm.cafeUnlikeActionStatus !== 1
-        ? _c(
-            "span",
-            {
-              staticClass: "un-like",
-              on: {
-                click: function($event) {
-                  _vm.unlikeCafe(_vm.cafe.id)
-                }
-              }
-            },
-            [_vm._v("\n        取消喜欢\n    ")]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("loader", {
-        directives: [
+  return _c("span", { staticClass: "toggle-like" }, [
+    !_vm.liked &&
+    _vm.cafeLoadStatus === 2 &&
+    _vm.cafeLikeActionStatus !== 1 &&
+    _vm.cafeUnlikeActionStatus !== 1
+      ? _c(
+          "span",
           {
-            name: "show",
-            rawName: "v-show",
-            value:
-              _vm.cafeLikeActionStatus === 1 ||
-              _vm.cafeUnlikeActionStatus === 1,
-            expression:
-              "cafeLikeActionStatus === 1 || cafeUnlikeActionStatus === 1"
-          }
-        ],
-        attrs: { width: 30, height: 30, display: "inline-block" }
-      })
-    ],
-    1
-  )
+            staticClass: "like",
+            on: {
+              click: function($event) {
+                _vm.likeCafe(_vm.cafe.id)
+              }
+            }
+          },
+          [_vm._v("\n        喜欢\n    ")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.liked &&
+    _vm.cafeLoadStatus === 2 &&
+    _vm.cafeLikeActionStatus !== 1 &&
+    _vm.cafeUnlikeActionStatus !== 1
+      ? _c(
+          "span",
+          {
+            staticClass: "un-like",
+            on: {
+              click: function($event) {
+                _vm.unlikeCafe(_vm.cafe.id)
+              }
+            }
+          },
+          [_vm._v("\n        取消喜欢\n    ")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("span", {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value:
+            _vm.cafeLikeActionStatus === 1 || _vm.cafeUnlikeActionStatus === 1,
+          expression:
+            "cafeLikeActionStatus === 1 || cafeUnlikeActionStatus === 1"
+        }
+      ],
+      attrs: { width: 30, height: 30, display: "inline-block" }
+    })
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
