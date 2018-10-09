@@ -73,6 +73,12 @@
                         icon: icon,
                         map: this.map
                     });
+                    //给标记添加信息
+                    marker.setLabel({
+                        offset: new AMap.Pixel(-5, -20),
+                        content: this.cafes[i].name + '---' + this.cafes[i].location_name
+                    });
+
                     // 自定义信息窗体
                     var infoWindow = new AMap.InfoWindow({
                         content: this.cafes[i].name
