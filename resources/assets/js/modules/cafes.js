@@ -79,7 +79,7 @@ export const cafes = {
             commit('setCafeLikeActionStatus',1);
             CafeAPI.deleteLikeCafe(data.id)
                 .then(function(response){
-                    commit('setCafeLikedStatus',true);
+                    commit('setCafeLikedStatus',false);
                     commit('setCafeLikeActionStatus',2);
                 })
                 .catch(function(){

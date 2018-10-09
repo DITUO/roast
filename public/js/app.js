@@ -62198,7 +62198,7 @@ var cafes = {
 
             commit('setCafeLikeActionStatus', 1);
             __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].deleteLikeCafe(data.id).then(function (response) {
-                commit('setCafeLikedStatus', true);
+                commit('setCafeLikedStatus', false);
                 commit('setCafeLikeActionStatus', 2);
             }).catch(function () {
                 commit('setCafeLikeActionStatus', 3);
