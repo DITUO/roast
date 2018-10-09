@@ -57983,7 +57983,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // 通过高德地图 API 为每个咖啡店创建点标记并设置经纬度
                 var marker = new AMap.Marker({
                     position: AMap.LngLat(parseFloat(this.cafes[i].latitude), parseFloat(this.cafes[i].longitude)),
-                    title: image, //this.cafes[i].name,
+                    title: this.cafes[i].name,
                     icon: icon,
                     map: this.map
                 });
