@@ -14,10 +14,7 @@ class CafesController extends Controller
 {
     //
     public function getCafes(){
-        $cafe = Cafe::where('id', '=', $id)
-                    ->with('brewMethods')
-                    ->with('userLike')
-                    ->first();
+        $cafe = Cafe::with('brewMethods')->with('userLike')->first();
         return response()->json($cafes)
                             ->header('Access-Control-Allow-Origin','http://120.79.20.43')
                             ->header('Access-Control-Allow-Credentials', 'true')
@@ -25,7 +22,7 @@ class CafesController extends Controller
     }
 
     public function getCafe($id){
-        $cafe = Cafe::where('id',$id)->with('brewMethods')->first();
+        $cafe = Cafe::where('id',$id)->with('brewMethods')->with('userLike')->first();
         return response()->json($cafe)
                         ->header('Access-Control-Allow-Origin','http://120.79.20.43')
                         ->header('Access-Control-Allow-Credentials', 'true')
