@@ -101,7 +101,7 @@ class CafesController extends Controller
             }
         }
 
-        return response()->json($cafe,201)
+        return response()->json($addedCafes,201)
                         ->header('Access-Control-Allow-Origin','http://120.79.20.43')
                         ->header('Access-Control-Allow-Credentials', 'true')
                         ->header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
