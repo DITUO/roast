@@ -8,13 +8,13 @@ use App\Models\Cafe;
 use Auth;
 use App\Http\Requests\StoreCafeRequest;
 use App\Utilities\GaodeMaps;
-use Carbon;
+use Carbon\Carbon;
 
 class CafesController extends Controller
 {
     //
     public function getCafes(){
-        $cafes = Cafe::with('brewMethods')->first();
+        $cafes = Cafe::with('brewMethods')->get();
         return response()->json($cafes)
                             ->header('Access-Control-Allow-Origin','http://120.79.20.43')
                             ->header('Access-Control-Allow-Credentials', 'true')

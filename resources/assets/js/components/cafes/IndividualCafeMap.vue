@@ -46,7 +46,7 @@
                     zoom: 13
                 });
 
-                var image = ROAST_CONFIG.APP_URL + '/storage/img/coffee-marker.png';
+                var image = ROAST_CONFIG.APP_URL + '/storage/app/public/coffee-marker.png';
                 var icon = new AMap.Icon({
                     image: image,  // Icon的图像
                     imageSize: new AMap.Size(19, 33)

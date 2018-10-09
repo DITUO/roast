@@ -59514,7 +59514,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 zoom: 13
             });
 
-            var image = __WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].APP_URL + '/storage/img/coffee-marker.png';
+            var image = __WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].APP_URL + '/storage/app/public/coffee-marker.png';
             var icon = new AMap.Icon({
                 image: image, // Icon的图像
                 imageSize: new AMap.Size(19, 33)
