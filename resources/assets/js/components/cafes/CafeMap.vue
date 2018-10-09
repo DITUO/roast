@@ -81,7 +81,8 @@
 
                     // 自定义信息窗体
                     var infoWindow = new AMap.InfoWindow({
-                        content: this.cafes[i].name
+                        content: '地址：' + this.cafes[i].state + this.cafes[i].city + this.cafes[i].address + "<br/>" + 
+                                 '电话：110'
                     });
                     this.infoWindows.push(infoWindow);
                     // 绑定点击事件到点标记对象，点击打开上面创建的信息窗体
