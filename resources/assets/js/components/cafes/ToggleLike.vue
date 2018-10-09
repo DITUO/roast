@@ -29,14 +29,15 @@
               v-if="!liked && cafeLoadStatus === 2 && cafeLikeActionStatus !== 1 && cafeUnlikeActionStatus !== 1">
             喜欢
         </span>
-        <span class="un-like" v-on:click="unLikeCafe( cafe.id )"
+        <span class="un-like" v-on:click="unlikeCafe( cafe.id )"
               v-if="liked && cafeLoadStatus === 2 && cafeLikeActionStatus !== 1 && cafeUnlikeActionStatus !== 1">
             取消喜欢
         </span>
         <loader v-show="cafeLikeActionStatus === 1 || cafeUnlikeActionStatus === 1"
                 :width="30"
                 :height="30"
-                :display="'inline-block'"/>
+                :display="'inline-block'">
+        </loader>
     </span>
 </template>
 <script>

@@ -59688,6 +59688,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     computed: {
@@ -59761,7 +59762,7 @@ var render = function() {
               staticClass: "un-like",
               on: {
                 click: function($event) {
-                  _vm.unLikeCafe(_vm.cafe.id)
+                  _vm.unlikeCafe(_vm.cafe.id)
                 }
               }
             },
@@ -62197,7 +62198,7 @@ var cafes = {
                 commit('setCafeLikeActionStatus', 3);
             });
         },
-        unLikeCafe: function unLikeCafe(_ref5, data) {
+        unlikeCafe: function unlikeCafe(_ref5, data) {
             var commit = _ref5.commit,
                 state = _ref5.state;
 

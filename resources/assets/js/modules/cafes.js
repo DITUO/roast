@@ -75,7 +75,7 @@ export const cafes = {
                     commit('setCafeLikeActionStatus',3);
                 })
         },  
-        unLikeCafe({commit,state},data){
+        unlikeCafe({commit,state},data){
             commit('setCafeLikeActionStatus',1);
             CafeAPI.deleteLikeCafe(data.id)
                 .then(function(response){
