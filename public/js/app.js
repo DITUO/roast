@@ -59761,7 +59761,7 @@ var render = function() {
               staticClass: "un-like",
               on: {
                 click: function($event) {
-                  _vm.unlikeCafe(_vm.cafe.id)
+                  _vm.unLikeCafe(_vm.cafe.id)
                 }
               }
             },

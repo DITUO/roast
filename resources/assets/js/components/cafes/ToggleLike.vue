@@ -29,7 +29,7 @@
               v-if="!liked && cafeLoadStatus === 2 && cafeLikeActionStatus !== 1 && cafeUnlikeActionStatus !== 1">
             喜欢
         </span>
-        <span class="un-like" v-on:click="unlikeCafe( cafe.id )"
+        <span class="un-like" v-on:click="unLikeCafe( cafe.id )"
               v-if="liked && cafeLoadStatus === 2 && cafeLikeActionStatus !== 1 && cafeUnlikeActionStatus !== 1">
             取消喜欢
         </span>
