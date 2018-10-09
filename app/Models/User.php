@@ -27,4 +27,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * 与Cafe 间的多对多关联 喜欢
+     */
+    public function likes(){
+        return $this->belongsToMany(Cafe::class,'users_cafes_likes','user_id','cafe_id');
+    }
 }

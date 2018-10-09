@@ -69,7 +69,7 @@
                     // 为每个咖啡店创建点标记并设置经纬度
                     var marker = new AMap.Marker({
                         position: new AMap.LngLat(parseFloat(this.cafes[i].latitude), parseFloat(this.cafes[i].longitude)),
-                        title: this.cafes[i].name,
+                        title: this.cafes[i].name + this.cafes[i].location_name,
                         icon: icon,
                         map: this.map
                     });

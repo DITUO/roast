@@ -31,5 +31,21 @@ export default {
                 roaster: roaster
             }
         );
+    },
+
+    /**
+     * 喜欢
+     * POST  /api/v1/cafes/{cafeID}/like
+     */
+    postLikeCafe: function (cafeID) {
+        return axios.post(ROAST_CONFIG.API_URL + '/cafes/' + cafeID + '/like');
+    },
+
+     /**
+      * 不喜欢
+    * DELETE /api/v1/cafes/{cafeID}/like
+    */
+    deleteLikeCafe: function (cafeID) {
+        return axios.delete(ROAST_CONFIG.API_URL + '/cafes/' + cafeID + '/like');
     }
 }

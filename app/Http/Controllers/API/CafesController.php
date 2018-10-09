@@ -8,12 +8,16 @@ use App\Models\Cafe;
 use Auth;
 use App\Http\Requests\StoreCafeRequest;
 use App\Utilities\GaodeMaps;
+use Carbon;
 
 class CafesController extends Controller
 {
     //
     public function getCafes(){
-        $cafes = Cafe::with('brewMethods')->get();
+        $cafe = Cafe::where('id', '=', $id)
+                    ->with('brewMethods')
+                    ->with('userLike')
+                    ->first();
         return response()->json($cafes)
                             ->header('Access-Control-Allow-Origin','http://120.79.20.43')
                             ->header('Access-Control-Allow-Credentials', 'true')
@@ -102,6 +106,30 @@ class CafesController extends Controller
         }
 
         return response()->json($addedCafes,201)
+                        ->header('Access-Control-Allow-Origin','http://120.79.20.43')
+                        ->header('Access-Control-Allow-Credentials', 'true')
+                        ->header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    }
+
+    /**
+     * 用户添加喜欢的咖啡店
+     */
+    public function postLikeCafe($cafeID){
+        $cafe = Cafe::where('id',$cafeID)->first();
+        $cafe->likes()->attach(Auth::user()->id,['created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
+        return response()->json(['cafe_liked'=>true],201)
+                        ->header('Access-Control-Allow-Origin','http://120.79.20.43')
+                        ->header('Access-Control-Allow-Credentials', 'true')
+                        ->header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    }
+
+    /**
+     * 用户删除喜欢的咖啡店
+     */
+    public function deleteLikeCafe($cafeID){
+        $cafe = Cafe::where('id',$cafeID)->first();
+        $cafe->likes()->detach(Auth::user()->id);
+        return response(null, 204)
                         ->header('Access-Control-Allow-Origin','http://120.79.20.43')
                         ->header('Access-Control-Allow-Credentials', 'true')
                         ->header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
