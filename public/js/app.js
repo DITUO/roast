@@ -59642,7 +59642,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\nspan.toggle-like {\n  display: block;\n  text-align: center;\n  margin-top: 30px;\n}\nspan.toggle-like span.like-toggle {\n    display: inline-block;\n    font-weight: bold;\n    text-decoration: underline;\n    font-size: 20px;\n    cursor: pointer;\n}\nspan.toggle-like span.like-toggle.like {\n      color: #00CC33;\n}\nspan.toggle-like span.like-toggle.un-like {\n      color: #CC6600;\n}\n", ""]);
+exports.push([module.i, "\nspan.toggle-like {\n  display: block;\n  text-align: center;\n  margin-top: 30px;\n}\nspan.toggle-like span.like-toggle {\n    display: inline-block;\n    font-weight: bold;\n    text-decoration: underline;\n    font-size: 20px;\n    cursor: pointer;\n}\nspan.toggle-like span.like-toggle.like {\n      color: #008800;\n}\nspan.toggle-like span.like-toggle.un-like {\n      color: #880000;\n}\n", ""]);
 
 // exports
 
@@ -59653,10 +59653,6 @@ exports.push([module.i, "\nspan.toggle-like {\n  display: block;\n  text-align: 
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
 //
 //
 //
@@ -59736,57 +59732,63 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("span", { staticClass: "toggle-like" }, [
-    !_vm.liked &&
-    _vm.cafeLoadStatus === 2 &&
-    _vm.cafeLikeActionStatus !== 1 &&
-    _vm.cafeUnlikeActionStatus !== 1
-      ? _c(
-          "span",
-          {
-            staticClass: "like",
-            on: {
-              click: function($event) {
-                _vm.likeCafe(_vm.cafe.id)
+  return _c(
+    "span",
+    { staticClass: "toggle-like" },
+    [
+      !_vm.liked &&
+      _vm.cafeLoadStatus === 2 &&
+      _vm.cafeLikeActionStatus !== 1 &&
+      _vm.cafeUnlikeActionStatus !== 1
+        ? _c(
+            "span",
+            {
+              staticClass: "like like-toggle",
+              on: {
+                click: function($event) {
+                  _vm.likeCafe(_vm.cafe.id)
+                }
               }
-            }
-          },
-          [_vm._v("\n        喜欢\n    ")]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.liked &&
-    _vm.cafeLoadStatus === 2 &&
-    _vm.cafeLikeActionStatus !== 1 &&
-    _vm.cafeUnlikeActionStatus !== 1
-      ? _c(
-          "span",
-          {
-            staticClass: "un-like",
-            on: {
-              click: function($event) {
-                _vm.unlikeCafe(_vm.cafe.id)
+            },
+            [_vm._v("\n        喜欢\n    ")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.liked &&
+      _vm.cafeLoadStatus === 2 &&
+      _vm.cafeLikeActionStatus !== 1 &&
+      _vm.cafeUnlikeActionStatus !== 1
+        ? _c(
+            "span",
+            {
+              staticClass: "un-like like-toggle",
+              on: {
+                click: function($event) {
+                  _vm.unlikeCafe(_vm.cafe.id)
+                }
               }
-            }
-          },
-          [_vm._v("\n        取消喜欢\n    ")]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _c("span", {
-      directives: [
-        {
-          name: "show",
-          rawName: "v-show",
-          value:
-            _vm.cafeLikeActionStatus === 1 || _vm.cafeUnlikeActionStatus === 1,
-          expression:
-            "cafeLikeActionStatus === 1 || cafeUnlikeActionStatus === 1"
-        }
-      ],
-      attrs: { width: 30, height: 30, display: "inline-block" }
-    })
-  ])
+            },
+            [_vm._v("\n        取消喜欢\n    ")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("loader", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value:
+              _vm.cafeLikeActionStatus === 1 ||
+              _vm.cafeUnlikeActionStatus === 1,
+            expression:
+              "cafeLikeActionStatus === 1 || cafeUnlikeActionStatus === 1"
+          }
+        ],
+        attrs: { width: 30, height: 30, display: "inline-block" }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

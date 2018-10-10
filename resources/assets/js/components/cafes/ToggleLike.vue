@@ -1,43 +1,39 @@
 <style lang="scss">
     @import '~@/abstracts/_variables.scss';
-
     span.toggle-like {
         display: block;
         text-align: center;
         margin-top: 30px;
-
         span.like-toggle {
             display: inline-block;
             font-weight: bold;
             text-decoration: underline;
             font-size: 20px;
             cursor: pointer;
-
             &.like {
-                color: #00CC33;
+                color: #008800;
             }
-
             &.un-like {
-                color: #CC6600;
+                color: #880000;
             }
         }
     }
 </style>
 <template>
     <span class="toggle-like">
-        <span class="like" v-on:click="likeCafe( cafe.id )"
+        <span class="like like-toggle" v-on:click="likeCafe( cafe.id )"
               v-if="!liked && cafeLoadStatus === 2 && cafeLikeActionStatus !== 1 && cafeUnlikeActionStatus !== 1">
             喜欢
         </span>
-        <span class="un-like" v-on:click="unlikeCafe( cafe.id )"
+        <span class="un-like like-toggle" v-on:click="unlikeCafe( cafe.id )"
               v-if="liked && cafeLoadStatus === 2 && cafeLikeActionStatus !== 1 && cafeUnlikeActionStatus !== 1">
             取消喜欢
         </span>
-        <span v-show="cafeLikeActionStatus === 1 || cafeUnlikeActionStatus === 1"
+        <loader v-show="cafeLikeActionStatus === 1 || cafeUnlikeActionStatus === 1"
                 :width="30"
                 :height="30"
                 :display="'inline-block'">
-        </span>
+        </loader>
     </span>
 </template>
 <script>
@@ -46,19 +42,15 @@
             cafeLoadStatus() {
                 return this.$store.getters.getCafeLoadStatus;
             },
-
             cafe() {
                 return this.$store.getters.getCafe;
             },
-
             liked() {
                 return this.$store.getters.getCafeLikedStatus;
             },
-
             cafeLikeActionStatus() {
                 return this.$store.getters.getCafeLikeActionStatus;
             },
-
             cafeUnlikeActionStatus() {
                 return this.$store.getters.getCafeUnlikeActionStatus;
             }
