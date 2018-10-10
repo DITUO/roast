@@ -37,7 +37,13 @@
     </span>
 </template>
 <script>
+    import Loader from '../global/Loader.vue';
+
     export default {
+        // 定义页面使用的组件
+        components: {
+            Loader
+        },
         computed: {
             cafeLoadStatus() {
                 return this.$store.getters.getCafeLoadStatus;
