@@ -59697,7 +59697,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     // 定义页面使用的组件
     components: {
-        //Loader
+        Loader: Loader
     },
     computed: {
         cafeLoadStatus: function cafeLoadStatus() {
@@ -59778,7 +59778,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("loader", {
+      _c("Loader", {
         directives: [
           {
             name: "show",
