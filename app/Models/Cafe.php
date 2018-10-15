@@ -48,6 +48,6 @@ class Cafe extends Model
      * 咖啡店和标签之间的多对多关联
      */
     public function tags(){
-        return $this->belongsToMany(Tag::class,'cafes_users_tags','cafe_id','user_id');
+        return $this->belongsToMany(Tag::class,'cafes_users_tags','cafe_id','tag_id');
     }
 }
