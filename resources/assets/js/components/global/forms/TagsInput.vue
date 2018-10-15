@@ -126,6 +126,7 @@
 <script>
     import {ROAST_CONFIG} from '../../../config.js';
     import {EventBus} from '../../../event-bus.js';
+    import _ from 'lodash';
 
     export default {
         props: ['unique'],
