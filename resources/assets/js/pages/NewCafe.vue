@@ -200,7 +200,7 @@
                     state: '', 
                     zip: '', 
                     methodsAvailable: [],
-                    tags: ''
+                    tags: []
                 });
                 this.validations.locations.push({
                     address: {
