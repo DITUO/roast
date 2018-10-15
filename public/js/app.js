@@ -58851,7 +58851,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         //清理标签，移除不必要的空格和字符
         cleanTagName: function cleanTagName(tagName) {
-            var cleanTag = tagName.trim();
+            var cleanTag = tagName.replace(/^\s+|\s+$/gm, '');
             return cleanTag;
         },
 

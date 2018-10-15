@@ -224,7 +224,7 @@
             },
             //清理标签，移除不必要的空格和字符
             cleanTagName(tagName){
-                var cleanTag = tagName.trim();
+                var cleanTag = tagName.replace(/^\s+|\s+$/gm,'');
                 return cleanTag;
             },
             //重置标签输入框
