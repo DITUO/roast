@@ -196,12 +196,12 @@
 
                 if(direction === 'up' && (this.searchSelectedIndex - 1 > -1)){
                     this.searchSelectedIndex = this.searchSelectedIndex - 1;
-                    this.currentTag = this.tagSearchResults[this.searchSelectedIndex].tag;
+                    this.currentTag = this.tagSearchResults[this.searchSelectedIndex].name;
                 }
 
                 if(direction === 'down' && (this.searchSelectedIndex + 1 <= this.tagSearchResults.length - 1)){
                     this.searchSelectedIndex = this.searchSelectedIndex + 1;
-                    this.currentTag = this.tagSearchResults[this.searchSelectedIndex].tag;
+                    this.currentTag = this.tagSearchResults[this.searchSelectedIndex].name;
                 }
             },
             // 引入防抖动函数，在 300ms 后执行匿名函数内代码
@@ -224,7 +224,6 @@
             },
             //清理标签，移除不必要的空格和字符
             cleanTagName(tagName){
-                alert(tagName);
                 var cleanTag = tagName.trim();
                 return cleanTag;
             },

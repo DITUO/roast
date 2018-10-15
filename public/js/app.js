@@ -58821,12 +58821,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (direction === 'up' && this.searchSelectedIndex - 1 > -1) {
                 this.searchSelectedIndex = this.searchSelectedIndex - 1;
-                this.currentTag = this.tagSearchResults[this.searchSelectedIndex].tag;
+                this.currentTag = this.tagSearchResults[this.searchSelectedIndex].name;
             }
 
             if (direction === 'down' && this.searchSelectedIndex + 1 <= this.tagSearchResults.length - 1) {
                 this.searchSelectedIndex = this.searchSelectedIndex + 1;
-                this.currentTag = this.tagSearchResults[this.searchSelectedIndex].tag;
+                this.currentTag = this.tagSearchResults[this.searchSelectedIndex].name;
             }
         },
 
@@ -58851,7 +58851,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         //清理标签，移除不必要的空格和字符
         cleanTagName: function cleanTagName(tagName) {
-            alert(tagName);
             var cleanTag = tagName.trim();
             return cleanTag;
         },
