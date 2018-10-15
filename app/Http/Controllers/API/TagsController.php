@@ -11,8 +11,8 @@ class TagsController extends Controller
     /**
      * 标签搜索
      */
-    public function getTags(){
-        $query = Request::input('search').'%';
+    public function getTags(Request $request){
+        $query = $request->get('search').'%';
         if($query == null || $query == ''){
             $tags = Tag::all();
         }else{
