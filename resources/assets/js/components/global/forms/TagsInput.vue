@@ -214,7 +214,6 @@
                         }
                     }).then( function( response ){
                         this.tagSearchResults = response.data;
-                        console.log(this.tagSearchResults);
                     }.bind(this));
                 }
             }, 300),

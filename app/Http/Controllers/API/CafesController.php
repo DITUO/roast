@@ -71,6 +71,7 @@ class CafesController extends Controller
         // 冲泡方法
         $brewMethods = $locations[0]['methodsAvailable'];
         // 标签信息
+        dd($locations);
         $tags = $locations[0]['tags'];
         // 保存与此咖啡店关联的所有冲泡方法（保存关联关系）
         $parentCafe->brewMethods()->sync($brewMethods);

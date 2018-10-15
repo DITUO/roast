@@ -58840,7 +58840,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 }).then(function (response) {
                     this.tagSearchResults = response.data;
-                    console.log(this.tagSearchResults);
                 }.bind(this));
             }
         }, 300),
