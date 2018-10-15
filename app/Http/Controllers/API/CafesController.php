@@ -25,7 +25,7 @@ class CafesController extends Controller
     }
 
     public function getCafe($id){
-        $cafe = Cafe::where('id',$id)->with('brewMethods')->with('userLike')->first();
+        $cafe = Cafe::where('id',$id)->with('brewMethods')->with('userLike')->with('tags')->first();
         return response()->json($cafe)
                         ->header('Access-Control-Allow-Origin','http://120.79.20.43')
                         ->header('Access-Control-Allow-Credentials', 'true')

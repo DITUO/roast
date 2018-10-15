@@ -59631,7 +59631,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\ndiv.cafe-page h2 {\n  text-align: center;\n  color: #7F6D50;\n  font-family: 'Josefin Sans', sans-serif;\n}\ndiv.cafe-page h3 {\n  text-align: center;\n  color: #FFBE54;\n  font-family: 'Josefin Sans', sans-serif;\n}\ndiv.cafe-page span.address {\n  text-align: center;\n  display: block;\n  font-family: 'Lato', sans-serif;\n  color: #A0A0A0;\n  font-size: 20px;\n  line-height: 30px;\n  margin-top: 50px;\n}\ndiv.cafe-page a.website {\n  text-align: center;\n  color: #CCAF80;\n  font-size: 30px;\n  font-weight: bold;\n  margin-top: 50px;\n  display: block;\n  font-family: 'Josefin Sans', sans-serif;\n}\ndiv.cafe-page div.brew-methods-container {\n  max-width: 700px;\n  margin: auto;\n}\ndiv.cafe-page div.brew-methods-container div.cell {\n    text-align: center;\n}\n", ""]);
+exports.push([module.i, "\ndiv.cafe-page h2 {\n  text-align: center;\n  color: #7F6D50;\n  font-family: 'Josefin Sans', sans-serif;\n}\ndiv.cafe-page h3 {\n  text-align: center;\n  color: #FFBE54;\n  font-family: 'Josefin Sans', sans-serif;\n}\ndiv.cafe-page span.address {\n  text-align: center;\n  display: block;\n  font-family: 'Lato', sans-serif;\n  color: #A0A0A0;\n  font-size: 20px;\n  line-height: 30px;\n  margin-top: 50px;\n}\ndiv.cafe-page a.website {\n  text-align: center;\n  color: #CCAF80;\n  font-size: 30px;\n  font-weight: bold;\n  margin-top: 50px;\n  display: block;\n  font-family: 'Josefin Sans', sans-serif;\n}\ndiv.cafe-page div.brew-methods-container {\n  max-width: 700px;\n  margin: auto;\n}\ndiv.cafe-page div.brew-methods-container div.cell {\n    text-align: center;\n}\ndiv.cafe-page div.tags-container {\n  max-width: 700px;\n  margin: auto;\n  text-align: center;\n  margin-top: 30px;\n}\ndiv.cafe-page div.tags-container span.tag {\n    color: #7F5F2A;\n    font-family: 'Josefin Sans', sans-serif;\n    margin-right: 20px;\n    display: inline-block;\n    line-height: 20px;\n}\n", ""]);
 
 // exports
 
@@ -59648,6 +59648,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_cafes_IndividualCafeMap_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_cafes_IndividualCafeMap_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_cafes_ToggleLike_vue__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_cafes_ToggleLike_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_cafes_ToggleLike_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -60428,7 +60449,23 @@ var render = function() {
                   _c(
                     "div",
                     { staticClass: "large-12 medium-12 small-12 cell" },
-                    [_c("toggle-like")],
+                    [
+                      _c("toggle-like"),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "tags-container" }, [
+                        _c("div", { staticClass: "grid-x grid-padding-x" }, [
+                          _c(
+                            "div",
+                            { staticClass: "large-12 medium-12 small-12 cell" },
+                            _vm._l(_vm.cafe.tags, function(tag) {
+                              return _c("span", { staticClass: "tag" }, [
+                                _vm._v("#" + _vm._s(tag.name))
+                              ])
+                            })
+                          )
+                        ])
+                      ])
+                    ],
                     1
                   )
                 ]),
