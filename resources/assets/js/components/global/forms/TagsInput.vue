@@ -163,7 +163,7 @@
                     tag = this.cleanTagName(tag);
                     this.tagsArray.push(tag);
                     //在事件总线中广播标签值变动
-                    EventBus.$emit('tags-edited',{unique:this.unique,tag:this.tagsArray});
+                    EventBus.$emit('tags-edited',{unique:this.unique,tags:this.tagsArray});
                     //重置标签输入框中的标签
                     this.resetInputs();
                 }else{

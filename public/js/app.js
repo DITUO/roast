@@ -58513,7 +58513,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$on('tags-edited', function (tagsAdded) {
-            this.locations[tagsAdded.unique].tags = tagsAdded.tag;
+            this.locations[tagsAdded.unique].tags = tagsAdded.tags;
+            console.log(tagsAdded);
+            console.log(this.locations);
         }.bind(this));
     }
 });
@@ -58785,7 +58787,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 tag = this.cleanTagName(tag);
                 this.tagsArray.push(tag);
                 //在事件总线中广播标签值变动
-                __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$emit('tags-edited', { unique: this.unique, tag: this.tagsArray });
+                __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$emit('tags-edited', { unique: this.unique, tags: this.tagsArray });
                 //重置标签输入框中的标签
                 this.resetInputs();
             } else {
