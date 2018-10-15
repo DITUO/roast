@@ -60,7 +60,8 @@ export const cafes = {
                     commit('setCafeAddStatus',2);
                     dispatch('loadCafes');
                 })
-                .catch( function(){
+                .catch( function(response){
+                    console.log(response);
                     commit('setCafeAddStatus',3);
                 });
         },
