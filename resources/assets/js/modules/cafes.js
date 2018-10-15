@@ -54,14 +54,14 @@ export const cafes = {
                 });
         },
         addCafe( { commit, state, dispatch }, data ){
+            console.log(data.locations);
             commit('setCafeAddStatus',1);
             CafeAPI.postAddNewCafe(data.name, data.locations, data.website, data.description, data.roaster)
                 .then( function(response){
                     commit('setCafeAddStatus',2);
                     dispatch('loadCafes');
                 })
-                .catch( function(response){
-                    console.log(response);
+                .catch( function(){
                     commit('setCafeAddStatus',3);
                 });
         },

@@ -62793,12 +62793,12 @@ var cafes = {
                 state = _ref3.state,
                 dispatch = _ref3.dispatch;
 
+            console.log(data.locations);
             commit('setCafeAddStatus', 1);
             __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].postAddNewCafe(data.name, data.locations, data.website, data.description, data.roaster).then(function (response) {
                 commit('setCafeAddStatus', 2);
                 dispatch('loadCafes');
-            }).catch(function (response) {
-                console.log(response);
+            }).catch(function () {
                 commit('setCafeAddStatus', 3);
             });
         },
