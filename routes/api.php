@@ -39,4 +39,10 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
     Route::post('/cafes/{id}/like', 'API\CafesController@postLikeCafe');// 喜欢咖啡店
 
     Route::delete('/cafes/{id}/like', 'API\CafesController@deleteLikeCafe');// 取消喜欢咖啡店
+
+    Route::post('/cafes/{id}/tags','API\CafesController@postAddTags');// 用户为某个咖啡店添加标签
+
+    Route::delete('/cafes/{id}/tags/{tagID}','API\CafesController@deleteAddTags');// 用户删除某个咖啡店的标签
+
+    Route::get('/tags','API\TagsController@getTags');// 根据输入词提供标签补全功能
 });
