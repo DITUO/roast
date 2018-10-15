@@ -12,7 +12,7 @@ class TagsController extends Controller
      * 标签搜索
      */
     public function getTags(){
-        $query = Request::get('search').'%';
+        $query = Request::input('search').'%';
         if($query == null || $query == ''){
             $tags = Tag::all();
         }else{
