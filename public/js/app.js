@@ -58513,6 +58513,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$on('tags-edited', function (tagsAdded) {
+            console.log(tagsAdded);
             this.locations[tagsAdded.unique].tags = tagsAdded.tags;
         }.bind(this));
     }
