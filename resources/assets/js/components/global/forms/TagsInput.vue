@@ -117,7 +117,7 @@
         <div class="tag-autocomplete" v-show="showAutocomplete">
             <div class="tag-search-result" v-for="(tag, key) in tagSearchResults"
                  v-bind:class="{ 'selected-search-index' : searchSelectedIndex === key }"
-                 v-on:click="selectTag( tag.tag )">{{ tag.tag }}
+                 v-on:click="selectTag( tag.name )">{{ tag.name }}
             </div>
         </div>
     </div>

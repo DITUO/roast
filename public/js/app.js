@@ -59023,11 +59023,11 @@ var render = function() {
             class: { "selected-search-index": _vm.searchSelectedIndex === key },
             on: {
               click: function($event) {
-                _vm.selectTag(tag.tag)
+                _vm.selectTag(tag.name)
               }
             }
           },
-          [_vm._v(_vm._s(tag.tag) + "\n        ")]
+          [_vm._v(_vm._s(tag.name) + "\n        ")]
         )
       })
     )
