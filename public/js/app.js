@@ -58827,16 +58827,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
 
-        //根据搜索词查询后端自动提示API接口并将结果展示到下拉列表
-        selectTags: function selectTags() {
+        // 引入防抖动函数，在 300ms 后执行匿名函数内代码
+        searchTags: _.debounce(function (e) {
             if (this.currentTag.length > 2 && !this.pauseSearch) {
                 this.searchSelectedIndex = -1;
-                axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/tags', { params: { search: this.currentTag } }).then(function (response) {
+                axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/tags', {
+                    params: {
+                        search: this.currentTag
+                    }
+                }).then(function (response) {
                     this.tagSearchResults = response.data;
                 }.bind(this));
             }
-        },
-
+        }, 300),
         //检查标签是否重复
         checkDuplicates: function checkDuplicates(tagName) {
             tagName = this.cleanTagName(tagName);
