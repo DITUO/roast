@@ -274,8 +274,7 @@
         },
         mounted(){
             EventBus.$on('tags-edited',function(tagsAdded){
-                console.log(tagsAdded);
-                this.locations[tagsAdded.unique].tags = tagsAdded.tags;
+                this.locations[tagsAdded.unique].tags = tagsAdded.tag;
             }.bind(this));
         }
     }
