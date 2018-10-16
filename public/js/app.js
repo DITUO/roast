@@ -58061,13 +58061,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     content: '地址：' + this.cafes[i].state + this.cafes[i].city + this.cafes[i].address + "<br/>" + 
                              '电话：110'
                 });
-                this.infoWindows.push(infoWindow); */
+                this.infoWindows.push(infoWindow);
                 // 绑定点击事件到点标记对象，点击打开上面创建的信息窗体
                 marker.on('click', function () {
                     infoWindow.open(this.getMap(), this.getPosition());
                 });
+                 */
+                // 绑定点击事件到点标记对象，点击打开上面创建的信息窗体
+                marker.on('click', mapClick);
                 // 将点标记放到数组中
                 this.markers.push(marker);
+            }
+            function mapClick(mapEvent) {
+                infoWindow.setContent(mapEvent.target.content);
+                infoWindow.open(this.getMap(), this.getPosition());
             }
             // 将所有点标记显示到地图上
             this.map.add(this.markers);
