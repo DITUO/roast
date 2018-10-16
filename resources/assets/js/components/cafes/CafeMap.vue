@@ -78,17 +78,16 @@
                         offset: new AMap.Pixel(-5, -20),
                         content: this.cafes[i].name + '---' + this.cafes[i].location_name
                     });
-
                     // 自定义信息窗体
-                    var infoWindow = new AMap.InfoWindow({
+                    var infoWindow = new AMap.InfoWindow(function(i){
+                        var that = this;
                         content:  '<div class="cafe-info-window">' +
-                                    '<div class="cafe-name">' + this.cafes[i].name + this.cafes[i].location_name + '</div>' +
+                                    '<div class="cafe-name">' + that.cafes[i].name + that.cafes[i].location_name + '</div>' +
                                     '<div class="cafe-address">' +
-                                    '<span class="street">' + this.cafes[i].address + '</span>' +
-                                    '<span class="city">' + this.cafes[i].city + '</span> ' +
-                                    '<span class="state">' + this.cafes[i].state + '</span>' +
-                                    '<span class="zip">' + this.cafes[i].zip + '</span>' +
-                                    '<a href="/#/cafes/' + this.cafes[i].id + '">Visit</a>' +
+                                    '<span class="street">' + that.cafes[i].address + '</span>' +
+                                    '<span class="city">' + that.cafes[i].city + '</span> ' +
+                                    '<span class="state">' + that.cafes[i].state + '</span>' +
+                                    '<a href="/#/cafes/' + that.cafes[i].id + '">Visit</a>' +
                                     '</div>' +
                                   '</div>'
                     });
