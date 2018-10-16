@@ -58043,38 +58043,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     position: new AMap.LngLat(parseFloat(this.cafes[i].latitude), parseFloat(this.cafes[i].longitude)),
                     title: this.cafes[i].name + this.cafes[i].location_name,
                     icon: icon,
-                    extData: {
-                        'cafe': this.cafes[i]
-                    }
+                    map: this.map
                 });
                 //给标记添加信息
                 marker.setLabel({
                     offset: new AMap.Pixel(-5, -20),
                     content: this.cafes[i].name + '---' + this.cafes[i].location_name
                 });
-                // 自定义信息窗体
-                var contentString = '<div class="cafe-info-window">' + '<div class="cafe-name">' + this.cafes[i].name + this.cafes[i].location_name + '</div>' + '<div class="cafe-address">' + '<span class="street">' + this.cafes[i].address + '</span>' + '<span class="city">' + this.cafes[i].city + '</span> ' + '<span class="state">' + this.cafes[i].state + '</span>' + +'<a href="/#/cafes/' + this.cafes[i].id + '">Visit</a>' + '</div>' + '</div>';
-                marker.content = contentString;
 
-                /* // 自定义信息窗体
+                // 自定义信息窗体
                 var infoWindow = new AMap.InfoWindow({
-                    content: '地址：' + this.cafes[i].state + this.cafes[i].city + this.cafes[i].address + "<br/>" + 
-                             '电话：110'
+                    content: '<div class="cafe-info-window">' + '<div class="cafe-name">' + this.cafes[i].name + this.cafes[i].location_name + '</div>' + '<div class="cafe-address">' + '<span class="street">' + this.cafes[i].address + '</span>' + '<span class="city">' + this.cafes[i].city + '</span> ' + '<span class="state">' + this.cafes[i].state + '</span>' + '<span class="zip">' + this.cafes[i].zip + '</span>' + '<a href="/#/cafes/' + this.cafes[i].id + '">Visit</a>' + '</div>' + '</div>'
                 });
                 this.infoWindows.push(infoWindow);
                 // 绑定点击事件到点标记对象，点击打开上面创建的信息窗体
                 marker.on('click', function () {
                     infoWindow.open(this.getMap(), this.getPosition());
                 });
-                 */
-                // 绑定点击事件到点标记对象，点击打开上面创建的信息窗体
-                marker.on('click', mapClick);
                 // 将点标记放到数组中
                 this.markers.push(marker);
-            }
-            function mapClick(mapEvent) {
-                infoWindow.setContent(mapEvent.target.content);
-                infoWindow.open(this.getMap(), this.getPosition());
             }
             // 将所有点标记显示到地图上
             this.map.add(this.markers);
