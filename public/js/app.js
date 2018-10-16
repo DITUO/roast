@@ -58051,17 +58051,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     content: this.cafes[i].name + '---' + this.cafes[i].location_name
                 });
                 // 自定义信息窗体
-                var infoWindow = new AMap.InfoWindow(function (i) {
-                    var that = this;
-                    content: '<div class="cafe-info-window">' + '<div class="cafe-name">' + that.cafes[i].name + that.cafes[i].location_name + '</div>' + '<div class="cafe-address">' + '<span class="street">' + that.cafes[i].address + '</span>' + '<span class="city">' + that.cafes[i].city + '</span> ' + '<span class="state">' + that.cafes[i].state + '</span>' + '<a href="/#/cafes/' + that.cafes[i].id + '">Visit</a>' + '</div>' + '</div>';
-                });
-                this.infoWindows.push(infoWindow);
+                var contentString = '<div class="cafe-info-window">' + '<div class="cafe-name">' + this.cafes[i].name + this.cafes[i].location_name + '</div>' + '<div class="cafe-address">' + '<span class="street">' + this.cafes[i].address + '</span>' + '<span class="city">' + this.cafes[i].city + '</span> ' + '<span class="state">' + this.cafes[i].state + '</span>' + '<a href="/#/cafes/' + this.cafes[i].id + '">Visit</a>' + '</div>' + '</div>';
+                marker.content = contentString;
+
+                var infoWindow = new AMap.InfoWindow({});
                 // 绑定点击事件到点标记对象，点击打开上面创建的信息窗体
-                marker.on('click', function () {
-                    infoWindow.open(this.getMap(), this.getPosition());
-                });
+                marker.on('click', mapClick);
                 // 将点标记放到数组中
                 this.markers.push(marker);
+            }
+            function mapClick(mapEvent) {
+                infoWindow.setContent(mapEvent.target.content);
+                infoWindow.open(this.getMap(), this.getPosition());
             }
             // 将所有点标记显示到地图上
             this.map.add(this.markers);
