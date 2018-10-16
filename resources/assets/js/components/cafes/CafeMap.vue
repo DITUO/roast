@@ -65,7 +65,6 @@
                     imageSize: new AMap.Size(19, 33)
                 });
                 // 遍历所有咖啡店创建点标记
-                var infoWindow = new AMap.InfoWindow();
                 for (var i = 0; i < this.cafes.length; i++) {
                     // 为每个咖啡店创建点标记并设置经纬度
                     var marker = new AMap.Marker({
@@ -79,18 +78,27 @@
                         offset: new AMap.Pixel(-5, -20),
                         content: this.cafes[i].name + '---' + this.cafes[i].location_name
                     });
-
-                    // 自定义信息窗体
-                    var contentString = '地址：' + this.cafes[i].state + this.cafes[i].city + this.cafes[i].address + "<br/>" + 
-                                 '电话：110';
-                    
+                    // 自定义信息窗体内容
+                    var contentString  = '<div class="cafe-info-window">' +
+                                            '<div class="cafe-name">' + this.cafes[i].name + this.cafes[i].location_name + '</div>' +
+                                            '<div class="cafe-address">' +
+                                            '<span class="street">' + this.cafes[i].address + '</span>' +
+                                            '<span class="city">' + this.cafes[i].city + '</span> ' +
+                                            '<span class="state">' + this.cafes[i].state + '</span>' +
+                                            '<a href="/#/cafes/' + this.cafes[i].id + '">Visit</a>' +
+                                            '</div>' +
+                                        '</div>';
                     marker.content = contentString;
+                    //创建自定义消息窗体
+                    var infoWindow = new AMap.InfoWindow({});
                     // 绑定点击事件到点标记对象，点击打开上面创建的信息窗体
-                    marker.on('click', function () {
-                        infoWindow.open(this.getMap(), this.getPosition());
-                    });
+                    marker.on('click', mapClick);
                     // 将点标记放到数组中
                     this.markers.push(marker);
+                }
+                function mapClick(mapEvent) {
+                    infoWindow.setContent(mapEvent.target.content);
+                    infoWindow.open(this.getMap(), this.getPosition());
                 }
                 // 将所有点标记显示到地图上
                 this.map.add(this.markers);
