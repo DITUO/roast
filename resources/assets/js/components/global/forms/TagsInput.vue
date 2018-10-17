@@ -5,7 +5,7 @@
         position: relative;
 
         div.tags-input {
-            display: block;
+            display: table;
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
             width: 100%;

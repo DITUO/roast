@@ -17,7 +17,10 @@ class CafesController extends Controller
 {
     //
     public function getCafes(){
-        $cafes = Cafe::with('brewMethods')->get();
+        $cafes = Cafe::with('brewMethods')
+                       ->with(['tags'=>function($query){
+                           $query->select('name');
+                       }])->get();
         return response()->json($cafes)
                             ->header('Access-Control-Allow-Origin','http://120.79.20.43')
                             ->header('Access-Control-Allow-Credentials', 'true')
