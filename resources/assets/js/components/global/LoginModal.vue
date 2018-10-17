@@ -38,7 +38,7 @@
     <div id="login-modal" v-show="show" v-on:click="show = false">
         <div class="login-box">
             <a href="/auth/github" v-on:click.stop="">
-                <img src="/storage/img/github-login.jpg"/>
+                <img src="/storage/app/public/github-login.jpg"/>
             </a>
         </div>
     </div>    

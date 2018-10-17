@@ -57898,7 +57898,11 @@ var render = function() {
               }
             }
           },
-          [_c("img", { attrs: { src: "/storage/img/github-login.jpg" } })]
+          [
+            _c("img", {
+              attrs: { src: "/storage/app/public/github-login.jpg" }
+            })
+          ]
         )
       ])
     ]
