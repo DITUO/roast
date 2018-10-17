@@ -1,6 +1,8 @@
 export const CafeTagsFilter = {
     methods: {
         processCafeTagsFilter(cafe, tags) {
+            console.log(cafe);
+            console.log(tags);
             // 如果标签不为空则进行处理
             if (tags.length > 0) {
                 var cafeTags = [];
