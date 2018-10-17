@@ -3,6 +3,7 @@
         width: 100%;
         height: 400px;
     }
+
     div#cafe-map-container {
         position: absolute;
         top: 50px;
@@ -16,6 +17,40 @@
             left: 0px;
             right: 0px;
             bottom: 0px;
+        }
+
+        div.cafe-info-window {
+            div.cafe-name {
+                display: block;
+                text-align: center;
+                color: black;
+                font-family: 'Josefin Sans', sans-serif;
+            }
+            div.cafe-address {
+                display: block;
+                text-align: center;
+                margin-top: 5px;
+                color: grey;
+                font-family: 'Lato', sans-serif;
+                span.street {
+                    font-size: 14px;
+                    display: block;
+                }
+                span.city {
+                    font-size: 12px;
+                }
+                span.state {
+                    font-size: 12px;
+                }
+                span.zip {
+                    font-size: 12px;
+                    display: block;
+                }
+                a {
+                    color: orange;
+                    font-weight: bold;
+                }
+            }
         }
     }
 </style>

@@ -21,7 +21,6 @@ class CafesController extends Controller
                        ->with(['tags'=>function($query){
                            $query->select('name');
                        }])->get();
-                       \Log::info($cafes->toArray());
         return response()->json($cafes)
                             ->header('Access-Control-Allow-Origin','http://120.79.20.43')
                             ->header('Access-Control-Allow-Credentials', 'true')
