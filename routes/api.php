@@ -14,9 +14,9 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
-    Route::get('/user', function( Request $request ){
+    /* Route::get('/user', function( Request $request ){
         return $request->user();
-    });
+    }); */
 
     Route::get('/userTest', function( Request $request ){
         $data = [
@@ -28,13 +28,13 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
         ->header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
     });
 
-    Route::get('/cafes', 'API\CafesController@getCafes');//列表
+    //Route::get('/cafes', 'API\CafesController@getCafes');//列表
 
     Route::post('/cafes', 'API\CafesController@postNewCafe');//添加
 
-    Route::get('/cafes/{id}', 'API\CafesController@getCafe');//详情
+    //Route::get('/cafes/{id}', 'API\CafesController@getCafe');//详情
 
-    Route::get('/brew-methods', 'API\BrewMethodsController@getBrewMethods');//获取所有的咖啡冲泡方法
+    //Route::get('/brew-methods', 'API\BrewMethodsController@getBrewMethods');//获取所有的咖啡冲泡方法
 
     Route::post('/cafes/{id}/like', 'API\CafesController@postLikeCafe');// 喜欢咖啡店
 
@@ -44,5 +44,14 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
 
     Route::delete('/cafes/{id}/tags/{tagID}','API\CafesController@deleteAddTags');// 用户删除某个咖啡店的标签
 
-    Route::get('/tags','API\TagsController@getTags');// 根据输入词提供标签补全功能
+    //Route::get('/tags','API\TagsController@getTags');// 根据输入词提供标签补全功能
+});
+
+// 公有路由，无需登录即可访问
+Route::group(['prefix' => 'v1'], function(){
+    Route::get('/cafes', 'API\CafesController@getCafes');//咖啡店列表
+    Route::get('/cafes/{id}', 'API\CafesController@getCafe');//咖啡店详情
+    Route::get('/brew-methods', 'API\BrewMethodsController@getBrewMethods');//获取所有的咖啡冲泡方法
+    Route::get('/tags', 'API\TagsController@getTags');// 获取所有标签
+    Route::get('/user', 'API\UsersController@getUser');// 获取用户信息
 });
