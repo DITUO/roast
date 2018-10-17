@@ -25,6 +25,8 @@ Route::get('/test',function(){
 	$data = 1;
 	return response()->json($data,200);
 });
+Route::get( '/logout', 'Web\AppController@getLogout' )
+    ->name('logout');
 Route::get('geocode', function () {
       return \App\Utilities\GaodeMaps::geocodeAddress('天城路1号', '杭州', '浙江');
 });

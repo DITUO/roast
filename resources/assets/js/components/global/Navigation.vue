@@ -75,7 +75,9 @@
         </ul>
 
         <div class="right">
-            <img class="avatar" :src="user.avatar" v-show="userLoadStatus == 2"/>
+            <img class="avatar" v-if="user != '' && userLoadStatus === 2" :src="user.avatar" v-show="userLoadStatus === 2"/>
+            <span class="logout" v-if="user != '' && userLoadStatus === 2" v-on:click="logout()">退出</span>
+            <span class="login" v-if="user == ''" v-on:click="login()">登录</span>
         </div>
         <!-- <p>{{ userTest.text }}</p>
         <p>{{ userLoadStatus }}</p> -->
@@ -83,6 +85,8 @@
 </template>
 
 <script>
+    import {EventBus} from '../../event-bus.js';
+
     export default {
         // 定义组件的计算属性
         computed: {
@@ -98,6 +102,15 @@
 
             userTest(){
                 return this.$store.getters.getUserTest;
+            }
+        },
+        methods:{
+            login() {
+                EventBus.$emit('prompt-login');
+            },
+            logout() {
+                this.$store.dispatch('logoutUser');
+                window.location = '/logout';
             }
         }
     }
