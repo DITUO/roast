@@ -67,11 +67,11 @@ export default new VueRouter({
                     name: 'cafes',
                     component: Vue.component( 'Cafes', require( './pages/Cafes.vue' ) ),
                 },
-                {
+                /* {
                     path: 'cafes/new',
                     name: 'newcafe',
                     component: Vue.component( 'NewCafe', require( './pages/NewCafe.vue' ) )
-                },
+                }, */
                 {
                     path: 'cafes/:id',
                     name: 'cafe',
