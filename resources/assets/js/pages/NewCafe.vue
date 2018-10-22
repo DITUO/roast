@@ -106,6 +106,7 @@
                 website: '',
                 description: '',
                 roaster: false,
+                file: '',
                 validations: {
                     name: {
                         is_valid: true,

@@ -64193,6 +64193,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             website: '',
             description: '',
             roaster: false,
+            file: '',
             validations: {
                 name: {
                     is_valid: true,
