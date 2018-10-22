@@ -45,6 +45,8 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
     Route::delete('/cafes/{id}/tags/{tagID}','API\CafesController@deleteAddTags');// 用户删除某个咖啡店的标签
 
     //Route::get('/tags','API\TagsController@getTags');// 根据输入词提供标签补全功能
+
+    Route::put('/user','API\UsersController@putUpdateUser');//更新用户个人信息
 });
 
 // 公有路由，无需登录即可访问

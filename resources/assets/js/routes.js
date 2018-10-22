@@ -83,6 +83,12 @@ export default new VueRouter({
                     component: Vue.component('NewCafe', require('./pages/NewCafe.vue')),
                     beforeEnter: requireAuth
                 },
+                {
+                    path: 'profile',
+                    name: 'profile',
+                    component: Vue.component('Profile',require('./pages/Profile.vue')),
+                    beforeEnter: requireAuth
+                },
             ]
         }
     ]
