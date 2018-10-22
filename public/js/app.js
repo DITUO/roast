@@ -64507,7 +64507,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
               _c("label", [
-                _vm._v("Photo\n                        "),
+                _vm._v("图片\n                        "),
                 _c("input", {
                   ref: "photo",
                   attrs: { type: "file", id: "cafe-photo" },

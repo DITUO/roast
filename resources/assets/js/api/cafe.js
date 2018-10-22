@@ -21,7 +21,7 @@ export default {
     /**
      * POST /api/v1/cafes
      */
-    postAddNewCafe: function( name, locations, website, description, roaster, picture ){
+    postAddNewCafe: function(name, locations, website, description, roaster, picture){
         return axios.post( ROAST_CONFIG.API_URL + '/cafes',
             {
                 name: name,
@@ -30,7 +30,8 @@ export default {
                 description: description,
                 roaster: roaster,
                 picture: picture
-            },{
+            },
+            {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
