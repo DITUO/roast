@@ -35,8 +35,7 @@ class CafesController extends Controller
                         ->header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
     }
 
-    public function postNewCafe(/* StoreCafe */Request $request){
-        dd($request->all());
+    public function postNewCafe(StoreCafeRequest $request){
         // 已添加的咖啡店
         $addedCafes = [];
         // 所有位置信息
