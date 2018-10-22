@@ -59536,7 +59536,7 @@ var cafes = {
                 dispatch = _ref3.dispatch;
 
             commit('setCafeAddStatus', 1);
-            __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].postAddNewCafe(data.name, data.locations, data.website, data.description, data.roaster).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].postAddNewCafe(data.name, data.locations, data.website, data.description, data.roaster, data.picture).then(function (response) {
                 commit('setCafeAddStatus', 2);
                 dispatch('loadCafes');
             }).catch(function () {
@@ -59651,13 +59651,18 @@ var cafes = {
     /**
      * POST /api/v1/cafes
      */
-    postAddNewCafe: function postAddNewCafe(name, locations, website, description, roaster) {
+    postAddNewCafe: function postAddNewCafe(name, locations, website, description, roaster, picture) {
         return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/cafes', {
             name: name,
             locations: locations,
             website: website,
             description: description,
-            roaster: roaster
+            roaster: roaster,
+            picture: picture
+        }, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         });
     },
 
@@ -64168,6 +64173,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -64209,7 +64219,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     locations: this.locations,
                     website: this.website,
                     description: this.description,
-                    roaster: this.roaster
+                    roaster: this.roaster,
+                    picture: this.picture
                 });
             }
         },
@@ -64314,6 +64325,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.website = '';
             this.description = '';
             this.roaster = false;
+            this.picture = '';
+            this.$refs.photo.value = '';
             this.validations = {
                 name: {
                     is_valid: true,
@@ -64331,6 +64344,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
             this.addLocation();
             __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$emit('clear-tags');
+        },
+        handleFileUpload: function handleFileUpload() {
+            this.picture = this.$refs.photo.files[0];
         }
     },
     created: function created() {
@@ -64484,6 +64500,21 @@ var render = function() {
                         return
                       }
                       _vm.description = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
+              _c("label", [
+                _vm._v("图片\n                        "),
+                _c("input", {
+                  ref: "photo",
+                  attrs: { type: "file", id: "cafe-photo" },
+                  on: {
+                    change: function($event) {
+                      _vm.handleFiledUpload()
                     }
                   }
                 })

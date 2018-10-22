@@ -34,4 +34,11 @@ class User extends Authenticatable
     public function likes(){
         return $this->belongsToMany(Cafe::class,'users_cafes_likes','user_id','cafe_id');
     }
+
+    /**
+     * 上传的咖啡店图片
+     */
+    public function cafePhotos(){
+        return $this->hasMany(CafePhoto::class,'id','cafe_id');
+    }
 }

@@ -23,6 +23,11 @@
                             <input type="text" placeholder="简介" v-model="description">
                         </label>
                     </div>
+                    <div class="large-12 medium-12 small-12 cell">
+                        <label>图片
+                            <input type="file" id="cafe-photo" ref="photo" v-on:change="handleFiledUpload()">
+                        </label>
+                    </div>
                 </div>
                 <div class="grid-x grid-padding-x" v-for="(location, key) in locations">
                     <div class="large-12 medium-12 small-12 cell">
@@ -126,7 +131,8 @@
                         locations: this.locations,
                         website: this.website,
                         description: this.description,
-                        roaster: this.roaster
+                        roaster: this.roaster,
+                        picture: this.picture
                     });
                 }
             },
@@ -231,6 +237,8 @@
                 this.website = '';
                 this.description = '';
                 this.roaster = false;
+                this.picture = '';
+                this.$refs.photo.value = '';
                 this.validations = {
                     name: {
                         is_valid: true,
@@ -248,6 +256,9 @@
                 };
                 this.addLocation();
                 EventBus.$emit('clear-tags');
+            },
+            handleFileUpload(){
+                this.picture = this.$refs.photo.files[0];
             }
         },
         created() {

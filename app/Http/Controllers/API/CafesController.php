@@ -71,6 +71,31 @@ class CafesController extends Controller
         $parentCafe->added_by = $request->user()->id;
         $parentCafe->save();
 
+        //保存图片
+        $photo = $request->file('picture');
+        if($photo && $photo->isValid()){
+            $destinationPath = storage_path('app/public/photos/'.$parentCafe->id);
+
+            //如果目标目录不存在，创建
+            if(!file_exists($destinationPath)){
+                mkdir($destinationPath);
+            }
+
+            //文件名
+            $filename = time().'-'.$photo->getClientOriginalName();
+            //保存文件到目标目录
+            $photo->move($destinationPath,$filename);
+
+            //数据库记录
+            $cafePhoto = new CafePhoto();
+
+            $cafePhoto->cafe_id = $parentCafe->id;
+            $cafePhoto->uploaded_by = Auth::user()->id;
+            $cafePhoto->file_url = $destinationPath.DIRECTORY_SEPARATOR.$filename;
+
+            $cafePhoto->save();
+        }
+
         // 冲泡方法
         $brewMethods = $locations[0]['methodsAvailable'];
         // 标签信息

@@ -50,4 +50,11 @@ class Cafe extends Model
     public function tags(){
         return $this->belongsToMany(Tag::class,'cafes_users_tags','cafe_id','tag_id');
     }
+
+    /**
+     * 咖啡店图片
+     */
+    public function photos(){
+        return $this->hasMany(CafePhoto::class,'id','cafe_id');
+    }
 }
