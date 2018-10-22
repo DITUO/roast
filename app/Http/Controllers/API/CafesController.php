@@ -36,7 +36,7 @@ class CafesController extends Controller
     }
 
     public function postNewCafe(/* StoreCafe */Request $request){
-        dd($request->all()->toArray());
+        dd($request->toArray());
         // 已添加的咖啡店
         $addedCafes = [];
         // 所有位置信息
