@@ -64178,14 +64178,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: {
-        TagsInput: __WEBPACK_IMPORTED_MODULE_0__components_global_forms_TagsInput_vue___default.a
-    },
     data: function data() {
         return {
             name: '',
@@ -64295,7 +64292,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 state: '',
                 zip: '',
                 methodsAvailable: [],
-                tags: []
+                tags: ''
             });
             this.validations.locations.push({
                 address: {
@@ -64343,8 +64340,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     text: ''
                 }
             };
-            this.addLocation();
             __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$emit('clear-tags');
+            this.addLocation();
         },
         handleFileUpload: function handleFileUpload() {
             this.picture = this.$refs.photo.files[0];
@@ -64352,6 +64349,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {
         this.addLocation();
+    },
+    mounted: function mounted() {
+        __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$on('tags-edited', function (tagsAdded) {
+            this.locations[tagsAdded.unique].tags = tagsAdded.tags;
+        }.bind(this));
     },
 
     computed: {
@@ -64373,12 +64375,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         }
     },
-    mounted: function mounted() {
-        __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$on('tags-edited', function (tagsAdded) {
-            this.locations[tagsAdded.unique].tags = tagsAdded.tags;
-            console.log(tagsAdded);
-            console.log(this.locations);
-        }.bind(this));
+    components: {
+        TagsInput: __WEBPACK_IMPORTED_MODULE_0__components_global_forms_TagsInput_vue___default.a
     }
 });
 
@@ -64509,7 +64507,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
               _c("label", [
-                _vm._v("图片\n                        "),
+                _vm._v("Photo\n                        "),
                 _c("input", {
                   ref: "photo",
                   attrs: { type: "file", id: "cafe-photo" },

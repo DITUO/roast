@@ -16,7 +16,8 @@
                         <label>网址
                             <input type="text" placeholder="网址" v-model="website">
                         </label>
-                        <span class="validation" v-show="!validations.website.is_valid">{{ validations.website.text }}</span>
+                        <span class="validation"
+                              v-show="!validations.website.is_valid">{{ validations.website.text }}</span>
                     </div>
                     <div class="large-12 medium-12 small-12 cell">
                         <label>简介
@@ -24,8 +25,8 @@
                         </label>
                     </div>
                     <div class="large-12 medium-12 small-12 cell">
-                        <label>图片
-                            <input type="file" id="cafe-photo" ref="photo" v-on:change="handleFileUpload()">
+                        <label>Photo
+                            <input type="file" id="cafe-photo" ref="photo" v-on:change="handleFileUpload()"/>
                         </label>
                     </div>
                 </div>
@@ -93,12 +94,8 @@
 
 <script>
     import TagsInput from '../components/global/forms/TagsInput.vue';
-    import { EventBus } from '../event-bus.js'; 
-
+    import {EventBus} from '../event-bus.js';
     export default {
-        components:{
-            TagsInput
-        },
         data() {
             return {
                 name: '',
@@ -140,11 +137,11 @@
             validateNewCafe: function () {
                 let validNewCafeForm = true;
                 // 确保 name 字段不为空
-                if( this.name.trim() === '' ){
+                if (this.name.trim() === '') {
                     validNewCafeForm = false;
                     this.validations.name.is_valid = false;
                     this.validations.name.text = '请输入咖啡店的名字';
-                }else{
+                } else {
                     this.validations.name.is_valid = true;
                     this.validations.name.text = '';
                 }
@@ -201,13 +198,13 @@
             },
             addLocation() {
                 this.locations.push({
-                    name: '', 
-                    address: '', 
-                    city: '', 
-                    state: '', 
-                    zip: '', 
+                    name: '',
+                    address: '',
+                    city: '',
+                    state: '',
+                    zip: '',
                     methodsAvailable: [],
-                    tags: []
+                    tags: ''
                 });
                 this.validations.locations.push({
                     address: {
@@ -255,15 +252,20 @@
                         text: ''
                     }
                 };
-                this.addLocation();
                 EventBus.$emit('clear-tags');
+                this.addLocation();
             },
-            handleFileUpload(){
+            handleFileUpload() {
                 this.picture = this.$refs.photo.files[0];
             }
         },
         created() {
             this.addLocation();
+        },
+        mounted() {
+            EventBus.$on('tags-edited', function (tagsAdded) {
+                this.locations[tagsAdded.unique].tags = tagsAdded.tags;
+            }.bind(this));
         },
         computed: {
             brewMethods() {
@@ -284,12 +286,8 @@
                 }
             }
         },
-        mounted(){
-            EventBus.$on('tags-edited',function(tagsAdded){
-                this.locations[tagsAdded.unique].tags = tagsAdded.tags;
-                console.log(tagsAdded);
-                console.log(this.locations);
-            }.bind(this));
+        components: {
+            TagsInput
         }
     }
 </script>
