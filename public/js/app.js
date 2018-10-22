@@ -59685,14 +59685,6 @@ var cafes = {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return users; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_user_js__ = __webpack_require__(55);
-function _defineProperty(obj, key, value) {
-    if (key in obj) {
-        Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
-    } else {
-        obj[key] = value;
-    }return obj;
-}
-
 
 
 var users = {
@@ -59741,7 +59733,7 @@ var users = {
             state.userUpdateStatus = status;
         }
     },
-    getters: _defineProperty({
+    getters: {
         getUserLoadStatus: function getUserLoadStatus(state) {
             return function () {
                 return state.userLoadStatus;
@@ -59749,10 +59741,11 @@ var users = {
         },
         getUser: function getUser(state) {
             return state.user;
+        },
+        getUserUpdateStatus: function getUserUpdateStatus(state) {
+            return state.userUpdateStatus;
         }
-    }, 'getUserLoadStatus', function getUserLoadStatus(state) {
-        return state.userUpdateStatus;
-    })
+    }
 };
 
 /***/ }),
@@ -65116,7 +65109,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.$store.getters.getUser;
         },
         userLoadStatus: function userLoadStatus() {
-            return this.$store.getters.getUserLoadStatus;
+            return this.$store.getters.getUserLoadStatus();
         },
         userUpdateStatus: function userUpdateStatus() {
             return this.$store.getters.getUserUpdateStatus;

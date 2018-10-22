@@ -53,7 +53,7 @@ export const users = {
         getUser(state){
             return state.user;
         },
-        getUserLoadStatus(state){
+        getUserUpdateStatus(state){
             return state.userUpdateStatus;
         }
     }
