@@ -65116,7 +65116,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.$store.getters.getUser;
         },
         userLoadStatus: function userLoadStatus() {
-            return this.$store.getters.getUserLoadStatus();
+            return this.$store.getters.getUserLoadStatus;
         },
         userUpdateStatus: function userUpdateStatus() {
             return this.$store.getters.getUserUpdateStatus;
