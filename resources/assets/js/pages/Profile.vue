@@ -78,7 +78,7 @@
             <div class="grid-x grid-padding-x">
                 <div class="large-8 medium-10 small-12 cell center">
                     <label>是否公开个人信息
-                        <select id="public-visibility" v-model="public_visibility">
+                        <select id="public-visibility" v-model="profile_visibility">
                             <option value="0">仅自己可见</option>
                             <option value="1">所有人可见</option>
                         </select>
@@ -109,7 +109,13 @@
 </template>
 
 <script>
+import Loader from '../components/global/Loader.vue';
+
 export default {
+    // 定义页面使用的组件
+    components: {
+        Loader,
+    },
     data() {
         return {
             favorite_coffee: '',
