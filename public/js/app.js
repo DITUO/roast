@@ -64514,7 +64514,7 @@ var render = function() {
                   attrs: { type: "file", id: "cafe-photo" },
                   on: {
                     change: function($event) {
-                      _vm.handleFiledUpload()
+                      _vm.handleFileUpload()
                     }
                   }
                 })
