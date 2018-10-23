@@ -30,12 +30,12 @@ export default {
         console.log(picture);
         console.log(this);
         let forData = new FormData();
-        forData.append('name',this.name);
-        forData.append('name',this.locations);
-        forData.append('name',this.website);
-        forData.append('name',this.description);
-        forData.append('name',this.roaster);
-        forData.append('name',this.picture);
+        forData.append('name',name);
+        forData.append('name',locations);
+        forData.append('name',website);
+        forData.append('name',description);
+        forData.append('name',roaster);
+        forData.append('name',picture);
         console.log(forData);
         return axios.post( ROAST_CONFIG.API_URL + '/cafes',forData,
             {

@@ -59660,12 +59660,12 @@ var cafes = {
         console.log(picture);
         console.log(this);
         var forData = new FormData();
-        forData.append('name', this.name);
-        forData.append('name', this.locations);
-        forData.append('name', this.website);
-        forData.append('name', this.description);
-        forData.append('name', this.roaster);
-        forData.append('name', this.picture);
+        forData.append('name', name);
+        forData.append('name', locations);
+        forData.append('name', website);
+        forData.append('name', description);
+        forData.append('name', roaster);
+        forData.append('name', picture);
         console.log(forData);
         return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/cafes', forData, {
             headers: {
@@ -64220,12 +64220,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         submitNewCafe: function submitNewCafe() {
             if (this.validateNewCafe()) {
-                console.log(this.name);
-                console.log(this.locations);
-                console.log(this.website);
-                console.log(this.description);
-                console.log(this.roaster);
-                console.log(this.picture);
                 this.$store.dispatch('addCafe', {
                     name: this.name,
                     locations: this.locations,

@@ -124,12 +124,6 @@
         methods: {
             submitNewCafe: function () {
                 if (this.validateNewCafe()) {
-                    console.log(this.name);
-                    console.log(this.locations);
-                    console.log(this.website);
-                    console.log(this.description);
-                    console.log(this.roaster);
-                    console.log(this.picture);
                     this.$store.dispatch('addCafe', {
                         name: this.name,
                         locations: this.locations,
