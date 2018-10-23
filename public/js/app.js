@@ -64212,6 +64212,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         submitNewCafe: function submitNewCafe() {
             if (this.validateNewCafe()) {
+                console.log(this.name);
+                console.log(this.locations);
+                console.log(this.website);
+                console.log(this.description);
+                console.log(this.roaster);
+                console.log(this.picture);
                 this.$store.dispatch('addCafe', {
                     name: this.name,
                     locations: this.locations,
@@ -64345,7 +64351,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         handleFileUpload: function handleFileUpload() {
             this.picture = this.$refs.photo.files[0];
-            console.log(this.picture);
         }
     },
     created: function created() {
