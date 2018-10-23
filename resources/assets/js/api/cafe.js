@@ -22,15 +22,22 @@ export default {
      * POST /api/v1/cafes
      */
     postAddNewCafe: function(name, locations, website, description, roaster, picture){
-        return axios.post( ROAST_CONFIG.API_URL + '/cafes',
-            {
-                name: name,
-                locations: locations,
-                website: website,
-                description: description,
-                roaster: roaster,
-                picture: picture
-            },
+        console.log(name);
+        console.log(locations);
+        console.log(website);
+        console.log(description);
+        console.log(roaster);
+        console.log(picture);
+        console.log(this);
+        let forData = new FormData();
+        forData.append('name',this.name);
+        forData.append('name',this.locations);
+        forData.append('name',this.website);
+        forData.append('name',this.description);
+        forData.append('name',this.roaster);
+        forData.append('name',this.picture);
+        console.log(forData);
+        return axios.post( ROAST_CONFIG.API_URL + '/cafes',forData,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data'
