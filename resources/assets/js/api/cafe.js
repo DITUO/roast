@@ -22,20 +22,13 @@ export default {
      * POST /api/v1/cafes
      */
     postAddNewCafe: function(name, locations, website, description, roaster, picture){
-        console.log(name);
-        console.log(locations);
-        console.log(website);
-        console.log(description);
-        console.log(roaster);
-        console.log(picture);
         var forData = new FormData();
-        forData.push('name',name);
-        forData.push('name',locations);
-        forData.push('name',website);
-        forData.push('name',description);
-        forData.push('name',roaster);
-        forData.push('name',picture);
-        console.log(forData);
+        forData.append('name',name);
+        forData.append('locations',locations);
+        forData.append('website',website);
+        forData.append('description',description);
+        forData.append('roaster',roaster);
+        forData.append('picture',picture);
         return axios.post( ROAST_CONFIG.API_URL + '/cafes',forData,
             {
                 headers: {
