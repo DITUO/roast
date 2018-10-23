@@ -24,9 +24,9 @@ export default {
     postAddNewCafe: function(name, locations, website, description, roaster, picture){
         var forData = new FormData();
         var arr = [];
-        for(let i in locations){
+        for(let i in locations[0]){
             let o = {};
-            o[i] = locations[i];
+            o[i] = locations[0][i];
             arr.push(o);
         }
         console.log(locations);

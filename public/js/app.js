@@ -59654,9 +59654,9 @@ var cafes = {
     postAddNewCafe: function postAddNewCafe(name, locations, website, description, roaster, picture) {
         var forData = new FormData();
         var arr = [];
-        for (var i in locations) {
+        for (var i in locations[0]) {
             var o = {};
-            o[i] = locations[i];
+            o[i] = locations[0][i];
             arr.push(o);
         }
         console.log(locations);
