@@ -36,11 +36,10 @@ class CafesController extends Controller
     }
 
     public function postNewCafe(StoreCafeRequest $request){
-        var_dump($request->input('locations'));
         // 已添加的咖啡店
         $addedCafes = [];
         // 所有位置信息
-        $locations = $request->input('locations');
+        $locations = json_decode($request->input('locations'));
 
         // 父节点（可理解为总店）
         $parentCafe = new Cafe();
