@@ -59658,14 +59658,13 @@ var cafes = {
         console.log(description);
         console.log(roaster);
         console.log(picture);
-        console.log(this);
         var forData = new FormData();
-        forData.append('name', name);
-        forData.append('name', locations);
-        forData.append('name', website);
-        forData.append('name', description);
-        forData.append('name', roaster);
-        forData.append('name', picture);
+        forData.push('name', name);
+        forData.push('name', locations);
+        forData.push('name', website);
+        forData.push('name', description);
+        forData.push('name', roaster);
+        forData.push('name', picture);
         console.log(forData);
         return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/cafes', forData, {
             headers: {
