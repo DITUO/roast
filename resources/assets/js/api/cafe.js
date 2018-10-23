@@ -23,16 +23,10 @@ export default {
      */
     postAddNewCafe: function(name, locations, website, description, roaster, picture){
         var forData = new FormData();
-        var arr = [];
-        for(let i in locations[0]){
-            let o = {};
-            o[i] = locations[0][i];
-            arr.push(o);
-        }
-        console.log(locations);
-        console.log(arr);
+        var json = JSON.stringify(locations) 
+        console.log(json);
         forData.append('name',name);
-        forData.append('locations',arr);
+        forData.append('locations',json);
         forData.append('website',website);
         forData.append('description',description);
         forData.append('roaster',roaster);
