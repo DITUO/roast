@@ -40,6 +40,7 @@ class CafesController extends Controller
         $addedCafes = [];
         // 所有位置信息
         $locations = json_decode($request->input('locations'));
+        dd($locations);
 
         // 父节点（可理解为总店）
         $parentCafe = new Cafe();
