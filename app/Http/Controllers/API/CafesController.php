@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cafe;
+use App\Models\CafePhoto;
 use App\Models\Tag;
 use Auth;
 use App\Http\Requests\StoreCafeRequest;
