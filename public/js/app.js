@@ -59658,12 +59658,11 @@ var cafes = {
             website: website,
             description: description,
             roaster: roaster,
-            picture: picture /* ,
-                             {
-                                headers: {
-                                    'Content-Type': 'multipart/form-data'
-                                }
-                             } */
+            picture: picture
+        }, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         });
     },
 
@@ -64346,6 +64345,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         handleFileUpload: function handleFileUpload() {
             this.picture = this.$refs.photo.files[0];
+            console.log(this.picture);
         }
     },
     created: function created() {
@@ -64390,7 +64390,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "page" }, [
-    _c("form", { attrs: { enctype: "multipart/form-data" } }, [
+    _c("form", [
       _c(
         "div",
         { staticClass: "grid-container" },

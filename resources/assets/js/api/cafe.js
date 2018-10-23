@@ -30,12 +30,12 @@ export default {
                 description: description,
                 roaster: roaster,
                 picture: picture
-            }/* ,
+            },
             {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            } */
+            }
         );
     },
 

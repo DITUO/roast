@@ -3,7 +3,7 @@
 
 <template>
     <div class="page">
-        <form enctype="multipart/form-data">
+        <form>
             <div class="grid-container">
                 <div class="grid-x grid-padding-x">
                     <div class="large-12 medium-12 small-12 cell">
@@ -257,6 +257,7 @@
             },
             handleFileUpload() {
                 this.picture = this.$refs.photo.files[0];
+                console.log(this.picture);
             }
         },
         created() {
