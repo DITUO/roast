@@ -18,6 +18,9 @@
         div.centered {
             margin: auto;
         }
+        div.page {
+            margin-top: 100px;
+        }
         h2.page-title {
             color: #342C0C;
             font-size: 36px;
