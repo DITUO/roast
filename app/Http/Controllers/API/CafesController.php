@@ -27,7 +27,6 @@ class CafesController extends Controller
                        ->withCount('userLike')
                        ->withCount('likes')
                        ->get();
-                       \Log::info($cafes[0]);
         return response()->json($cafes)
                             ->header('Access-Control-Allow-Origin','http://120.79.20.43')
                             ->header('Access-Control-Allow-Credentials', 'true')

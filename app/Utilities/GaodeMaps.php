@@ -2,6 +2,7 @@
 namespace App\Utilities;
 
 use GuzzleHttp\Client;
+use App\Models\City;
 
 class GaodeMaps{
 
