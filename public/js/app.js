@@ -40061,6 +40061,45 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
     */
     deleteLikeCafe: function deleteLikeCafe(cafeID) {
         return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/cafes/' + cafeID + '/like');
+    },
+
+    /**
+     * 获取编辑对象编辑
+     */
+    getCafeEdit: function getCafeEdit(id) {
+        return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/cafes/' + id + '/edit');
+    },
+
+    /**
+     * 更新
+     */
+    putEditCafe: function putEditCafe(id, companyName, companyID, companyType, subscription, website, locationName, address, city, state, zip, brewMethods, matcha, tea) {
+
+        var formData = new FormData();
+
+        formData.append('company_name', companyName);
+        formData.append('company_id', companyID);
+        formData.append('company_type', companyType);
+        formData.append('subscription', subscription);
+        formData.append('website', website);
+        formData.append('location_name', locationName);
+        formData.append('address', address);
+        formData.append('city', city);
+        formData.append('state', state);
+        formData.append('zip', zip);
+        formData.append('brew_methods', JSON.stringify(brewMethods));
+        formData.append('matcha', matcha);
+        formData.append('tea', tea);
+        formData.append('_method', 'PUT');
+
+        return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/cafes/' + id, formData);
+    },
+
+    /**
+     * 删除
+     */
+    deleteCafe: function deleteCafe(id) {
+        return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/cafes/' + id);
     }
 });
 
@@ -59625,13 +59664,23 @@ var index_esm = {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return cafes; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__ = __webpack_require__(20);
+var _state;
+
+function _defineProperty(obj, key, value) {
+    if (key in obj) {
+        Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
+    } else {
+        obj[key] = value;
+    }return obj;
+}
+
 
 
 var cafes = {
     /**
      * Defines the state being monitored for the module.
      */
-    state: {
+    state: (_state = {
         cafes: [],
         cafesLoadStatus: 0,
 
@@ -59649,8 +59698,14 @@ var cafes = {
         cafeDeletedStatus: 0,
         cafeDeleteText: '',
 
-        cafesView: 'map'
-    },
+        cafesView: 'map',
+
+        cafeEdit: {},
+        cafeEditLoadStatus: 0,
+        cafeEditStatus: 0,
+        cafeEditText: ''
+
+    }, _defineProperty(_state, 'cafeDeletedStatus', 0), _defineProperty(_state, 'cafeDeleteText', ''), _state),
     /**
      * Defines the actions used to retrieve the data.
      */
@@ -59775,6 +59830,62 @@ var cafes = {
             }
 
             commit('setCafes', localCafes);
+        },
+        loadCafeEdit: function loadCafeEdit(_ref8, data) {
+            var commit = _ref8.commit;
+
+            commit('setCafeEditLoadStatus', 1);
+
+            __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].getCafeEdit(data.id).then(function (response) {
+                commit('setCafeEdit', response.data);
+                commit('setCafeEditLoadStatus', 2);
+            }).catch(function () {
+                commit('setCafeEdit', {});
+                commit('setCafeEditLoadStatus', 3);
+            });
+        },
+        editCafe: function editCafe(_ref9, data) {
+            var commit = _ref9.commit,
+                state = _ref9.state,
+                dispatch = _ref9.dispatch;
+
+            commit('setCafeEditStatus', 1);
+
+            __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].putEditCafe(data.id, data.company_name, data.company_id, data.company_type, data.subscription, data.website, data.location_name, data.address, data.city, data.state, data.zip, data.brew_methods, data.matcha, data.tea).then(function (response) {
+                if (typeof response.data.cafe_updates_pending !== 'undefined') {
+                    commit('setCafeEditText', response.data.cafe_updates_pending + ' 正在编辑中!');
+                } else {
+                    commit('setCafeEditText', response.data.name + ' 已经编辑成功!');
+                }
+
+                commit('setCafeEditStatus', 2);
+
+                dispatch('loadCafes');
+            }).catch(function (error) {
+                commit('setCafeEditStatus', 3);
+            });
+        },
+        deleteCafe: function deleteCafe(_ref10, data) {
+            var commit = _ref10.commit,
+                state = _ref10.state,
+                dispatch = _ref10.dispatch;
+
+            commit('setCafeDeleteStatus', 1);
+
+            __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].deleteCafe(data.id).then(function (response) {
+
+                if (typeof response.data.cafe_delete_pending !== 'undefined') {
+                    commit('setCafeDeletedText', response.data.cafe_delete_pending + ' 正在删除中!');
+                } else {
+                    commit('setCafeDeletedText', '咖啡店删除成功!');
+                }
+
+                commit('setCafeDeleteStatus', 2);
+
+                dispatch('loadCafes');
+            }).catch(function () {
+                commit('setCafeDeleteStatus', 3);
+            });
         }
     },
     /**
@@ -59813,6 +59924,24 @@ var cafes = {
         },
         setCafesView: function setCafesView(state, view) {
             state.cafesView = view;
+        },
+        setCafeEdit: function setCafeEdit(state, cafe) {
+            state.cafeEdit = cafe;
+        },
+        setCafeEditStatus: function setCafeEditStatus(state, status) {
+            state.cafeEditStatus = status;
+        },
+        setCafeEditText: function setCafeEditText(state, text) {
+            state.cafeEditText = text;
+        },
+        setCafeEditLoadStatus: function setCafeEditLoadStatus(state, status) {
+            state.cafeEditLoadStatus = status;
+        },
+        setCafeDeleteStatus: function setCafeDeleteStatus(state, status) {
+            state.cafeDeletedStatus = status;
+        },
+        setCafeDeletedText: function setCafeDeletedText(state, text) {
+            state.cafeDeleteText = text;
         }
     },
     /**
@@ -59851,6 +59980,24 @@ var cafes = {
         },
         getCafesView: function getCafesView(state) {
             return state.cafesView;
+        },
+        getCafeEdit: function getCafeEdit(state) {
+            return state.cafeEdit;
+        },
+        getCafeEditStatus: function getCafeEditStatus(state) {
+            return state.cafeEditStatus;
+        },
+        getCafeEditText: function getCafeEditText(state) {
+            return state.cafeEditText;
+        },
+        getCafeEditLoadStatus: function getCafeEditLoadStatus(state) {
+            return state.cafeEditLoadStatus;
+        },
+        getCafeDeletedStatus: function getCafeDeletedStatus(state) {
+            return state.cafeDeletedStatus;
+        },
+        getCafeDeletedText: function getCafeDeletedText(state) {
+            return state.cafeDeleteText;
         }
     }
 };

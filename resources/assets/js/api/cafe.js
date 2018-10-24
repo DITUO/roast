@@ -63,5 +63,46 @@ export default {
     */
     deleteLikeCafe: function (cafeID) {
         return axios.delete(ROAST_CONFIG.API_URL + '/cafes/' + cafeID + '/like');
+    },
+
+    /**
+     * 获取编辑对象编辑
+     */
+    getCafeEdit: function (id) {
+        return axios.get(ROAST_CONFIG.API_URL + '/cafes/' + id + '/edit');
+    },
+
+    /**
+     * 更新
+     */
+    putEditCafe: function (id, companyName, companyID, companyType, subscription, website, locationName, address, city, state, zip, brewMethods, matcha, tea) {
+
+        let formData = new FormData();
+    
+        formData.append('company_name', companyName);
+        formData.append('company_id', companyID);
+        formData.append('company_type', companyType);
+        formData.append('subscription', subscription);
+        formData.append('website', website);
+        formData.append('location_name', locationName);
+        formData.append('address', address);
+        formData.append('city', city);
+        formData.append('state', state);
+        formData.append('zip', zip);
+        formData.append('brew_methods', JSON.stringify(brewMethods));
+        formData.append('matcha', matcha);
+        formData.append('tea', tea);
+        formData.append('_method', 'PUT');
+    
+        return axios.post(ROAST_CONFIG.API_URL + '/cafes/' + id,
+            formData
+        );
+    },
+
+    /**
+     * 删除
+     */
+    deleteCafe: function (id) {
+        return axios.delete(ROAST_CONFIG.API_URL + '/cafes/' + id);
     }
 }

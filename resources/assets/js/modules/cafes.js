@@ -22,7 +22,15 @@ export const cafes = {
         cafeDeletedStatus: 0,
         cafeDeleteText: '',
 
-        cafesView: 'map'
+        cafesView: 'map',
+
+        cafeEdit: {},
+        cafeEditLoadStatus: 0,
+        cafeEditStatus: 0,
+        cafeEditText: '',
+
+        cafeDeletedStatus: 0,
+        cafeDeleteText: '', 
     },
     /**
      * Defines the actions used to retrieve the data.
@@ -140,7 +148,62 @@ export const cafes = {
             }
 
             commit('setCafes', localCafes);
-        }
+        },
+
+        loadCafeEdit({commit}, data) {
+            commit('setCafeEditLoadStatus', 1);
+         
+            CafeAPI.getCafeEdit(data.id)
+                .then(function (response) {
+                    commit('setCafeEdit', response.data);
+                    commit('setCafeEditLoadStatus', 2);
+                })
+                .catch(function () {
+                    commit('setCafeEdit', {});
+                    commit('setCafeEditLoadStatus', 3);
+                });
+        },
+
+        editCafe({commit, state, dispatch}, data) {
+            commit('setCafeEditStatus', 1);
+         
+            CafeAPI.putEditCafe(data.id, data.company_name, data.company_id, data.company_type, data.subscription, data.website, data.location_name, data.address, data.city, data.state, data.zip, data.brew_methods, data.matcha, data.tea)
+                .then(function (response) {
+                    if (typeof response.data.cafe_updates_pending !== 'undefined') {
+                        commit('setCafeEditText', response.data.cafe_updates_pending + ' 正在编辑中!');
+                    } else {
+                        commit('setCafeEditText', response.data.name + ' 已经编辑成功!');
+                    }
+         
+                    commit('setCafeEditStatus', 2);
+         
+                    dispatch('loadCafes');
+                })
+                .catch(function (error) {
+                    commit('setCafeEditStatus', 3);
+                });
+        },
+
+        deleteCafe({commit, state, dispatch}, data) {
+            commit('setCafeDeleteStatus', 1);
+         
+            CafeAPI.deleteCafe(data.id)
+                .then(function (response) {
+         
+                    if (typeof response.data.cafe_delete_pending !== 'undefined') {
+                        commit('setCafeDeletedText', response.data.cafe_delete_pending + ' 正在删除中!');
+                    } else {
+                        commit('setCafeDeletedText', '咖啡店删除成功!');
+                    }
+         
+                    commit('setCafeDeleteStatus', 2);
+         
+                    dispatch('loadCafes');
+                })
+                .catch(function () {
+                    commit('setCafeDeleteStatus', 3);
+                });
+        },
     },
     /**
      * Defines the mutations used
@@ -188,6 +251,30 @@ export const cafes = {
 
         setCafesView(state, view) {
             state.cafesView = view
+        },
+
+        setCafeEdit(state, cafe) {
+            state.cafeEdit = cafe;
+        },
+         
+         setCafeEditStatus(state, status) {
+            state.cafeEditStatus = status;
+        },
+         
+         setCafeEditText(state, text) {
+            state.cafeEditText = text;
+        },
+         
+         setCafeEditLoadStatus(state, status) {
+            state.cafeEditLoadStatus = status;
+        },
+         
+         setCafeDeleteStatus(state, status) {
+            state.cafeDeletedStatus = status;
+        },
+         
+         setCafeDeletedText(state, text) {
+            state.cafeDeleteText = text;
         }
     },
     /**
@@ -236,6 +323,30 @@ export const cafes = {
 
         getCafesView(state) {
             return state.cafesView;
+        },
+
+        getCafeEdit(state) {
+            return state.cafeEdit;
+        },
+         
+         getCafeEditStatus(state) {
+            return state.cafeEditStatus;
+        },
+         
+         getCafeEditText(state) {
+            return state.cafeEditText;
+        },
+         
+         getCafeEditLoadStatus(state) {
+            return state.cafeEditLoadStatus;
+        },
+         
+         getCafeDeletedStatus(state) {
+            return state.cafeDeletedStatus;
+        },
+         
+         getCafeDeletedText(state) {
+            return state.cafeDeleteText;
         }
     }
 };

@@ -114,4 +114,43 @@ class CafesController extends Controller
         DB::table('cafes_users_tags')->where('cafe_id', $cafeID)->where('tag_id', $tagID)->where('user_id', Auth::user()->id)->delete();
         return response(null, 204);
     }
+
+    /**
+     * 获取咖啡店编辑表单数据
+     */
+    public function getCafeEditData($id){
+        $cafe = Cafe::where('id',$id)
+                ->with('brewMethods')
+                ->withCount('userLike')
+                ->with(['company'=>function($query){
+                    $query->withCount('cafes');
+                }])
+                ->first();
+        return response()->json($cafe);
+    }
+
+    /**
+     * 更新咖啡店数据
+     */
+    public function putEditCafe($id,Request $request){
+        $cafe = Cafe::where('id', '=', $id)->with('brewMethods')->first();
+
+        $cafeService = new CafeService();
+        $updatedCafe = $cafeService->editCafe($cafe->id, $request->all(), Auth::user()->id);
+    
+        $company = Company::where('id', '=', $updatedCafe->company_id)
+            ->with('cafes')
+            ->first();
+    
+        return response()->json($company, 200);
+    }
+
+    /**
+     * 删除咖啡店信息
+     */
+    public function deleteCafe($id){
+        $cafe = Cafe::where('id', '=', $id)->first();
+        $cafe->delete();
+        return response()->json(['message' => '删除成功'], 204);
+    }
 }

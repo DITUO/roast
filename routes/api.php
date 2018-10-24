@@ -47,6 +47,10 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
     //Route::get('/tags','API\TagsController@getTags');// 根据输入词提供标签补全功能
 
     Route::put('/user','API\UsersController@putUpdateUser');//更新用户个人信息
+
+    Route::get('/cafes/{id}/edit','API\CafesController@getCafeEditData');// 获取待编辑的咖啡店数据
+    Route::put('/cafes/{id}','API\CafesController@putEditCafe');// 更新咖啡店信息
+    Route::delete('/cafes/{id}','API\CafesController@deleteCafe');// 删除指定的咖啡店
 });
 
 // 公有路由，无需登录即可访问
