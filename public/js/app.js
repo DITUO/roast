@@ -61590,12 +61590,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -61660,45 +61654,13 @@ var render = function() {
               }
             },
             [_c("img", { attrs: { src: "/storage/img/github-login.jpg" } })]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "login-label" }, [_vm._v("关于本项目")]),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "learn-more-button",
-              attrs: {
-                href:
-                  "https://laravelacademy.org/api-driven-development-laravel-vue",
-                target: "_blank"
-              }
-            },
-            [_vm._v("关于本项目的构建教程，可以在这里看到")]
           )
         ]
       )
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "learn-more-description" }, [
-      _vm._v("Roast 项目由 "),
-      _c(
-        "a",
-        { attrs: { href: "https://laravelacademy.org", target: "_blank" } },
-        [_vm._v("Laravel 学院")]
-      ),
-      _vm._v("提供，Laravel 学院致力于提供优质 Laravel 中文学习资源。")
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

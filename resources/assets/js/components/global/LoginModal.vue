@@ -95,12 +95,6 @@
             <a href="/auth/github" v-on:click.stop="">
                 <img src="/storage/img/github-login.jpg"/>
             </a>
-
-            <div class="login-label">关于本项目</div>
-
-            <p class="learn-more-description">Roast 项目由 <a href="https://laravelacademy.org" target="_blank">Laravel 学院</a>提供，Laravel 学院致力于提供优质 Laravel 中文学习资源。</p>
-
-            <a class="learn-more-button" href="https://laravelacademy.org/api-driven-development-laravel-vue" target="_blank">关于本项目的构建教程，可以在这里看到</a>
         </div>
     </div>
 </template>
