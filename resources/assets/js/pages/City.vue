@@ -13,6 +13,11 @@
     */
     import {EventBus} from '../event-bus.js';
     export default {
+    data() {
+        return {
+            
+        }
+    },
         /*
           On the created lifecycle hook, load the individual city.
         */

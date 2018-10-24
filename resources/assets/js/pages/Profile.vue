@@ -3,7 +3,7 @@
 
     div#profile-page {
         position: fixed;
-        top: 0;
+        top: 20;
         bottom: 0;
         left: 0;
         right: 0;
