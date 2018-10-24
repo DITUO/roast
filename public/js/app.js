@@ -71889,7 +71889,7 @@ var render = function() {
       "div",
       {
         staticClass: "notification success",
-        staticStyle: { "margin-top": "15px" },
+        staticStyle: { "margin-top": "30px" },
         attrs: { id: "profile-updated-successfully" }
       },
       [_vm._v("\n        个人信息更新成功\n    ")]
