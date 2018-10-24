@@ -50,7 +50,7 @@
 
 <template>
     <div id="profile" class="page">
-        <div id="profile-updated-successfully" class="notification success">
+        <div id="profile-updated-successfully" class="notification success" style="margin-top:80px;">
             个人信息更新成功
         </div>
 
@@ -60,7 +60,7 @@
             </div>
         </div>
 
-        <div class="grid-container" v-show="userLoadStatus === 2" style="margin-top:100px;">
+        <div class="grid-container" v-show="userLoadStatus === 2" style="margin-top:140px;">
             <div class="grid-x grid-padding-x">
                 <div class="large-8 medium-10 small-12 cell center">
                     <label>最喜欢的咖啡
