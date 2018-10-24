@@ -71889,7 +71889,7 @@ var render = function() {
       "div",
       {
         staticClass: "notification success",
-        staticStyle: { "margin-top": "80px" },
+        staticStyle: { "margin-top": "8px" },
         attrs: { id: "profile-updated-successfully" }
       },
       [_vm._v("\n        个人信息更新成功\n    ")]
@@ -71928,7 +71928,7 @@ var render = function() {
           }
         ],
         staticClass: "grid-container",
-        staticStyle: { "margin-top": "140px" }
+        staticStyle: { "margin-top": "100px" }
       },
       [
         _c("div", { staticClass: "grid-x grid-padding-x" }, [
