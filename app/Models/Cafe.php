@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Auth;
 
 class Cafe extends Model
 {
@@ -44,8 +45,8 @@ class Cafe extends Model
      * 用户喜欢
      */
     public function userLike(){
-        \Log::info(auth::user()->id());
-        return $this->belongsToMany(User::class,'users_cafes_likes','cafe_id','user_id')->where('user_id',auth::user()->id());
+        \Log::info(Auth::user()->id);
+        return $this->belongsToMany(User::class,'users_cafes_likes','cafe_id','user_id')->where('user_id',Auth::user()->id);
     }
 
     /**
