@@ -58,4 +58,5 @@ Route::group(['prefix' => 'v1'], function(){
     Route::get('/user', 'API\UsersController@getUser');// 获取用户信息
     Route::get('/cities', 'API\CitiesController@getCities');// 获取所有城市
     Route::get('/cities/{slug}', 'API\CitiesController@getCity');// 获取指定城市
+    Route::get('/companies/search', 'API\CompaniesController@getCompanySearch');//公司搜索路由
 });
