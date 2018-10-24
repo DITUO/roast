@@ -2,6 +2,7 @@
     @import '~@/abstracts/_variables.scss';
 
     div#profile-page {
+        margin-top: 100px;
         position: fixed;
         top: 0;
         bottom: 0;
@@ -12,7 +13,7 @@
         overflow: auto;
         img#back {
             float: right;
-            margin-top: 100px;
+            margin-top: 20px;
             margin-right: 20px;
         }
         div.centered {
