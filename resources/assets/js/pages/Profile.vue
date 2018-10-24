@@ -3,7 +3,7 @@
 
     div#profile-page {
         position: fixed;
-        top: 100;
+        top: 0;
         bottom: 0;
         left: 0;
         right: 0;
@@ -17,9 +17,6 @@
         }
         div.centered {
             margin: auto;
-        }
-        div.page {
-            margin-top: 100px;
         }
         h2.page-title {
             color: #342C0C;
@@ -63,7 +60,7 @@
             </div>
         </div>
 
-        <div class="grid-container" v-show="userLoadStatus === 2">
+        <div class="grid-container" v-show="userLoadStatus === 2" style="margin-top:100px;">
             <div class="grid-x grid-padding-x">
                 <div class="large-8 medium-10 small-12 cell center">
                     <label>最喜欢的咖啡
