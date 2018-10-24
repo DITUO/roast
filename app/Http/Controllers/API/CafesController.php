@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EditCafeRequest;
+use App\Http\Requests\StoreCafeRequest;
 use App\Models\Cafe;
 use App\Models\CafePhoto;
+use App\Models\Company;
 use App\Models\Tag;
-use Auth;
-use App\Http\Requests\StoreCafeRequest;
+use App\Services\CafeService;
 use App\Utilities\GaodeMaps;
 use App\Utilities\Tagger;
 use Carbon\Carbon;
-use DB;
-use App\Services\CafeService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class CafesController extends Controller
 {
