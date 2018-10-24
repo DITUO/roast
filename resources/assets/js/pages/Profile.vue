@@ -50,7 +50,7 @@
 
 <template>
     <div id="profile" class="page">
-        <div id="profile-updated-successfully" class="notification success" style="margin-top:30px;">
+        <div id="profile-updated-successfully" class="notification success" style="margin-top:40px;">
             个人信息更新成功
         </div>
 
