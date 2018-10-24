@@ -59737,7 +59737,7 @@ var cafes = {
 
             __WEBPACK_IMPORTED_MODULE_0__api_cafe_js__["a" /* default */].getCafe(data.id).then(function (response) {
                 commit('setCafe', response.data);
-                if (response.data.user_like.length > 0) {
+                if (response.data.user_like_count > 0) {
                     commit('setCafeLikedStatus', true);
                 }
                 commit('setCafeLoadStatus', 2);
@@ -64037,13 +64037,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-
-
 
 
 
@@ -64093,14 +64086,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
         this.clearMarkers();
         this.buildMarkers();
-
         // 监听位置选择事件
         __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$on('location-selected', function (cafe) {
             var latLng = new AMap.LngLat(cafe.lat, cafe.lng);
             this.map.setZoom(17);
             this.map.panTo(latLng);
         }.bind(this));
-
         // 监听城市选择事件
         __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$on('city-selected', function (city) {
             var latLng = new AMap.LngLat(city.lat, city.lng);
@@ -64155,18 +64146,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         buildMarkers: function buildMarkers() {
             // 初始化点标记数组
             this.markers = [];
-
             // 自定义点标记
             /*var image = ROAST_CONFIG.APP_URL + '/storage/img/coffee-marker.png';
             var icon = new AMap.Icon({
                 image: image,  // Icon的图像
                 imageSize: new AMap.Size(19, 33)
             });*/
-
             // 遍历所有咖啡店创建点标记
-            //var infoWindow = new AMap.InfoWindow();
+            // var infoWindow = new AMap.InfoWindow();
             for (var i = 0; i < this.cafes.length; i++) {
-
                 if (this.cafes[i].company.roaster === 1) {
                     var image = __WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].APP_URL + '/storage/img/roaster-marker.svg';
                 } else {
@@ -64176,14 +64164,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     image: image, // Icon的图像
                     imageSize: new AMap.Size(19, 33)
                 });
-
                 // 为每个咖啡店创建点标记并设置经纬度
                 var marker = new AMap.Marker({
                     position: new AMap.LngLat(parseFloat(this.cafes[i].latitude), parseFloat(this.cafes[i].longitude)),
                     title: this.cafes[i].location_name,
                     icon: icon
                 });
-
                 // 自定义信息窗体
                 /*var contentString = '<div class="cafe-info-window">' +
                     '<div class="cafe-name">' + this.cafes[i].name + this.cafes[i].location_name + '</div>' +
@@ -64197,24 +64183,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     '</div>';
                 marker.content = contentString;*/
                 marker.cafeId = this.cafes[i].id;
-
                 // 绑定点击事件到点标记对象，点击跳转到咖啡店详情页
                 marker.on('click', mapClick);
-
                 // 将点标记放到数组中
                 this.markers.push(marker);
             }
-
+            var store = this.$store;
+            var router = this.$router;
             function mapClick(mapEvent) {
                 // infoWindow.setContent(mapEvent.target.content);
                 // infoWindow.open(this.getMap(), this.getPosition());
-                var center = this.getMap().getCenter();
-                this.$store.dispatch('applyZoomLevel', this.getMap().getZoom());
-                this.$store.dispatch('applyLat', center.getLat());
-                this.$store.dispatch('applyLng', center.getLng());
-                this.$router.push({ name: 'cafe', params: { id: mapEvent.target.cafeId } });
+                var center = mapEvent.target.getMap().getCenter();
+                store.dispatch('applyZoomLevel', mapEvent.target.getMap().getZoom());
+                store.dispatch('applyLat', center.getLat());
+                store.dispatch('applyLng', center.getLng());
+                router.push({ name: 'cafe', params: { id: mapEvent.target.cafeId } });
             }
-
             // 将所有点标记显示到地图上
             this.map.add(this.markers);
         },
@@ -64240,53 +64224,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     var teaPassed = false;
                     var subscriptionPassed = false;
                     var cityPassed = false;
-
                     if (this.processCafeTypeFilter(this.markers[i].cafe, this.activeLocationFilter)) {
                         typePassed = true;
                     }
-
                     if (this.textSearch !== '' && this.processCafeTextFilter(this.markers[i].cafe, this.textSearch)) {
                         textPassed = true;
                     } else if (this.textSearch === '') {
                         textPassed = true;
                     }
-
                     if (this.brewMethodsFilter.length !== 0 && this.processCafeBrewMethodsFilter(this.markers[i].cafe, this.brewMethodsFilter)) {
                         brewMethodsPassed = true;
                     } else if (this.brewMethodsFilter.length === 0) {
                         brewMethodsPassed = true;
                     }
-
                     if (this.onlyLiked && this.processCafeUserLikeFilter(this.markers[i].cafe)) {
                         likedPassed = true;
                     } else if (!this.onlyLiked) {
                         likedPassed = true;
                     }
-
                     if (this.hasMatcha && this.processCafeHasMatchaFilter(this.markers[i].cafe)) {
                         matchaPassed = true;
                     } else if (!this.hasMatcha) {
                         matchaPassed = true;
                     }
-
                     if (this.hasTea && this.processCafeHasTeaFilter(this.markers[i].cafe)) {
                         teaPassed = true;
                     } else if (!this.hasTea) {
                         teaPassed = true;
                     }
-
                     if (this.hasSubscription && this.processCafeSubscriptionFilter(this.markers[i].cafe)) {
                         subscriptionPassed = true;
                     } else if (!this.hasSubscription) {
                         subscriptionPassed = true;
                     }
-
                     if (this.cityFilter !== '' && this.processCafeInCityFilter(this.markers[i].cafe, this.cityFilter)) {
                         cityPassed = true;
                     } else if (this.cityFilter === '') {
                         cityPassed = true;
                     }
-
                     if (typePassed && textPassed && brewMethodsPassed && likedPassed && matchaPassed && teaPassed && subscriptionPassed && cityPassed) {
                         this.markers[i].setMap(this.map);
                     } else {
@@ -68514,7 +68489,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\ndiv.cafe-page h2 {\n  text-align: center;\n  color: #7F6D50;\n  font-family: 'Josefin Sans', sans-serif;\n}\ndiv.cafe-page h3 {\n  text-align: center;\n  color: #FFBE54;\n  font-family: 'Josefin Sans', sans-serif;\n}\ndiv.cafe-page span.address {\n  text-align: center;\n  display: block;\n  font-family: 'Lato', sans-serif;\n  color: #A0A0A0;\n  font-size: 20px;\n  line-height: 30px;\n  margin-top: 50px;\n}\ndiv.cafe-page a.website {\n  text-align: center;\n  color: #CCAF80;\n  font-size: 30px;\n  font-weight: bold;\n  margin-top: 50px;\n  display: block;\n  font-family: 'Josefin Sans', sans-serif;\n}\ndiv.cafe-page div.brew-methods-container {\n  max-width: 700px;\n  margin: auto;\n}\ndiv.cafe-page div.brew-methods-container div.cell {\n    text-align: center;\n}\ndiv.cafe-page div.tags-container {\n  max-width: 700px;\n  margin: auto;\n  text-align: center;\n  margin-top: 30px;\n}\ndiv.cafe-page div.tags-container span.tag {\n    color: #7F5F2A;\n    font-family: 'Josefin Sans', sans-serif;\n    margin-right: 20px;\n    display: inline-block;\n    line-height: 20px;\n}\n", ""]);
+exports.push([module.i, "\ndiv#cafe-page {\n  position: absolute;\n  right: 30px;\n  top: 125px;\n  background: #FFFFFF;\n  -webkit-box-shadow: 0 2px 4px 0 rgba(3, 27, 78, 0.1);\n          box-shadow: 0 2px 4px 0 rgba(3, 27, 78, 0.1);\n  width: 100%;\n  max-width: 480px;\n  padding: 20px;\n  padding-top: 10px;\n}\ndiv#cafe-page img.close-icon {\n    float: right;\n    cursor: pointer;\n    margin-top: 10px;\n}\ndiv#cafe-page h2.cafe-title {\n    color: #342C0C;\n    font-size: 36px;\n    line-height: 44px;\n    font-family: \"Lato\", sans-serif;\n    font-weight: bolder;\n}\ndiv#cafe-page span.location-number {\n    display: inline-block;\n    color: #8E8E8E;\n    font-size: 18px;\n}\ndiv#cafe-page span.location-number span.location-image-container {\n      width: 35px;\n      text-align: center;\n      display: inline-block;\n}\ndiv#cafe-page label.cafe-label {\n    font-family: \"Lato\", sans-serif;\n    text-transform: uppercase;\n    font-weight: bold;\n    color: black;\n    margin-top: 20px;\n    margin-bottom: 10px;\n}\ndiv#cafe-page div.address-container {\n    color: #666666;\n    font-size: 18px;\n    line-height: 23px;\n    font-family: \"Lato\", sans-serif;\n    margin-bottom: 5px;\n}\ndiv#cafe-page div.address-container span.address {\n      display: block;\n}\ndiv#cafe-page div.address-container span.city-state {\n      display: block;\n}\ndiv#cafe-page div.address-container span.zip {\n      display: block;\n}\ndiv#cafe-page a.cafe-website {\n    font-family: \"Lato\", sans-serif;\n    color: #543729;\n    font-size: 18px;\n}\ndiv#cafe-page img.social-icon {\n    margin-top: 10px;\n    margin-right: 10px;\n}\ndiv#cafe-page a.suggest-cafe-edit {\n    font-family: \"Lato\", sans-serif;\n    color: #054E7A;\n    font-size: 14px;\n    display: inline-block;\n    margin-top: 30px;\n    text-decoration: underline;\n}\n\n/* Small only */\n@media screen and (max-width: 39.9375em) {\ndiv#cafe-page {\n    position: fixed;\n    right: 0px;\n    left: 0px;\n    top: 0px;\n    bottom: 0px;\n    z-index: 99999;\n}\n}\n\n/* Medium only */\n/* Large only */\n", ""]);
 
 // exports
 
@@ -68532,6 +68507,78 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_cafes_ToggleLike_vue__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_cafes_ToggleLike_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_cafes_ToggleLike_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__event_bus_js__ = __webpack_require__(3);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -68671,6 +68718,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // 页面创建时通过路由中的参数ID加载咖啡店数据
     created: function created() {
+        this.$store.dispatch('toggleShowFilters', { showFilters: false });
+        this.$store.dispatch('changeCafesView', 'map');
         this.$store.dispatch('loadCafe', {
             id: this.$route.params.id
         });
@@ -68678,29 +68727,71 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     // 定义计算属性
+    watch: {
+        '$route.params.id': function $routeParamsId() {
+            this.$store.dispatch('clearLikeAndUnlikeStatus');
+            this.$store.dispatch('loadCafe', {
+                id: this.$route.params.id
+            });
+        },
+        cafeLoadStatus: function cafeLoadStatus() {
+            if (this.cafeLoadStatus === 2) {
+                __WEBPACK_IMPORTED_MODULE_3__event_bus_js__["a" /* EventBus */].$emit('location-selected', {
+                    lat: parseFloat(this.cafe.latitude),
+                    lng: parseFloat(this.cafe.longitude)
+                });
+            }
+
+            if (this.cafeLoadStatus === 3) {
+                __WEBPACK_IMPORTED_MODULE_3__event_bus_js__["a" /* EventBus */].$emit('show-error', { notification: 'Cafe Not Found!' });
+                this.$router.push({ name: 'cafes' });
+            }
+        }
+    },
+
     computed: {
+        cities: function cities() {
+            return this.$store.getters.getCities;
+        },
+        cityFilter: function cityFilter() {
+            return this.$store.getters.getCityFilter;
+        },
         cafeLoadStatus: function cafeLoadStatus() {
             return this.$store.getters.getCafeLoadStatus;
+        },
+        cafeLikeActionStatus: function cafeLikeActionStatus() {
+            return this.$store.getters.getCafeLikeActionStatus;
+        },
+        cafeUnlikeActionStatus: function cafeUnlikeActionStatus() {
+            return this.$store.getters.getCafeUnlikeActionStatus;
         },
         cafe: function cafe() {
             return this.$store.getters.getCafe;
         },
-
-
-        // 从 Vuex 中获取用户加载状态
-        userLoadStatus: function userLoadStatus() {
-            return this.$store.getters.getUserLoadStatus();
-        },
-
-
-        // 从 Vuex 中获取用户信息
         user: function user() {
             return this.$store.getters.getUser;
+        },
+        userLoadStatus: function userLoadStatus() {
+            return this.$store.getters.getUserLoadStatus();
         }
     },
+
     methods: {
-        login: function login() {
+        loginToEdit: function loginToEdit() {
             __WEBPACK_IMPORTED_MODULE_3__event_bus_js__["a" /* EventBus */].$emit('prompt-login');
+        },
+        leaveCafe: function leaveCafe() {
+            if (this.cityFilter !== '') {
+                var slug = '';
+                for (var i = 0; i < this.cities.length; i++) {
+                    if (this.cities[i].id === this.cityFilter) {
+                        slug = this.cities[i].slug;
+                    }
+                }
+                this.$router.push({ name: 'city', params: { slug: slug } });
+            } else {
+                this.$router.push({ name: 'cafes' });
+            }
         }
     }
 });
@@ -69140,7 +69231,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\nspan.toggle-like {\n  display: block;\n  text-align: center;\n  margin-top: 30px;\n}\nspan.toggle-like span.like-toggle {\n    display: inline-block;\n    font-weight: bold;\n    text-decoration: underline;\n    font-size: 20px;\n    cursor: pointer;\n}\nspan.toggle-like span.like-toggle.like {\n      color: #008800;\n}\nspan.toggle-like span.like-toggle.un-like {\n      color: #880000;\n}\n", ""]);
+exports.push([module.i, "\nspan.toggle-like span.like-toggle {\n  display: inline-block;\n  cursor: pointer;\n  color: #8E8E8E;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\nspan.toggle-like span.like-toggle span.image-container {\n    width: 35px;\n    text-align: center;\n    display: inline-block;\n}\nspan.toggle-like span.like-count {\n  font-family: \"Lato\", sans-serif;\n  font-size: 12px;\n  margin-left: 10px;\n  color: #8E8E8E;\n}\n", ""]);
 
 // exports
 
@@ -69151,8 +69242,20 @@ exports.push([module.i, "\nspan.toggle-like {\n  display: block;\n  text-align: 
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_Loader_vue__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_Loader_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__global_Loader_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_global_Loader_vue__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_global_Loader_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_global_Loader_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -69195,11 +69298,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    // 定义页面使用的组件
     components: {
-        Loader: __WEBPACK_IMPORTED_MODULE_0__global_Loader_vue___default.a
+        Loader: __WEBPACK_IMPORTED_MODULE_0__components_global_Loader_vue___default.a
     },
     computed: {
+        userLoadStatus: function userLoadStatus() {
+            return this.$store.getters.getUserLoadStatus();
+        },
+        user: function user() {
+            return this.$store.getters.getUser;
+        },
         cafeLoadStatus: function cafeLoadStatus() {
             return this.$store.getters.getCafeLoadStatus;
         },
@@ -69240,7 +69348,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "span",
-    { staticClass: "toggle-like" },
+    {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.userLoadStatus === 2 && _vm.user != "",
+          expression: "userLoadStatus === 2 && user != ''"
+        }
+      ],
+      staticClass: "toggle-like"
+    },
     [
       !_vm.liked &&
       _vm.cafeLoadStatus === 2 &&
@@ -69256,7 +69374,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n        喜欢\n    ")]
+            [_vm._m(0), _vm._v(" 喜欢?\n  ")]
           )
         : _vm._e(),
       _vm._v(" "),
@@ -69274,29 +69392,51 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n        取消喜欢\n    ")]
+            [_vm._m(1), _vm._v(" 已喜欢\n  ")]
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("Loader", {
+      _c("loader", {
         directives: [
           {
             name: "show",
             rawName: "v-show",
             value:
               _vm.cafeLikeActionStatus === 1 ||
-              _vm.cafeUnlikeActionStatus === 1,
+              _vm.cafeUnlikeActionStatus === 1 ||
+              _vm.cafeLoadStatus !== 2,
             expression:
-              "cafeLikeActionStatus === 1 || cafeUnlikeActionStatus === 1"
+              "cafeLikeActionStatus === 1 || cafeUnlikeActionStatus === 1 || cafeLoadStatus !== 2"
           }
         ],
-        attrs: { width: 30, height: 30, display: "inline-block" }
-      })
+        attrs: { width: 23, height: 23, display: "inline-block" }
+      }),
+      _vm._v(" "),
+      _c("span", { staticClass: "like-count" }, [
+        _vm._v("\n    " + _vm._s(_vm.cafe.likes_count) + " likes\n  ")
+      ])
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "image-container" }, [
+      _c("img", { attrs: { src: "/storage/img/unliked.svg" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "image-container" }, [
+      _c("img", { attrs: { src: "/storage/img/liked.svg" } })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -69314,151 +69454,255 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "page", attrs: { id: "cafe" } }, [
-    _c("div", { staticClass: "grid-container" }, [
-      _c("div", { staticClass: "grid-x grid-padding-x" }, [
+  return _vm.cafeLoadStatus === 2 ||
+    (_vm.cafeLoadStatus !== 2 &&
+      (_vm.cafeLikeActionStatus === 1 ||
+        _vm.cafeLikeActionStatus === 2 ||
+        _vm.cafeUnlikeActionStatus === 1 ||
+        _vm.cafeUnlikeActionStatus === 2))
+    ? _c("div", { attrs: { id: "cafe-page" } }, [
         _c(
-          "div",
-          { staticClass: "large-12 medium-12 small-12 cell" },
+          "a",
+          {
+            on: {
+              click: function($event) {
+                _vm.leaveCafe()
+              }
+            }
+          },
           [
-            _c("loader", {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.cafeLoadStatus === 1,
-                  expression: "cafeLoadStatus === 1"
-                }
-              ],
-              attrs: { width: 100, height: 100 }
-            }),
+            _c("img", {
+              staticClass: "close-icon",
+              attrs: { src: "/storage/img/close-icon.svg" }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c("h2", { staticClass: "cafe-title" }, [
+          _vm._v(_vm._s(_vm.cafe.company.name))
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "grid-x" }, [
+          _c(
+            "div",
+            { staticClass: "large-12 medium-12 small-12 cell" },
+            [_c("toggle-like")],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _vm.cafe.company.cafes_count > 1
+          ? _c("div", { staticClass: "grid-x" }, [
+              _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
+                _c("span", { staticClass: "location-number" }, [
+                  _vm._m(0),
+                  _vm._v(
+                    " " +
+                      _vm._s(_vm.cafe.company.cafes_count) +
+                      " other locations\n    "
+                  )
+                ])
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "grid-x" }, [
+          _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
+            _c("label", { staticClass: "cafe-label" }, [_vm._v("类型")]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.cafeLoadStatus === 2,
-                    expression: "cafeLoadStatus === 2"
-                  }
-                ],
-                staticClass: "cafe-page"
-              },
-              [
-                _c("h2", [_vm._v(_vm._s(_vm.cafe.name))]),
+            _vm.cafe.company.roaster === 1
+              ? _c("div", { staticClass: "location-type roaster" }, [
+                  _c("img", {
+                    attrs: { src: "/storage/img/roaster-logo.svg" }
+                  }),
+                  _vm._v(" Roaster\n            ")
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.cafe.company.roaster === 0
+              ? _c("div", { staticClass: "location-type cafe" }, [
+                  _c("img", { attrs: { src: "/storage/img/cafe-logo.svg" } }),
+                  _vm._v(" Cafe\n            ")
+                ])
+              : _vm._e()
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.cafe.company.subscription === 1
+          ? _c("div", { staticClass: "grid-x" }, [_vm._m(1)])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "grid-x" }, [
+          _c(
+            "div",
+            { staticClass: "large-12 medium-12 small-12 cell" },
+            [
+              _c("label", { staticClass: "cafe-label" }, [_vm._v("冲泡方法")]),
+              _vm._v(" "),
+              _vm._l(_vm.cafe.brew_methods, function(method) {
+                return _c("div", { staticClass: "brew-method option" }, [
+                  _c("div", { staticClass: "option-container" }, [
+                    _c("img", {
+                      staticClass: "option-icon",
+                      attrs: { src: method.icon }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "option-name" }, [
+                      _vm._v(_vm._s(method.method))
+                    ])
+                  ])
+                ])
+              })
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
+        _vm.cafe.matcha === 1 || _vm.cafe.tea === 1
+          ? _c("div", { staticClass: "grid-x" }, [
+              _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
+                _c("label", { staticClass: "cafe-label" }, [
+                  _vm._v("Drink Options")
+                ]),
                 _vm._v(" "),
-                _vm.cafe.location_name !== ""
-                  ? _c("h3", [_vm._v(_vm._s(_vm.cafe.location_name))])
+                _vm.cafe.matcha === 1
+                  ? _c("div", { staticClass: "drink-option option" }, [
+                      _c("div", { staticClass: "option-container" }, [
+                        _c("img", {
+                          staticClass: "option-icon",
+                          attrs: { src: "/storage/img/matcha-latte.svg" }
+                        }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "option-name" }, [
+                          _vm._v("抹茶")
+                        ])
+                      ])
+                    ])
                   : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "like-container" }, [
-                  _c("div", { staticClass: "grid-x" }, [
-                    _c(
-                      "div",
-                      { staticClass: "large-12 medium-12 small-12 cell" },
-                      [
-                        _vm.user != "" && _vm.userLoadStatus == 2
-                          ? _c("toggle-like")
-                          : _vm._e(),
+                _vm.cafe.tea === 1
+                  ? _c("div", { staticClass: "drink-option option" }, [
+                      _c("div", { staticClass: "option-container" }, [
+                        _c("img", {
+                          staticClass: "option-icon",
+                          attrs: { src: "/storage/img/tea-bag.svg" }
+                        }),
                         _vm._v(" "),
-                        _vm.user == "" && _vm.userLoadStatus == 2
-                          ? _c(
-                              "a",
-                              {
-                                staticClass: "prompt-log-in",
-                                on: {
-                                  click: function($event) {
-                                    _vm.login()
-                                  }
-                                }
-                              },
-                              [_vm._v("登录后喜欢该咖啡店")]
-                            )
-                          : _vm._e()
-                      ],
-                      1
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "tags-container" }, [
-                  _c("div", { staticClass: "grid-x grid-padding-x" }, [
-                    _c(
-                      "div",
-                      { staticClass: "large-12 medium-12 small-12 cell" },
-                      _vm._l(_vm.cafe.tags, function(tag) {
-                        return _c("span", { staticClass: "tag" }, [
-                          _vm._v("#" + _vm._s(tag.name))
+                        _c("span", { staticClass: "option-name" }, [
+                          _vm._v("茶包")
                         ])
-                      })
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
+                      ])
+                    ])
+                  : _vm._e()
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "grid-x" }, [
+          _c(
+            "div",
+            { staticClass: "large-12 medium-12 small-12 cell" },
+            [
+              _c("label", { staticClass: "cafe-label" }, [_vm._v("位置信息")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "address-container" }, [
                 _c("span", { staticClass: "address" }, [
-                  _vm._v(
-                    "\n                        " + _vm._s(_vm.cafe.address)
-                  ),
-                  _c("br"),
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.cafe.city) +
-                      ", " +
-                      _vm._s(_vm.cafe.state)
-                  ),
-                  _c("br"),
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.cafe.zip) +
-                      "\n                    "
-                  )
+                  _vm._v(_vm._s(_vm.cafe.address))
                 ]),
                 _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "website",
-                    attrs: { href: _vm.cafe.website, target: "_blank" }
-                  },
-                  [_vm._v(_vm._s(_vm.cafe.website))]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "brew-methods-container" }, [
-                  _c(
-                    "div",
-                    { staticClass: "grid-x grid-padding-x" },
-                    _vm._l(_vm.cafe.brew_methods, function(brewMethod) {
-                      return _c(
-                        "div",
-                        { staticClass: "large-3 medium-4 small-12 cell" },
-                        [
-                          _vm._v(
-                            "\n                                " +
-                              _vm._s(brewMethod.method) +
-                              "\n                            "
-                          )
-                        ]
-                      )
-                    })
-                  )
+                _c("span", { staticClass: "city-state" }, [
+                  _vm._v(_vm._s(_vm.cafe.city) + ", " + _vm._s(_vm.cafe.state))
                 ]),
                 _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("individual-cafe-map")
-              ],
-              1
-            )
-          ],
-          1
-        )
+                _c("span", { staticClass: "zip" }, [
+                  _vm._v(_vm._s(_vm.cafe.zip))
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "cafe-website",
+                  attrs: { target: "_blank", href: _vm.cafe.company.website }
+                },
+                [_vm._v(_vm._s(_vm.cafe.company.website))]
+              ),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.userLoadStatus === 2 && _vm.user != "",
+                      expression: "userLoadStatus === 2 && user != ''"
+                    }
+                  ],
+                  staticClass: "suggest-cafe-edit",
+                  attrs: {
+                    to: { name: "editcafe", params: { slug: _vm.cafe.slug } }
+                  }
+                },
+                [_vm._v("\n                编辑\n            ")]
+              ),
+              _vm._v(" "),
+              _vm.userLoadStatus === 2 && _vm.user == ""
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "suggest-cafe-edit",
+                      on: {
+                        click: function($event) {
+                          _vm.loginToEdit()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                登录后编辑\n            ")]
+                  )
+                : _vm._e()
+            ],
+            1
+          )
+        ])
       ])
-    ])
-  ])
+    : _vm._e()
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "location-image-container" }, [
+      _c("img", { attrs: { src: "/storage/img/location.svg" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "large-12 medium-12 small-12 cell centered" },
+      [
+        _c("label", { staticClass: "cafe-label" }, [_vm._v("提供咖啡订购")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "subscription-option option" }, [
+          _c("div", { staticClass: "option-container" }, [
+            _c("img", {
+              staticClass: "option-icon",
+              attrs: { src: "/storage/img/coffee-pack.svg" }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "option-name" }, [_vm._v("咖啡订购")])
+          ])
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

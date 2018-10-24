@@ -57,11 +57,11 @@ export const cafes = {
         loadCafe({commit}, data) {
             commit('setCafeLikedStatus', false);
             commit('setCafeLoadStatus', 1);
-
+         
             CafeAPI.getCafe(data.id)
                 .then(function (response) {
                     commit('setCafe', response.data);
-                    if (response.data.user_like.length > 0) {
+                    if (response.data.user_like_count > 0) {
                         commit('setCafeLikedStatus', true);
                     }
                     commit('setCafeLoadStatus', 2);
