@@ -2,9 +2,8 @@
     @import '~@/abstracts/_variables.scss';
 
     div#profile-page {
-        margin-top: 100px;
         position: fixed;
-        top: 0;
+        top: 100;
         bottom: 0;
         left: 0;
         right: 0;
