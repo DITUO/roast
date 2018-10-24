@@ -49,6 +49,8 @@
     import ErrorNotification from '../components/global/ErrorNotification.vue';
     import Filters from '../components/global/Filters.vue';
     import PopOut from '../components/global/PopOut.vue';
+    
+    import {EventBus} from '../event-bus.js';
 
     export default {
         components: {

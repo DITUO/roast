@@ -60783,6 +60783,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_global_Filters_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_global_Filters_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_global_PopOut_vue__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_global_PopOut_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_global_PopOut_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__event_bus_js__ = __webpack_require__(3);
 //
 //
 //
@@ -60826,6 +60827,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 
 
@@ -60869,7 +60872,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {
         'addCafeStatus': function addCafeStatus() {
             if (this.addCafeStatus === 2) {
-                EventBus.$emit('show-success', {
+                __WEBPACK_IMPORTED_MODULE_6__event_bus_js__["a" /* EventBus */].$emit('show-success', {
                     notification: this.addedCafe.name + ' 已经添加成功!'
                 });
             }
