@@ -83,21 +83,6 @@
                        v-on:click="logout()">退出</a>
                     <a v-if="user == ''" v-on:click="login()">登录</a>
                 </div>
-                <div class="side-bar-link">
-                    <a href="https://github.com/nonfu/roastapp/issues/new/choose" target="_blank">
-                        提交bug
-                    </a>
-                </div>
-                <div class="side-bar-link">
-                    <a href="https://laravelacademy.org/api-driven-development-laravel-vue" target="_blank">
-                        项目文档
-                    </a>
-                </div>
-                <div class="side-bar-link">
-                    <a href="https://github.com/nonfu/roastapp" target="_blank">
-                        在Github上查看
-                    </a>
-                </div>
             </div>
         </transition>
     </div>

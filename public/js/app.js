@@ -63253,21 +63253,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -63493,50 +63478,6 @@ var render = function() {
                     [_vm._v("登录")]
                   )
                 : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "side-bar-link" }, [
-              _c(
-                "a",
-                {
-                  attrs: {
-                    href: "https://github.com/nonfu/roastapp/issues/new/choose",
-                    target: "_blank"
-                  }
-                },
-                [_vm._v("\n                    提交bug\n                ")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "side-bar-link" }, [
-              _c(
-                "a",
-                {
-                  attrs: {
-                    href:
-                      "https://laravelacademy.org/api-driven-development-laravel-vue",
-                    target: "_blank"
-                  }
-                },
-                [_vm._v("\n                    项目文档\n                ")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "side-bar-link" }, [
-              _c(
-                "a",
-                {
-                  attrs: {
-                    href: "https://github.com/nonfu/roastapp",
-                    target: "_blank"
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    在Github上查看\n                "
-                  )
-                ]
-              )
             ])
           ]
         )
