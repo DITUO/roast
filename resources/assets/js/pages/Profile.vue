@@ -3,7 +3,7 @@
 
     div#profile-page {
         position: fixed;
-        top: 20;
+        top: 0;
         bottom: 0;
         left: 0;
         right: 0;
@@ -12,7 +12,7 @@
         overflow: auto;
         img#back {
             float: right;
-            margin-top: 20px;
+            margin-top: 100px;
             margin-right: 20px;
         }
         div.centered {

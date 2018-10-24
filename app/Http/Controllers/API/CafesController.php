@@ -31,10 +31,7 @@ class CafesController extends Controller
                        ->withCount('userLike')
                        ->withCount('likes')
                        ->get();
-        return response()->json($cafes)
-                            ->header('Access-Control-Allow-Origin','http://120.79.20.43')
-                            ->header('Access-Control-Allow-Credentials', 'true')
-                            ->header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+        return response()->json($cafes);
     }
 
     public function getCafe($id){
@@ -47,10 +44,7 @@ class CafesController extends Controller
                 }])
                 ->withCount('likes')
                 ->first();
-        return response()->json($cafe)
-                        ->header('Access-Control-Allow-Origin','http://120.79.20.43')
-                        ->header('Access-Control-Allow-Credentials', 'true')
-                        ->header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+        return response()->json($cafe);
     }
 
     public function postNewCafe(StoreCafeRequest $request){
@@ -60,10 +54,7 @@ class CafesController extends Controller
         $company = Company::where('id', '=', $cafe->company_id)
                    ->with('cafes')
                    ->first();
-        return response()->json($company,201)
-                        ->header('Access-Control-Allow-Origin','http://120.79.20.43')
-                        ->header('Access-Control-Allow-Credentials', 'true')
-                        ->header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+        return response()->json($company,201);
     }
 
     /**
@@ -72,10 +63,7 @@ class CafesController extends Controller
     public function postLikeCafe($cafeID){
         $cafe = Cafe::where('id',$cafeID)->first();
         $cafe->likes()->attach(Auth::user()->id,['created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
-        return response()->json(['cafe_liked'=>true],201)
-                        ->header('Access-Control-Allow-Origin','http://120.79.20.43')
-                        ->header('Access-Control-Allow-Credentials', 'true')
-                        ->header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+        return response()->json(['cafe_liked'=>true],201);
     }
 
     /**
@@ -84,10 +72,7 @@ class CafesController extends Controller
     public function deleteLikeCafe($cafeID){
         $cafe = Cafe::where('id',$cafeID)->first();
         $cafe->likes()->detach(Auth::user()->id);
-        return response(null, 204)
-                        ->header('Access-Control-Allow-Origin','http://120.79.20.43')
-                        ->header('Access-Control-Allow-Credentials', 'true')
-                        ->header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+        return response(null, 204);
     }
 
     /**
