@@ -1,6 +1,5 @@
 <style lang="scss">
     @import '~@/abstracts/_variables.scss';
-
     div.cafe-card {
         border-radius: 5px;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
@@ -22,7 +21,7 @@
             display: block;
             text-align: center;
             margin-top: 5px;
-            color: grey;
+            color: $grey;
             font-family: 'Lato', sans-serif;
             span.street {
                 font-size: 14px;
@@ -40,7 +39,7 @@
             }
         }
         span.liked-meta {
-            color: grey;
+            color: $grey;
             font-size: 10px;
             margin-left: 5px;
             margin-right: 3px;
@@ -67,89 +66,176 @@
                     <span class="zip">{{ cafe.zip }}</span>
                 </span>
             </div>
+            <div class="meta-data">
+                <span class="liked-meta">
+                    <img v-bind:src="cafe.user_like_count > 0 ? '/storage/img/liked.svg' : '/storage/img/unliked.svg'"/>
+                    {{ cafe.likes_count }}
+                </span>
+            </div>
         </router-link>
     </div>
 </template>
 
 <script>
-    import {CafeIsRoasterFilter} from '../../mixins/filters/CafeIsRoasterFilter.js';
+    import {CafeTypeFilter} from '../../mixins/filters/CafeTypeFilter.js';
     import {CafeBrewMethodsFilter} from '../../mixins/filters/CafeBrewMethodsFilter.js';
-    import {CafeTagsFilter} from '../../mixins/filters/CafeTagsFilter.js';
     import {CafeTextFilter} from '../../mixins/filters/CafeTextFilter.js';
-
-    import { EventBus } from '../../event-bus.js';
-
+    import {CafeUserLikeFilter} from '../../mixins/filters/CafeUserLikeFilter.js';
+    import {CafeHasMatchaFilter} from '../../mixins/filters/CafeHasMatchaFilter.js';
+    import {CafeHasTeaFilter} from '../../mixins/filters/CafeHasTeaFilter.js';
+    import {CafeSubscriptionFilter} from '../../mixins/filters/CafeSubscriptionFilter.js';
+    import {CafeInCityFilter} from '../../mixins/filters/CafeInCityFilter.js';
+    import {EventBus} from '../../event-bus.js';
     export default {
-        props: ['cafe'],
-        data(){
+        mixins: [
+            CafeTypeFilter,
+            CafeBrewMethodsFilter,
+            CafeTextFilter,
+            CafeUserLikeFilter,
+            CafeHasMatchaFilter,
+            CafeHasTeaFilter,
+            CafeSubscriptionFilter,
+            CafeInCityFilter
+        ],
+        props: [
+            'cafe'
+        ],
+        data() {
             return {
                 show: true
             }
         },
-        mixins: [
-            CafeIsRoasterFilter,
-            CafeBrewMethodsFilter,
-            CafeTagsFilter,
-            CafeTextFilter
-        ],
-        mounted(){
+        mounted() {
             EventBus.$on('filters-updated', function (filters) {
                 this.processFilters(filters);
             }.bind(this));
+            this.processFilters();
+        },
+        computed: {
+            city() {
+                return this.$store.getters.getCity;
+            },
+            cityFilter() {
+                return this.$store.getters.getCityFilter;
+            },
+            textSearch() {
+                return this.$store.getters.getTextSearch;
+            },
+            activeLocationFilter() {
+                return this.$store.getters.getActiveLocationFilter;
+            },
+            onlyLiked() {
+                return this.$store.getters.getOnlyLiked;
+            },
+            brewMethodsFilter() {
+                return this.$store.getters.getBrewMethodsFilter;
+            },
+            hasMatcha() {
+                return this.$store.getters.getHasMatcha;
+            },
+            hasTea() {
+                return this.$store.getters.getHasTea;
+            },
+            hasSubscription() {
+                return this.$store.getters.getHasSubscription;
+            }
+        },
+        watch: {
+            cityFilter() {
+                this.processFilters();
+            },
+            textSearch() {
+                this.processFilters();
+            },
+            activeLocationFilter() {
+                this.processFilters();
+            },
+            onlyLiked() {
+                this.processFilters();
+            },
+            brewMethodsFilter() {
+                this.processFilters();
+            },
+            hasMatcha() {
+                this.processFilters();
+            },
+            hasTea() {
+                this.processFilters();
+            },
+            hasSubscription() {
+                this.processFilters();
+            }
         },
         methods: {
-            processFilters(filters) {
-            // 如果没有设置任何过滤条件，则显示
-            if (filters.text == ''
-                && filters.tags.length == 0
-                && filters.roaster == false
-                && filters.brew_methods.length == 0) {
-                this.show = true;
-            } else {
-                // 初始化过滤标识符，默认为 false
-                var textPassed = false;
-                var tagsPassed = false;
-                var brewMethodsPassed = false;
-                var roasterPassed = false;
-
-                // 烘焙店筛选
-                if (filters.roaster && this.processCafeIsRoasterFilter(this.cafe)) {
-                    roasterPassed = true;
-                } else if (!filters.roaster) {
-                    roasterPassed = true;
-                }
-
-                // 文本筛选
-                if (filters.text != '' && this.processCafeTextFilter(this.cafe, filters.text)) {
-                    textPassed = true;
-                } else if (filters.text == '') {
-                    textPassed = true;
-                }
-
-                // 冲泡方法筛选
-                if (filters.brew_methods.length != 0 && this.processCafeBrewMethodsFilter(this.cafe, filters.brew_methods)) {
-                    brewMethodsPassed = true;
-                } else if (filters.brew_methods.length == 0) {
-                    brewMethodsPassed = true;
-                }
-
-                // 标签筛选
-                if (filters.tags.length != 0 && this.processCafeTagsFilter(this.cafe, filters.tags)) {
-                    tagsPassed = true;
-                } else if (filters.tags.length == 0) {
-                    tagsPassed = true;
-                }
-
-                // 如果所有匹配检查通过，则显示，否则不显示
-                if (roasterPassed && textPassed && brewMethodsPassed && tagsPassed) {
+            processFilters() {
+                // 如果过滤器为空，则显示所有咖啡店
+                if (this.textSearch === ''
+                    && this.activeLocationFilter === 'all'
+                    && this.brewMethodsFilter.length === 0
+                    && !this.onlyLiked
+                    && !this.hasMatcha
+                    && !this.hasTea
+                    && !this.hasSubscription
+                    && this.cityFilter === '') {
                     this.show = true;
                 } else {
-                    this.show = false;
+                    // 初始化过滤器条件
+                    var textPassed = false;
+                    var brewMethodsPassed = false;
+                    var typePassed = false;
+                    var likedPassed = false;
+                    var matchaPassed = false;
+                    var teaPassed = false;
+                    var subscriptionPassed = false;
+                    var cityPassed = false;
+                    if (this.processCafeTypeFilter(this.cafe, this.activeLocationFilter)) {
+                        typePassed = true;
+                    }
+                    if (this.textSearch !== '' && this.processCafeTextFilter(this.cafe, this.textSearch)) {
+                        textPassed = true;
+                    } else if (this.textSearch === '') {
+                        textPassed = true;
+                    }
+                    if (this.brewMethodsFilter.length !== 0 && this.processCafeBrewMethodsFilter(this.cafe, this.brewMethodsFilter)) {
+                        brewMethodsPassed = true;
+                    } else if (this.brewMethodsFilter.length === 0) {
+                        brewMethodsPassed = true;
+                    }
+                    if (this.onlyLiked && this.processCafeUserLikeFilter(this.cafe)) {
+                        likedPassed = true;
+                    } else if (!this.onlyLiked) {
+                        likedPassed = true;
+                    }
+                    if (this.hasMatcha && this.processCafeHasMatchaFilter(this.cafe)) {
+                        matchaPassed = true;
+                    } else if (!this.hasMatcha) {
+                        matchaPassed = true;
+                    }
+                    if (this.hasTea && this.processCafeHasTeaFilter(this.cafe)) {
+                        teaPassed = true;
+                    } else if (!this.hasTea) {
+                        teaPassed = true;
+                    }
+                    if (this.hasSubscription && this.processCafeSubscriptionFilter(this.cafe)) {
+                        subscriptionPassed = true;
+                    } else if (!this.hasSubscription) {
+                        subscriptionPassed = true;
+                    }
+                    if (this.cityFilter !== '' && this.processCafeInCityFilter(this.cafe, this.cityFilter)) {
+                        cityPassed = true;
+                    } else if (this.cityFilter === '') {
+                        cityPassed = true;
+                    }
+                    if (typePassed && textPassed && brewMethodsPassed && likedPassed && matchaPassed && teaPassed && subscriptionPassed && cityPassed) {
+                        this.show = true;
+                    } else {
+                        this.show = false;
+                    }
                 }
-            }
+            },
+            panToLocation(cafe) {
+                EventBus.$emit('location-selected', {lat: parseFloat(cafe.latitude), lng: parseFloat(cafe.longitude)});
             }
         }
-    }
+    };
 </script>
-
-

@@ -41,4 +41,12 @@ class User extends Authenticatable
     public function cafePhotos(){
         return $this->hasMany(CafePhoto::class,'id','cafe_id');
     }
+
+    /**
+     * 归属此用户的公司
+     */
+    public function companiesOwned()
+    {
+        return $this->belongsToMany(Company::class, 'company_owners', 'user_id', 'company_id');
+    }
 }

@@ -57,4 +57,12 @@ class Cafe extends Model
     public function photos(){
         return $this->hasMany(CafePhoto::class,'id','cafe_id');
     }
+
+    /**
+     * 归属公司
+     */ 
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
 }

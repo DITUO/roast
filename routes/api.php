@@ -56,4 +56,6 @@ Route::group(['prefix' => 'v1'], function(){
     Route::get('/brew-methods', 'API\BrewMethodsController@getBrewMethods');//获取所有的咖啡冲泡方法
     Route::get('/tags', 'API\TagsController@getTags');// 获取所有标签
     Route::get('/user', 'API\UsersController@getUser');// 获取用户信息
+    Route::get('/cities', 'API\CitiesController@getCities');// 获取所有城市
+    Route::get('/cities/{slug}', 'API\CitiesController@getCity');// 获取指定城市
 });

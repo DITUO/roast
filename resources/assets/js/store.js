@@ -29,6 +29,9 @@ import { cafes } from './modules/cafes.js';
 import { users } from './modules/users.js';
 import { userTests } from './modules/userTests.js';
 import { brewMethods } from './modules/brewMethods';
+import {filters} from './modules/filters.js';
+import {display} from './modules/display.js';
+import {cities} from './modules/cities.js';
 
 /**
  * Export the data store.
@@ -39,5 +42,8 @@ export default new Vuex.Store({
         users,
         userTests,
         brewMethods,
+        filters,
+        display,
+        cities
     }
 });

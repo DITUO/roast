@@ -8,15 +8,16 @@
 /**
  * Imports Vue and VueRouter to extend with the routes.
  */
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 import store from './store.js';
 
 /**
  * Extends Vue to use Vue Router
  */
-Vue.use( VueRouter );
+Vue.use(VueRouter);
 
+// 对需要认证才能访问的路由调用该方法实现 Vue Router 导航守卫
 function requireAuth(to, from, next) {
     function proceed() {
         // 如果用户信息已经加载并且不为空则说明该用户已登录，可以继续访问路由，否则跳转到首页
@@ -25,7 +26,7 @@ function requireAuth(to, from, next) {
             if (store.getters.getUser != '') {
                 next();
             } else {
-                next('/home');
+                next('/');
             }
         }
     }
@@ -53,42 +54,49 @@ export default new VueRouter({
     routes: [
         {
             path: '/',
+            redirect: {name: 'cafes'},
             name: 'layout',
-            redirect: {name: 'home'},
-            component: Vue.component( 'Home', require( './pages/Layout.vue' ) ),
+            component: Vue.component('Home', require('./layouts/Layout.vue')),
             children: [
-                {
-                    path: 'home',
-                    name: 'home',
-                    component: Vue.component( 'Home', require( './pages/Home.vue' ) )
-                },
                 {
                     path: 'cafes',
                     name: 'cafes',
-                    component: Vue.component( 'Cafes', require( './pages/Cafes.vue' ) ),
+                    component: Vue.component('Home', require('./pages/Home.vue')),
+                    children: [
+                        {
+                            path: 'new',
+                            name: 'newcafe',
+                            component: Vue.component('NewCafe', require('./pages/NewCafe.vue')),
+                            beforeEnter: requireAuth
+                        },
+                        {
+                            path: ':id',
+                            name: 'cafe',
+                            component: Vue.component('Cafe', require('./pages/Cafe.vue'))
+                        },
+                        {
+                            path: 'cities/:slug',
+                            name: 'city',
+                            component: Vue.component('City', require('./pages/City.vue'))
+                        }
+                    ]
                 },
-                /* {
-                    path: 'cafes/new',
-                    name: 'newcafe',
-                    component: Vue.component( 'NewCafe', require( './pages/NewCafe.vue' ) )
-                }, */
                 {
-                    path: 'cafes/:id',
-                    name: 'cafe',
-                    component: Vue.component( 'Cafe', require( './pages/Cafe.vue' ) )
-                },
-                {
-                    path: 'cafes/new',
-                    name: 'newcafe',
-                    component: Vue.component('NewCafe', require('./pages/NewCafe.vue')),
+                    path: 'cafes/:id/edit',
+                    name: 'editcafe',
+                    component: Vue.component('EditCafe', require('./pages/EditCafe.vue')),
                     beforeEnter: requireAuth
                 },
                 {
                     path: 'profile',
                     name: 'profile',
-                    component: Vue.component('Profile',require('./pages/Profile.vue')),
+                    component: Vue.component('Profile', require('./pages/Profile.vue')),
                     beforeEnter: requireAuth
                 },
+                {
+                    path: '_=_',
+                    redirect: '/'
+                }
             ]
         }
     ]
