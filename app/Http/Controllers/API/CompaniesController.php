@@ -17,6 +17,6 @@ class CompaniesController extends Controller
         $companies = Company::where('name','LIKE','%'.$term.'%')
                      ->withCount('cafes')
                      ->get();
-        return resposne()->json(['companies'=>$companies]);
+        return response()->json(['companies'=>$companies]);
     }
 }

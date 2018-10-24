@@ -205,7 +205,7 @@
                 });*/
 
                 // 遍历所有咖啡店创建点标记
-                // var infoWindow = new AMap.InfoWindow();
+                //var infoWindow = new AMap.InfoWindow();
                 for (var i = 0; i < this.cafes.length; i++) {
 
                     if (this.cafes[i].company.roaster === 1) {
