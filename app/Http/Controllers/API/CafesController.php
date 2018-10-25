@@ -38,15 +38,28 @@ class CafesController extends Controller
     }
 
     public function getCafe($id){
-        $cafe = Cafe::where('id',$id)
-                ->with('brewMethods')
-                ->withCount('userLike')
-                ->with('tags')
-                ->with(['company'=>function($query){
-                    $query->withCount('cafes');
-                }])
-                ->withCount('likes')
-                ->first();
+        if(Auth::guard('api')->user()){
+            $cafe = Cafe::where('id',$id)
+            ->with('brewMethods')
+            ->withCount('userLike')
+            ->with('tags')
+            ->with(['company'=>function($query){
+                $query->withCount('cafes');
+            }])
+            ->withCount('likes')
+            ->first();
+        }else{
+            $cafe = Cafe::where('id',$id)
+            ->with('brewMethods')
+            ->with('tags')
+            ->with(['company'=>function($query){
+                $query->withCount('cafes');
+            }])
+            ->withCount('likes')
+            ->first();
+            $cafe['user_like_count'] = 0;
+        }
+
         return response()->json($cafe);
     }
 
