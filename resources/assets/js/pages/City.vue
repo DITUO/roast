@@ -23,7 +23,7 @@
         */
         created() {
             this.$store.dispatch('loadCity', {
-                slug: this.$route.params.slug
+                id: this.$route.params.id
             });
         },
         /*
@@ -50,10 +50,10 @@
             /*
               When the city changes, load the city.
             */
-            '$route.params.slug': function () {
+            '$route.params.id': function () {
                 if (this.$route.name === 'city') {
                     this.$store.dispatch('loadCity', {
-                        slug: this.$route.params.slug
+                        id: this.$route.params.id
                     });
                 }
             },

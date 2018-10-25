@@ -33,7 +33,7 @@ export const cities = {
         loadCity( { commit } ){
             commit('setCityLoadStatus',1);
 
-            CityAPI.getCity(data.slug)
+            CityAPI.getCity(data.id)
                 .then(function(response){
                     commit('setCity',response.data);
                     commit('setCityLoadStatus',2);

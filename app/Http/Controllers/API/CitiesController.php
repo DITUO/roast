@@ -19,8 +19,8 @@ class CitiesController extends Controller
     /**
      *获取指定城市信息 
      */
-    public function getCity($slug){
-        $city = City::where('slug','=',$slug)
+    public function getCity($id){
+        $city = City::where('id','=',$id)
                 ->with(['cafes'=>function($query){
                     $query->with('company');
                 }])
