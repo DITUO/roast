@@ -40,12 +40,13 @@ class AuthenticationController extends Controller
         }
 
         //手动登录该用户
-        Auth::guards('api')->login($user);
+        Auth::login($user);
         
 
         /* $user = User::find(1);//用第一个用户登录
         Auth::login($user); */
 
-        return redirect('/#/home');
+        // 登录成功后将用户重定向到首页
+        return redirect('/#/cafes');
     }
 }
