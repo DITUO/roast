@@ -36,7 +36,6 @@ class CafesController extends Controller
 
     public function getCafe($id){
         $user = Auth::user();
-        \Log::info($user);
         $cafe = Cafe::where('id',$id)
                 ->with('brewMethods')
                 ->withCount('userLike')

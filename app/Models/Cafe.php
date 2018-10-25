@@ -46,7 +46,6 @@ class Cafe extends Model
      * 用户喜欢
      */
     public function userLike(){
-        \Log::info(Auth::user());
         return $this->belongsToMany(User::class,'users_cafes_likes','cafe_id','user_id')->where('user_id',auth()->id());
     }
 
