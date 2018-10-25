@@ -40,7 +40,7 @@ class AuthenticationController extends Controller
         }
 
         //手动登录该用户
-        Auth::guard('api')->login($user);
+        Auth::guard('web')->login($user);
         
 
         /* $user = User::find(1);//用第一个用户登录
