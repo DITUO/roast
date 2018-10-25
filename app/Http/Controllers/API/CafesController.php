@@ -28,9 +28,12 @@ class CafesController extends Controller
                            $query->select('name');
                        }])
                        ->with('company')
-                       ->withCount('userLike')
+                       //->withCount('userLike')
                        ->withCount('likes')
                        ->get();
+        foreach($cafes as &$v){
+            $v['user_like_count'] = 0; 
+        }
         return response()->json($cafes);
     }
 
