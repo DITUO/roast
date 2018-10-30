@@ -50,6 +50,8 @@ class CafesController extends Controller
 
     public function postNewCafe(StoreCafeRequest $request){
         $cafeService = new CafeService();
+        \Log::info($request->all);
+        \Log::info(Auth::usesr()->id);
         $cafe = $cafeService->addCafe($request->all(), Auth::user()->id);
     
         $company = Company::where('id', '=', $cafe->company_id)
