@@ -36,14 +36,14 @@ class CafesController extends Controller
 
     public function getCafe($id){
         $cafe = Cafe::where('id',$id)
-        ->with('brewMethods')
-        ->withCount('userLike')
-        ->with('tags')
-        ->with(['company'=>function($query){
-            $query->withCount('cafes');
-        }])
-        ->withCount('likes')
-        ->first();
+                    ->with('brewMethods')
+                    ->withCount('userLike')
+                    ->with('tags')
+                    ->with(['company'=>function($query){
+                        $query->withCount('cafes');
+                    }])
+                    ->withCount('likes')
+                    ->first();
 
         return response()->json($cafe);
     }
