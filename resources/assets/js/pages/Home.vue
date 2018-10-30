@@ -1,5 +1,4 @@
 <style>
-
 </style>
 
 <template>
@@ -21,7 +20,6 @@
     import AddCafeButton from '../components/cafes/AddCafeButton.vue';
     import ToggleCafesView from '../components/cafes/ToggleCafesView.vue';
     import MapLegend from '../components/cafes/MapLegend.vue';
-
     export default {
         components: {
             CafeMap,
@@ -30,7 +28,6 @@
             ToggleCafesView,
             MapLegend
         },
-
         computed: {
             cafesView() {
                 return this.$store.getters.getCafesView;

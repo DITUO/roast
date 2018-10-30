@@ -60930,7 +60930,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_global_Filters_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_global_Filters_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_global_PopOut_vue__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_global_PopOut_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_global_PopOut_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__event_bus_js__ = __webpack_require__(3);
 //
 //
 //
@@ -60973,11 +60972,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-
-
-
-
 
 
 
@@ -60999,6 +60993,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.$store.dispatch('loadUser');
         this.$store.dispatch('loadBrewMethods');
         this.$store.dispatch('loadCities');
+        if (this.$store._modules.get(['admin'])) {
+            this.$store.unregisterModule('admin', {});
+        }
     },
 
     computed: {
@@ -61015,17 +61012,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.$store.getters.getCafesView;
         }
     },
-
     watch: {
         'addCafeStatus': function addCafeStatus() {
             if (this.addCafeStatus === 2) {
-                __WEBPACK_IMPORTED_MODULE_6__event_bus_js__["a" /* EventBus */].$emit('show-success', {
+                EventBus.$emit('show-success', {
                     notification: this.addedCafe.name + ' 已经添加成功!'
                 });
             }
         }
     },
-
     methods: {
         toggleShowFilters: function toggleShowFilters() {
             this.$store.dispatch('toggleShowFilters', { showFilters: !this.showFilters });
@@ -63808,7 +63803,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n", ""]);
+exports.push([module.i, "\n", ""]);
 
 // exports
 
@@ -63845,8 +63840,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-
 
 
 
@@ -63861,7 +63854,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ToggleCafesView: __WEBPACK_IMPORTED_MODULE_3__components_cafes_ToggleCafesView_vue___default.a,
         MapLegend: __WEBPACK_IMPORTED_MODULE_4__components_cafes_MapLegend_vue___default.a
     },
-
     computed: {
         cafesView: function cafesView() {
             return this.$store.getters.getCafesView;
@@ -69828,10 +69820,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 */
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {};
-    },
-
     /*
       On the created lifecycle hook, load the individual city.
     */
