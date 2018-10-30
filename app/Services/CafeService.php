@@ -163,6 +163,7 @@ class CafeService
         }
         $cafe->save();
         // 更新关联的冲泡方法
+        dd(isset($data['brew_methods']));
         if (isset($data['brew_methods'])) {
             \Log::info(json_decode($brewMethods));
             $cafe->brewMethods()->sync(json_decode($brewMethods));
