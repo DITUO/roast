@@ -1,5 +1,6 @@
 <style lang="scss">
     @import '~@/abstracts/_variables.scss';
+
     div#app-layout {
         div.show-filters {
             height: 90px;
@@ -41,12 +42,16 @@
 </template>
 
 <script>
+
     import Navigation from '../components/global/Navigation.vue';
     import LoginModal from '../components/global/LoginModal.vue';
     import SuccessNotification from '../components/global/SuccessNotification.vue';
     import ErrorNotification from '../components/global/ErrorNotification.vue';
     import Filters from '../components/global/Filters.vue';
     import PopOut from '../components/global/PopOut.vue';
+    
+    import {EventBus} from '../event-bus.js';
+
     export default {
         components: {
             Navigation,
@@ -56,29 +61,35 @@
             Filters,
             PopOut
         },
+        data() {
+            return {
+                
+            }
+        },
         created() {
             this.$store.dispatch('loadCafes');
             this.$store.dispatch('loadUser');
             this.$store.dispatch('loadBrewMethods');
             this.$store.dispatch('loadCities');
-            if (this.$store._modules.get(['admin'])) {
-                this.$store.unregisterModule('admin', {});
-            }
         },
         computed: {
             showFilters() {
                 return this.$store.getters.getShowFilters;
             },
+
             addedCafe() {
                 return this.$store.getters.getAddedCafe;
             },
+
             addCafeStatus() {
                 return this.$store.getters.getCafeAddStatus;
             },
+
             cafesView() {
                 return this.$store.getters.getCafesView;
             }
         },
+
         watch: {
             'addCafeStatus': function () {
                 if (this.addCafeStatus === 2) {
@@ -88,6 +99,7 @@
                 }
             }
         },
+
         methods: {
             toggleShowFilters() {
                 this.$store.dispatch('toggleShowFilters', {showFilters: !this.showFilters});
