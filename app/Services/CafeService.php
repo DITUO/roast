@@ -14,7 +14,6 @@ class CafeService
      */
     public function addCafe($data, $addedBy)
     {
-        dd($data);
         $companyID = isset($data['company_id']) ? $data['company_id'] : '';
         // 如果对应公司不存在，先添加之
         if ($companyID != '') {
@@ -55,7 +54,7 @@ class CafeService
         $cafe->matcha = isset($data['matcha']) ? $data['matcha'] : 0;
         $cafe->save();
         // 保存咖啡店支持的冲泡方法
-        $cafe->brewMethods()->sync($brewMethods);
+        $cafe->brewMethods()->sync(explode(',',$brewMethods));
         return $cafe;
     }
 
