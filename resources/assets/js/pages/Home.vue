@@ -30,13 +30,6 @@
             ToggleCafesView,
             MapLegend
         },
-
-        data() {
-            return {
-                
-            }
-        },
-
         computed: {
             cafesView() {
                 return this.$store.getters.getCafesView;

@@ -28,37 +28,22 @@ class CafesController extends Controller
                            $query->select('name');
                        }])
                        ->with('company')
-                       //->withCount('userLike')
+                       ->withCount('userLike')
                        ->withCount('likes')
                        ->get();
-        foreach($cafes as &$v){
-            $v['user_like_count'] = 0; 
-        }
         return response()->json($cafes);
     }
 
     public function getCafe($id){
-        if(Auth::guard('api')->user()){
-            $cafe = Cafe::where('id',$id)
-            ->with('brewMethods')
-            ->withCount('userLike')
-            ->with('tags')
-            ->with(['company'=>function($query){
-                $query->withCount('cafes');
-            }])
-            ->withCount('likes')
-            ->first();
-        }else{
-            $cafe = Cafe::where('id',$id)
-            ->with('brewMethods')
-            ->with('tags')
-            ->with(['company'=>function($query){
-                $query->withCount('cafes');
-            }])
-            ->withCount('likes')
-            ->first();
-            $cafe['user_like_count'] = 0;
-        }
+        $cafe = Cafe::where('id',$id)
+        ->with('brewMethods')
+        ->withCount('userLike')
+        ->with('tags')
+        ->with(['company'=>function($query){
+            $query->withCount('cafes');
+        }])
+        ->withCount('likes')
+        ->first();
 
         return response()->json($cafe);
     }

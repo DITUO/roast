@@ -30,7 +30,7 @@ export const cities = {
         /**
          * 获取指定城市
          */
-        loadCity( { commit } ){
+        loadCity( { commit },data ){
             commit('setCityLoadStatus',1);
 
             CityAPI.getCity(data.id)

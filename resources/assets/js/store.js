@@ -45,5 +45,10 @@ export default new Vuex.Store({
         filters,
         display,
         cities
-    }
+    },
+    data() {
+        return {
+            
+        }
+    },
 });

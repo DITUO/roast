@@ -61,11 +61,6 @@
             Filters,
             PopOut
         },
-        data() {
-            return {
-                
-            }
-        },
         created() {
             this.$store.dispatch('loadCafes');
             this.$store.dispatch('loadUser');
