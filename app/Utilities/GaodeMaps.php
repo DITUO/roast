@@ -83,6 +83,7 @@ class GaodeMaps
             $city->country = $regeocodeData->regeocode->addressComponent->country;
             // 获取城市经纬度
             $url = 'https://restapi.amap.com/v3/config/district?keywords=' . $city->name . '&key=' . $apiKey;
+            dd($url);
             $districtResponse = $client->get($url)->getBody();
             $districtData = json_decode($districtResponse);
             if (!empty($districtData) && $districtData->status == 1) {
