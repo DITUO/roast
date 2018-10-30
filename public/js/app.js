@@ -39990,6 +39990,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
     filters: __WEBPACK_IMPORTED_MODULE_6__modules_filters_js__["a" /* filters */],
     display: __WEBPACK_IMPORTED_MODULE_7__modules_display_js__["a" /* display */],
     cities: __WEBPACK_IMPORTED_MODULE_8__modules_cities_js__["a" /* cities */]
+  },
+  data: function data() {
+    return {};
   }
 }));
 
@@ -60685,80 +60688,127 @@ var display = {
 
 
 var cities = {
-    state: {
-        cities: [],
-        citiesLoadStatus: 0,
+  /*
+    Defines the state being monitored for the module.
+  */
+  state: {
+    cities: [],
+    citiesLoadStatus: 0,
 
-        city: {},
-        cityLoadStatus: 0
+    city: {},
+    cityLoadStatus: 0
+  },
+
+  /*
+    Defines the actions available on the module.
+  */
+  actions: {
+    /*
+      Loads all cities.
+    */
+    loadCities: function loadCities(_ref) {
+      var commit = _ref.commit;
+
+      commit('setCitiesLoadStatus', 1);
+
+      /*
+        Calls the API to load the cities
+      */
+      __WEBPACK_IMPORTED_MODULE_0__api_city_js__["a" /* default */].getCities().then(function (response) {
+        commit('setCities', response.data);
+        commit('setCitiesLoadStatus', 2);
+      }).catch(function () {
+        commit('setCities', []);
+        commit('setCitiesLoadStatus', 3);
+      });
     },
 
-    actions: {
-        /**
-         * 获取所有城市
-         * @param {*} param0 
-         */
-        loadCities: function loadCities(_ref) {
-            var commit = _ref.commit;
+    /*
+      Loads an individual city.
+    */
+    loadCity: function loadCity(_ref2, data) {
+      var commit = _ref2.commit;
 
-            commit('setCitiesLoadStatus', 1);
+      commit('setCityLoadStatus', 1);
 
-            __WEBPACK_IMPORTED_MODULE_0__api_city_js__["a" /* default */].getCities().then(function (response) {
-                commit('setCities', response.data);
-                commit('setCitiesLoadStatus', 2);
-            }).catch(function () {
-                commit('setCities', []);
-                commit('setCitiesLoadStatus', 3);
-            });
-        },
-
-        /**
-         * 获取指定城市
-         */
-        loadCity: function loadCity(_ref2) {
-            var commit = _ref2.commit;
-
-            commit('setCityLoadStatus', 1);
-
-            __WEBPACK_IMPORTED_MODULE_0__api_city_js__["a" /* default */].getCity(data.id).then(function (response) {
-                commit('setCity', response.data);
-                commit('setCityLoadStatus', 2);
-            }).catch(function () {
-                commit('setCity', {});
-                commit('setCityLoadStatus', 3);
-            });
-        }
-    },
-
-    mutations: {
-        setCities: function setCities(state, cities) {
-            state.cities = cities;
-        },
-        setCitiesLoadStatus: function setCitiesLoadStatus(state, status) {
-            state.citiesLoadStatus = status;
-        },
-        setCity: function setCity(state, city) {
-            state.city = city;
-        },
-        setCityLoadStatus: function setCityLoadStatus(state, status) {
-            state.cityLoadStatus = status;
-        }
-    },
-
-    getters: {
-        getCities: function getCities(state) {
-            return state.cities;
-        },
-        getCitiesLoadStatus: function getCitiesLoadStatus(state) {
-            return state.citiesLoadStatus;
-        },
-        getCity: function getCity(state) {
-            return state.city;
-        },
-        getCityLoadStatus: function getCityLoadStatus(state) {
-            return state.cityLoadStatus;
-        }
+      /*
+        Calls the API to load an individual city by id.
+      */
+      __WEBPACK_IMPORTED_MODULE_0__api_city_js__["a" /* default */].getCity(data.id).then(function (response) {
+        commit('setCity', response.data);
+        commit('setCityLoadStatus', 2);
+      }).catch(function () {
+        commit('setCity', {});
+        commit('setCityLoadStatus', 3);
+      });
     }
+  },
+
+  /*
+    Defines the mutations based on the data store.
+  */
+  mutations: {
+    /*
+      Sets the cities in the state.
+    */
+    setCities: function setCities(state, cities) {
+      state.cities = cities;
+    },
+
+    /*
+      Sets the cities load status.
+    */
+    setCitiesLoadStatus: function setCitiesLoadStatus(state, status) {
+      state.citiesLoadStatus = status;
+    },
+
+    /*
+      Sets the city
+    */
+    setCity: function setCity(state, city) {
+      state.city = city;
+    },
+
+    /*
+      Sets the city load status.
+    */
+    setCityLoadStatus: function setCityLoadStatus(state, status) {
+      state.cityLoadStatus = status;
+    }
+  },
+
+  /*
+    Defines the getters on the module.
+  */
+  getters: {
+    /*
+      Gets the cities
+    */
+    getCities: function getCities(state) {
+      return state.cities;
+    },
+
+    /*
+      Gets the cities load status.
+    */
+    getCitiesLoadStatus: function getCitiesLoadStatus(state) {
+      return state.citiesLoadStatus;
+    },
+
+    /*
+      Get the city
+    */
+    getCity: function getCity(state) {
+      return state.city;
+    },
+
+    /*
+      Get the city load status.
+    */
+    getCityLoadStatus: function getCityLoadStatus(state) {
+      return state.cityLoadStatus;
+    }
+  }
 };
 
 /***/ }),
@@ -60993,9 +61043,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ErrorNotification: __WEBPACK_IMPORTED_MODULE_3__components_global_ErrorNotification_vue___default.a,
         Filters: __WEBPACK_IMPORTED_MODULE_4__components_global_Filters_vue___default.a,
         PopOut: __WEBPACK_IMPORTED_MODULE_5__components_global_PopOut_vue___default.a
-    },
-    data: function data() {
-        return {};
     },
     created: function created() {
         this.$store.dispatch('loadCafes');
@@ -63864,12 +63911,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ToggleCafesView: __WEBPACK_IMPORTED_MODULE_3__components_cafes_ToggleCafesView_vue___default.a,
         MapLegend: __WEBPACK_IMPORTED_MODULE_4__components_cafes_MapLegend_vue___default.a
     },
-
-    data: function data() {
-        return {};
-    },
-
-
     computed: {
         cafesView: function cafesView() {
             return this.$store.getters.getCafesView;
@@ -69836,10 +69877,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 */
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {};
-    },
-
     /*
       On the created lifecycle hook, load the individual city.
     */
