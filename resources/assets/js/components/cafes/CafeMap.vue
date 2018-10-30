@@ -60,6 +60,7 @@
 <script>
     import {ROAST_CONFIG} from '../../config.js';
     import {EventBus} from '../../event-bus.js';
+    
     import {CafeTypeFilter} from '../../mixins/filters/CafeTypeFilter.js';
     import {CafeBrewMethodsFilter} from '../../mixins/filters/CafeBrewMethodsFilter.js';
     import {CafeTagsFilter} from '../../mixins/filters/CafeTagsFilter.js';
@@ -70,6 +71,7 @@
     import {CafeSubscriptionFilter} from '../../mixins/filters/CafeSubscriptionFilter.js';
     import {CafeInCityFilter} from '../../mixins/filters/CafeInCityFilter.js';
     import cafe from "../../api/cafe";
+    
     export default {
         mixins: [
             CafeTypeFilter,
