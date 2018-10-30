@@ -69,7 +69,7 @@ class CafeService
         // 如果选择已有的公司，则更新公司信息，否则新增
         if (isset($data['company_id'])) {
             $company = Company::where('id', '=', $data['company_id'])->first();
-            \Log::info($company);
+            dd($company);
             if (isset($data['company_name'])) {
                 $company->name = $data['company_name'];
             }
