@@ -122,7 +122,6 @@ class CafesController extends Controller
         $cafe = Cafe::where('id', '=', $id)->with('brewMethods')->first();
 
         $cafeService = new CafeService();
-        \Log::info(Auth::user()->id);
         $updatedCafe = $cafeService->editCafe($cafe->id, $request->all(), Auth::user()->id);
     
         $company = Company::where('id', '=', $updatedCafe->company_id)
