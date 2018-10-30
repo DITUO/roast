@@ -54,7 +54,7 @@ class CafeService
         $cafe->matcha = isset($data['matcha']) ? $data['matcha'] : 0;
         $cafe->save();
         // 保存咖啡店支持的冲泡方法
-        $cafe->brewMethods()->sync($brewMethods);
+        $cafe->brewMethods()->sync(json_decode($brewMethods));
         return $cafe;
     }
 
