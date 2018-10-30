@@ -13,6 +13,6 @@ export default {
      * 获取指定城市
      */
     getCity: function(id){
-        return axios.get(ROAST_CONFIG.API_URL + 'cities' + id);
+        return axios.get(ROAST_CONFIG.API_URL + '/cities/' + id);
     }
 }

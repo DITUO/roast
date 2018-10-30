@@ -60834,7 +60834,7 @@ var cities = {
      * 获取指定城市
      */
     getCity: function getCity(id) {
-        return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + 'cities' + id);
+        return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* ROAST_CONFIG */].API_URL + '/cities/' + id);
     }
 });
 
