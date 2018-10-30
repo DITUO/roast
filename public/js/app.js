@@ -40039,7 +40039,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         formData.append('city', city);
         formData.append('state', state);
         formData.append('zip', zip);
-        formData.append('brew_methods', JSON.stringify(brewMethods));
+        formData.append('brew_methods', brewMethods);
         formData.append('matcha', matcha);
         formData.append('tea', tea);
 
