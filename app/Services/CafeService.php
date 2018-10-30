@@ -58,6 +58,7 @@ class CafeService
         $cafe->brewMethods()->sync(json_decode($brewMethods));
         return $cafe;
     }
+
     /**
      * 更新咖啡店数据
      * @param $id
@@ -65,8 +66,9 @@ class CafeService
      * @param $updatedBy
      * @return mixed
      */
-    public function editCafe($id, $data, $updatedBy)
-    {
+    public function editCafe($id, $data, $updatedBy){
+        \Log::info($data);
+        \Log::info($updatedBy);
         // 如果选择已有的公司，则更新公司信息，否则新增
         if (isset($data['company_id'])) {
             $company = Company::where('id', '=', $data['company_id'])->first();
