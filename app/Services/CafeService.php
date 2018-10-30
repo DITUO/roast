@@ -14,7 +14,6 @@ class CafeService
      */
     public function addCafe($data, $addedBy)
     {
-        dd($data,$addedBy);
         $companyID = isset($data['company_id']) ? $data['company_id'] : '';
         // 如果对应公司不存在，先添加之
         if ($companyID != '') {

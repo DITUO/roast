@@ -48,6 +48,7 @@ class GaodeMaps
      */
     public static function findClosestCity($name, $latitude, $longitude)
     {
+        dd($name,$latitude,$longitude);
         $cities = City::where('name', 'LIKE', $name . '%')->get();
         // 检查距离信息
         if ($cities && count($cities) == 1) {
