@@ -9,6 +9,11 @@ use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
     use Notifiable,HasApiTokens;
+    
+    const ROLE_GENERAL_USER = 0;  // 普通用户
+    const ROLE_SHOP_OWNER = 1;    // 商家用户
+    const ROLE_ADMIN = 2;         // 管理员
+    const ROLE_SUPER_ADMIN = 3;   // 超级管理员 
 
     /**
      * The attributes that are mass assignable.
@@ -48,5 +53,19 @@ class User extends Authenticatable
     public function companiesOwned()
     {
         return $this->belongsToMany(Company::class, 'company_owners', 'user_id', 'company_id');
+    }
+
+    /**
+     * 该用户前端进行的操作
+     */
+    public function actions(){
+        return $this->hasMany(Action::class,'id','user_id');
+    }
+
+    /**
+     * 该用户后台审核动作
+     */
+    public function actionsProcessed(){
+        return $this->hasMnay(Action::calass,'id','processed_by');
     }
 }

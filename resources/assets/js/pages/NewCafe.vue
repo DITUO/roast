@@ -578,15 +578,13 @@
         computed: {
             brewMethods() {
                 return this.$store.getters.getBrewMethods;
-            }
-            ,
+            },
             addCafeStatus() {
                 return this.$store.getters.getCafeAddStatus;
-            }
-            ,
+            },
             addCafeText() {
                 return this.$store.getters.getCafeAddText;
-            }
+            },
         },
         watch: {
             addCafeStatus() {
