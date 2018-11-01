@@ -30,4 +30,11 @@ class Action extends Model
     public function processedBy(){
         return $this->belongsTo(user::class,'processed_by','id');
     }
+
+    /**
+     * 该动作属于那个公司
+     */
+    public function company(){
+        return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
 }

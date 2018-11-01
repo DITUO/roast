@@ -64,3 +64,10 @@ Route::group(['prefix' => 'v1'], function(){
     Route::get('/cities/{id}', 'API\CitiesController@getCity');// 获取指定城市
     Route::get('/companies/search', 'API\CompaniesController@getCompanySearch');//公司搜索路由
 });
+
+// 管理后台，需要登录，且有后台管理权限
+Route::group(['prefix'=>'v1/admin','middleware'=>['auth:api','owner']],function(){
+    Route::get('/actions','API\Admin\ActionsController@getActions');//审核列表
+    Route::put('/actions/{action}/approve', 'API\Admin\ActionsController@putApproveAction');//通过
+    Route::put('/actions/{action}/deny', 'API\Admin\ActionsController@putDenyAction');//不通过
+});

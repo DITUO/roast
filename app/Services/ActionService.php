@@ -39,4 +39,24 @@ class ActionService{
 
         $action->save();
     }
+
+    /**
+     * 审核通过一条记录
+     */
+    public function approveAction($action,$processedBy){
+        $action->status = Action::STATUS_APPROVED;
+        $action->processed_by = $processedBy;
+        $action->processed_on = Carbon::now();
+        $action->save();
+    }
+
+    /**
+     * 审核不通过一条记录
+     */
+    public function denyAction($action,$processedBy){
+        $action->status = Action::STATUS_DENIED;
+        $action->processed_by = $processedBy;
+        $action->processed_on = Carbon::now();
+        $action->save();
+    }
 }
