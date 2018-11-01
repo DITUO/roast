@@ -28,7 +28,7 @@ class CafePolicy
     public function create(User $user,Company $company){
         if($user->permission == 2 || $user->permission == 3){
             return true;
-        }elseif($company != null && $user->companiesOwned->contain($company->id)){
+        }elseif($company != null && $user->companiesOwned->contains($company->id)){
             return true;
         }else{
             return false;
@@ -41,7 +41,7 @@ class CafePolicy
     public function update(User $user,Cafe $cafe){
         if($user->permission == 2 || $user->permission == 3){
             return true;
-        }elseif($user->companiesOwned->contain($cafe->company_id)){
+        }elseif($user->companiesOwned->contains($company->id)){
             return true;
         }else{
             return false;
@@ -54,7 +54,7 @@ class CafePolicy
     public function delete(User $user,Cafe $cafe){
         if($user->permission == 2 || $user->permission == 3){
             return true;
-        }elseif($user->companiesOwned->contain($cafe->company_id)){
+        }elseif($user->companiesOwned->contains($company->id)){
             return true;
         }else{
             return false;
