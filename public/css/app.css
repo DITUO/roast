@@ -126,6 +126,17 @@ div.location-type.cafe img {
   margin-top: -6px;
 }
 
+h3.page-header {
+  font-weight: bold;
+  font-family: "Lato", sans-serif;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+
+h3.page-header a {
+  color: black;
+}
+
 /**
  * 3: Layouts
  */

@@ -151,6 +151,14 @@ export default new VueRouter({
             },
             children: [
                 {
+                    path: 'actions',
+                    name: 'admin-actions',
+                    component: Vue.component('AdminActions', require('./pages/admin/Actions.vue')),
+                    meta: {
+                        permission: 'owner'
+                    }
+                },         
+                {
                     path: '_=_',
                     redirect: '/'
                 }
